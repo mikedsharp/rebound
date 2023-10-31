@@ -1,6 +1,6 @@
 #include "Game/Crate.h"
 
-Crate::Crate(const Rect&  dimensions , int crateType , const sf::Image& spriteSheet):GameSprite(dimensions,Point(0,0) ,spriteSheet)
+Crate::Crate(const Rect&  dimensions , int crateType , const sf::Texture& spriteSheet):GameSprite(dimensions,Point(0,0) ,spriteSheet)
 {
     //ctor
     Alive(true);

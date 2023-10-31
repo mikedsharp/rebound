@@ -7,7 +7,7 @@
 class Paddle : public GameSprite
 {
     public:
-        Paddle(const Rect&  dimensions , const Point&  clipLocation , const sf::Image& spriteSheet);
+        Paddle(const Rect&  dimensions , const Point&  clipLocation , const sf::Texture& spriteSheet);
         int Score(){return m_score;}
         void Score(int score){m_score = score;}
         void AddScore(int score){ m_score += score;}

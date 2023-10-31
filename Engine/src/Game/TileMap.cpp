@@ -109,7 +109,7 @@ void  TileMap::SetTileSize(int width, int height)
 
     }
 }
-void  TileMap::SetTilesheet(const std::string& layerName, const sf::Image& newSheet)
+void  TileMap::SetTilesheet(const std::string& layerName, const sf::Texture& newSheet)
 {
     for(std::vector<TileLayer*>::iterator it = m_layers.begin();it < m_layers.end();it++){
          if((*it)->Name() == layerName){
@@ -155,12 +155,12 @@ void TileMap::Draw(const GameWindow& win)
 }
 bool TileMap::HandleEvent(const sf::Event* event)
 {
-    if(event->Type == sf::Event::KeyPressed){
-          if(event->Key.Code == sf::Key::F){
+    if(event->type == sf::Event::KeyPressed){
+          if(event->key.code == sf::Keyboard::Key::F){
               std::cout << "F Key Pressed" << std::endl;
               return true;
           }
-          else if(event->Key.Code == sf::Key::E){
+          else if(event->key.code == sf::Keyboard::Key::E){
               std::cout << "E Key Pressed" << std::endl;
               return true;
           }

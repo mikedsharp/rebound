@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="rebound" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/rebound" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="Engine" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="../SFML-2.6.0-sources/SFML-2.6.0/lib/libsfml-audio-d.a" />
+					<Add library="../SFML-2.6.0-sources/SFML-2.6.0/lib/libsfml-graphics-d.a" />
+					<Add library="../SFML-2.6.0-sources/SFML-2.6.0/lib/libsfml-main-d.a" />
+					<Add library="../SFML-2.6.0-sources/SFML-2.6.0/lib/libsfml-network-d.a" />
+					<Add library="../SFML-2.6.0-sources/SFML-2.6.0/lib/libsfml-system-d.a" />
+					<Add library="../SFML-2.6.0-sources/SFML-2.6.0/lib/libsfml-window-d.a" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/rebound" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="Engine" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="../SFML-2.6.0-sources/SFML-2.6.0/lib/libsfml-audio.a" />
+					<Add library="../SFML-2.6.0-sources/SFML-2.6.0/lib/libsfml-graphics.a" />
+					<Add library="../SFML-2.6.0-sources/SFML-2.6.0/lib/libsfml-main.a" />
+					<Add library="../SFML-2.6.0-sources/SFML-2.6.0/lib/libsfml-network.a" />
+					<Add library="../SFML-2.6.0-sources/SFML-2.6.0/lib/libsfml-system.a" />
+					<Add library="../SFML-2.6.0-sources/SFML-2.6.0/lib/libsfml-window.a" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="../SFML-2.6.0-sources/SFML-2.6.0/include" />
+			<Add directory="Engine/include" />
+		</Compiler>
+		<Linker>
+			<Add directory="../SFML-2.6.0-sources/SFML-2.6.0/lib" />
+		</Linker>
+		<Unit filename="Assets/Base Images/Crate Overlay Base.xcf" />
+		<Unit filename="Assets/Base Images/Crate Overlay Retro.xcf" />
+		<Unit filename="Assets/Base Images/Crate Overlay Temple.xcf" />
+		<Unit filename="Assets/Base Images/Crate Overlay_Crate.xcf" />
+		<Unit filename="Assets/Base Images/Crate Overlay_Metal.xcf" />
+		<Unit filename="Assets/Base Images/Numbersheet_Retro.xcf" />
+		<Unit filename="Assets/Base Images/Numbersheet_Stadium_Blue.xcf" />
+		<Unit filename="Assets/Base Images/Numbersheet_Stadium_Red.xcf" />
+		<Unit filename="Assets/Base Images/Numbersheet_Template.xcf" />
+		<Unit filename="Assets/Base Images/Numbersheet_Temple.png" />
+		<Unit filename="Assets/Base Images/Numbersheet_Temple.xcf" />
+		<Unit filename="Assets/Base Images/backdrop_retro.xcf" />
+		<Unit filename="Assets/Base Images/backdrop_stadium.xcf" />
+		<Unit filename="Assets/Base Images/ball_retro.xcf" />
+		<Unit filename="Assets/Base Images/ball_stadium.xcf" />
+		<Unit filename="Assets/Base Images/ball_temple.xcf" />
+		<Unit filename="Assets/Base Images/base crate.png" />
+		<Unit filename="Assets/Base Images/coals.xcf" />
+		<Unit filename="Assets/Base Images/crate_retro.xcf" />
+		<Unit filename="Assets/Base Images/crate_wood.png" />
+		<Unit filename="Assets/Base Images/gameover_lose.xcf" />
+		<Unit filename="Assets/Base Images/gameover_win.xcf" />
+		<Unit filename="Assets/Base Images/paddle_retro.xcf" />
+		<Unit filename="Assets/Base Images/paddle_stadium_blue.xcf" />
+		<Unit filename="Assets/Base Images/paddle_stadium_red.xcf" />
+		<Unit filename="Assets/Base Images/paddle_temple.xcf" />
+		<Unit filename="Assets/Base Images/temple_backdrop.xcf" />
+		<Unit filename="Assets/Base Images/temple_block.xcf" />
+		<Unit filename="Assets/Base Images/temple_crate_face.xcf" />
+		<Unit filename="Assets/Base Images/titlescreen.xcf" />
+		<Unit filename="Assets/Ejay Mixes/Theme Tune.mix" />
+		<Unit filename="Assets/Ejay Mixes/theme.aup" />
+		<Unit filename="Assets/Ejay Mixes/theme.wav" />
+		<Unit filename="Assets/Ejay Mixes/theme_data/e00/d00/e0000264.au" />
+		<Unit filename="Assets/Ejay Mixes/theme_data/e00/d00/e000029c.au" />
+		<Unit filename="Assets/Ejay Mixes/theme_data/e00/d00/e00002cb.au" />
+		<Unit filename="Assets/Ejay Mixes/theme_data/e00/d00/e000055c.au" />
+		<Unit filename="Assets/Ejay Mixes/theme_data/e00/d00/e000070c.au" />
+		<Unit filename="Assets/Ejay Mixes/theme_data/e00/d00/e000080a.au" />
+		<Unit filename="Assets/Ejay Mixes/theme_data/e00/d00/e0000873.au" />
+		<Unit filename="Assets/Ejay Mixes/theme_data/e00/d00/e0000899.au" />
+		<Unit filename="Assets/Ejay Mixes/theme_data/e00/d00/e00008a9.au" />
+		<Unit filename="Assets/Ejay Mixes/theme_data/e00/d00/e0000b35.au" />
+		<Unit filename="Assets/Ejay Mixes/theme_data/e00/d00/e0000bd3.au" />
+		<Unit filename="Assets/Ejay Mixes/theme_data/e00/d00/e0000d35.au" />
+		<Unit filename="Assets/Ejay Mixes/theme_data/e00/d00/e0000e39.au" />
+		<Unit filename="Assets/Ejay Mixes/theme_data/e00/d00/e0000e3b.au" />
+		<Unit filename="Engine/img/License for BPDots font .txt" />
+		<Unit filename="Engine/img/License for Shortcut font.txt" />
+		<Unit filename="Engine/img/Numbersheet_Retro.png" />
+		<Unit filename="Engine/img/Numbersheet_Stadium_Blue.png" />
+		<Unit filename="Engine/img/Numbersheet_Stadium_Red.png" />
+		<Unit filename="Engine/img/Numbersheet_Temple.png" />
+		<Unit filename="Engine/img/backdrop_retro.png" />
+		<Unit filename="Engine/img/backdrop_stadium.png" />
+		<Unit filename="Engine/img/backdrop_temple.png" />
+		<Unit filename="Engine/img/ball_retro.png" />
+		<Unit filename="Engine/img/ball_stadium.png" />
+		<Unit filename="Engine/img/ball_temple.png" />
+		<Unit filename="Engine/img/crate_retro.png" />
+		<Unit filename="Engine/img/crate_stadium.png" />
+		<Unit filename="Engine/img/crate_temple.png" />
+		<Unit filename="Engine/img/gameover_lose.png" />
+		<Unit filename="Engine/img/gameover_win.png" />
+		<Unit filename="Engine/img/license for silkscreen font.txt" />
+		<Unit filename="Engine/img/paddle_retro.png" />
+		<Unit filename="Engine/img/paddle_stadium_blue.png" />
+		<Unit filename="Engine/img/paddle_stadium_red.png" />
+		<Unit filename="Engine/img/paddle_temple.png" />
+		<Unit filename="Engine/img/temple_backdrop.png" />
+		<Unit filename="Engine/img/titlescreen.png" />
+		<Unit filename="Engine/include/Exception/FileNotFoundException.h" />
+		<Unit filename="Engine/include/Exception/myexception.h" />
+		<Unit filename="Engine/include/GameEngine.h" />
+		<Unit filename="Engine/include/GameState.h" />
+		<Unit filename="Engine/include/GameStateFactory.h" />
+		<Unit filename="Engine/include/Game/Ball.h" />
+		<Unit filename="Engine/include/Game/Crate.h" />
+		<Unit filename="Engine/include/Game/Paddle.h" />
+		<Unit filename="Engine/include/Game/Tile.h" />
+		<Unit filename="Engine/include/Game/TileLayer.h" />
+		<Unit filename="Engine/include/Game/TileMap.h" />
+		<Unit filename="Engine/include/Rendering/Drawable.h" />
+		<Unit filename="Engine/include/Rendering/GameSprite.h" />
+		<Unit filename="Engine/include/Rendering/GameWindow.h" />
+		<Unit filename="Engine/include/Rendering/RenderManager.h" />
+		<Unit filename="Engine/include/States/GameOverState.h" />
+		<Unit filename="Engine/include/States/MainMenuState.h" />
+		<Unit filename="Engine/include/States/RandomRebound_GameState.h" />
+		<Unit filename="Engine/include/Util/AudioResourceManager.h" />
+		<Unit filename="Engine/include/Util/Camera.h" />
+		<Unit filename="Engine/include/Util/Composite.h" />
+		<Unit filename="Engine/include/Util/Dimension.h" />
+		<Unit filename="Engine/include/Util/Focusable.h" />
+		<Unit filename="Engine/include/Util/ImageResourceManager.h" />
+		<Unit filename="Engine/include/Util/Point.h" />
+		<Unit filename="Engine/include/Util/Rect.h" />
+		<Unit filename="Engine/include/Util/RotatedRectangle.h" />
+		<Unit filename="Engine/include/Util/Vector2f.h" />
+		<Unit filename="Engine/music/theme.wav" />
+		<Unit filename="Engine/sounds/blip_retro.wav" />
+		<Unit filename="Engine/sounds/blip_stadium.wav" />
+		<Unit filename="Engine/sounds/blip_temple.wav" />
+		<Unit filename="Engine/sounds/goal_retro.wav" />
+		<Unit filename="Engine/sounds/goal_stadium.wav" />
+		<Unit filename="Engine/sounds/goal_temple.wav" />
+		<Unit filename="Engine/src/Exception/FileNotFoundException.cpp" />
+		<Unit filename="Engine/src/GameEngine.cpp" />
+		<Unit filename="Engine/src/GameState.cpp" />
+		<Unit filename="Engine/src/GameStateFactory.cpp" />
+		<Unit filename="Engine/src/Game/Ball.cpp" />
+		<Unit filename="Engine/src/Game/Crate.cpp" />
+		<Unit filename="Engine/src/Game/Paddle.cpp" />
+		<Unit filename="Engine/src/Game/Tile.cpp" />
+		<Unit filename="Engine/src/Game/TileLayer.cpp" />
+		<Unit filename="Engine/src/Game/TileMap.cpp" />
+		<Unit filename="Engine/src/Rendering/Drawable.cpp" />
+		<Unit filename="Engine/src/Rendering/GameSprite.cpp" />
+		<Unit filename="Engine/src/Rendering/GameWindow.cpp" />
+		<Unit filename="Engine/src/Rendering/RenderManager.cpp" />
+		<Unit filename="Engine/src/States/GameOverState.cpp" />
+		<Unit filename="Engine/src/States/MainMenuState.cpp" />
+		<Unit filename="Engine/src/States/RandomRebound_GameState.cpp" />
+		<Unit filename="Engine/src/Util/AudioResourceManager.cpp" />
+		<Unit filename="Engine/src/Util/Camera.cpp" />
+		<Unit filename="Engine/src/Util/Composite.cpp" />
+		<Unit filename="Engine/src/Util/Dimension.cpp" />
+		<Unit filename="Engine/src/Util/ImageResourceManager.cpp" />
+		<Unit filename="Engine/src/Util/Point.cpp" />
+		<Unit filename="Engine/src/Util/Rect.cpp" />
+		<Unit filename="Engine/src/Util/RotatedRectangle.cpp" />
+		<Unit filename="Engine/src/Util/Util/Focusable.cpp" />
+		<Unit filename="Engine/src/Util/Vector2f.cpp" />
+		<Unit filename="Engine/src/main.cpp" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

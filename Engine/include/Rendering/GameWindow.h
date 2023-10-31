@@ -18,11 +18,11 @@ public:
     void Resize(int width, int height);
     void Clear(const sf::Color& colour = sf::Color(0,0,0))
     {
-        m_windowObj->Clear(colour);
+        m_windowObj->clear(colour);
     }
     bool QueuedEvents()const
     {
-        return m_windowObj->GetEvent(*m_eventObj);
+        return m_windowObj->pollEvent(*m_eventObj);
     }
     sf::Event* GetEvent()const
     {
@@ -31,11 +31,11 @@ public:
     void Draw(const GameSprite* wrappedSprite)const;
     void Display()const
     {
-        m_windowObj->Display();
+        m_windowObj->display();
     }
     void Close()
     {
-        m_windowObj->Close();
+        m_windowObj->close();
     }
     sf::RenderWindow* GetRawWindow()const
     {

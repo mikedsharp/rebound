@@ -16,13 +16,13 @@ AudioResourceManager::~AudioResourceManager()
 
 const sf::SoundBuffer& AudioResourceManager::LoadSoundResource(std::string key, std::string fileName)throw()
 {
-    // declare a new sf::Image pointer, try and allocate it and add it to the map
+    // declare a new sf::Texture pointer, try and allocate it and add it to the map
     sf::SoundBuffer* newSnd = NULL;
     newSnd = new sf::SoundBuffer();
 
 
     // if load was successful
-    if(newSnd->LoadFromFile(fileName))
+    if(newSnd->loadFromFile(fileName))
     {
         if(m_soundResources.count(key.c_str()) == 0)
         {
