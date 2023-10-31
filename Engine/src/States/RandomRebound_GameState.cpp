@@ -50,8 +50,6 @@ RandomRebound_GameState::~RandomRebound_GameState()
 }
 void RandomRebound_GameState::CheckEvent()
 {
-
-    // const sf::Input& input = m_engineInstance->GetGameWindow()->GetRawWindow()->GetInput();
     // grab X axis of 1st joystick (xbox left thumb stick) and check angle
     float joystick1X = sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::X);
 

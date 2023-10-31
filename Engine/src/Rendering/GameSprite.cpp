@@ -111,7 +111,7 @@ void GameSprite::SetClipPosition(int x, int y)
 {
     this->m_clipX = x;
     this->m_clipY = y;
-    m_wrappedSprite->setTextureRect(sf::IntRect(m_clipX,m_clipY,this->m_clipX+this->m_width,this->m_clipY+this->m_height));
+    m_wrappedSprite->setTextureRect(sf::IntRect(m_clipX,m_clipY,this->m_width,this->m_height));
 }
 void GameSprite::SetPosition(float x, float y)
 {

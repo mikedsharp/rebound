@@ -35,6 +35,7 @@ const sf::Texture& ImageResourceManager::LoadImageResource(std::string key, std:
         {
             // set the smooth property to false because SFML is dumb
             newImg->setSmooth(false);
+            newImg->setRepeated(false);
             //newImg->createMaskFromColor(sf::Color(255,0,255));
             m_imageResources[key.c_str()] = newImg;
         }
