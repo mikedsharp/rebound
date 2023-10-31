@@ -1,7 +1,7 @@
 # rebound
 A Game I made back in 2012 or 2013, for a competition in C++
 
-**UPDATE**: The game is buildable again! I upgraded it to use SFML 2.6.0 and i've provided executables for Windows, I will shortly have builds for Linux and Mac (hopefully)
+**UPDATE 31/10/2023**: The game is buildable again! I upgraded it to use SFML 2.6.0 and i've provided executables for Windows, I will shortly have builds for Linux and Mac (hopefully)
 
 This game was made for the Moosader Forum Competition 8: Procedural/Random Generated Game. 
 
