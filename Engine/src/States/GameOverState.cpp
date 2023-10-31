@@ -31,27 +31,27 @@ void GameOverState::CheckEvent()
         // Get next event in event queue
         sf::Event* Event = m_engineInstance->GetGameWindow()->GetEvent();
 
-        if(Event->Type == sf::Event::Closed)
+        if(Event->type == sf::Event::Closed)
         {
             this->m_engineInstance->Running(false);
             EndState();
             m_engineInstance->GetGameWindow()->Close();
         }
-        else if(Event->Type == sf::Event::JoyButtonPressed)
+        else if(Event->type == sf::Event::JoystickButtonPressed )
         {
             this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
         }
-        else if(Event->Type == sf::Event::KeyPressed)
+        else if(Event->type == sf::Event::KeyPressed)
         {
-            switch(Event->Key.Code)
+            switch(Event->key.code)
             {
-            case sf::Key::Return:
+            case sf::Keyboard::Key::Return:
             {
                 this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
                 break;
             }
 
-            case sf::Key::Escape:
+            case sf::Keyboard::Key::Escape:
             {
                 this->m_engineInstance->Running(false);
                 EndState();
@@ -89,13 +89,13 @@ void GameOverState::EndState()
 {
     if(m_theme)
     {
-        m_theme->Stop();
+        m_theme->stop();
     }
 }
 
 void GameOverState::StartState()
 {
-    m_engineInstance->GetGameWindow()->GetRawWindow()->ShowMouseCursor(true);
+    m_engineInstance->GetGameWindow()->GetRawWindow()->setMouseCursorVisible(true);
     if(m_victory > 0)
     {
         m_backdrop->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("gameover_win"));

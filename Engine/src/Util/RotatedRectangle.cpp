@@ -1,6 +1,7 @@
 #include "Util/RotatedRectangle.h"
 #include<vector>
 #include<iostream>
+#include<cmath>
 #define PI 3.14159265
 RotatedRectangle::RotatedRectangle(const Rect& sourceRect, float rotationAngle)
 {

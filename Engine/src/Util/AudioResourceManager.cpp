@@ -22,7 +22,7 @@ const sf::SoundBuffer& AudioResourceManager::LoadSoundResource(std::string key, 
 
 
     // if load was successful
-    if(newSnd->LoadFromFile(fileName))
+    if(newSnd->loadFromFile(fileName))
     {
         if(m_soundResources.count(key.c_str()) == 0)
         {

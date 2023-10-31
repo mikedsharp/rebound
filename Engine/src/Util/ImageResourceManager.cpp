@@ -28,14 +28,14 @@ const sf::Image& ImageResourceManager::LoadImageResource(std::string key, std::s
     newImg = new sf::Image();
 
     // if load was successful
-    if(newImg->LoadFromFile(fileName))
+    if(newImg->loadFromFile(fileName))
     {
         //std::cout << "KEY:" << key.c_str() << std::endl;
         if(m_imageResources.count(key.c_str()) == 0)
         {
             // set the smooth property to false because SFML is dumb
             newImg->SetSmooth(false);
-            newImg->CreateMaskFromColor(sf::Color(255,0,255));
+            newImg->createMaskFromColor(sf::Color(255,0,255));
             m_imageResources[key.c_str()] = newImg;
         }
         else

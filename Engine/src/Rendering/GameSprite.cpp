@@ -31,8 +31,8 @@ GameSprite::GameSprite(const Rect&  dimensions , const Point&  clipLocation , co
         this->m_clipX = clipLocation.X();
         this->m_clipY  = clipLocation.Y();
 
-        m_wrappedSprite->SetPosition(m_worldX, m_worldY);
-        m_wrappedSprite->SetImage(spriteSheet);
+        m_wrappedSprite->setPosition(m_worldX, m_worldY);
+        m_wrappedSprite->setImage(spriteSheet);
         m_wrappedSprite->SetSubRect(sf::IntRect(m_clipX,
                                                 m_clipY,
                                                 this->m_clipX+this->m_width,
@@ -43,7 +43,7 @@ GameSprite::GameSprite(const Rect&  dimensions , const Point&  clipLocation , co
         m_visible = true;
         m_alive = true;
 
-        m_animationTimer.Reset();
+        m_animationTimer.restart();
         m_numFrames = (m_wrappedSprite->GetImage()->GetWidth())/(this->Bounds().Width());
         m_currentFrame = 1;
         m_animationDelay = 0.05;
@@ -115,7 +115,7 @@ void GameSprite::SetClipPosition(int x, int y)
 void GameSprite::SetPosition(float x, float y)
 {
     this->SetWorldPosition(x, y);
-    this->m_wrappedSprite->SetPosition((m_worldX - m_cameraX), (m_worldY - m_cameraY));
+    this->m_wrappedSprite->setPosition((m_worldX - m_cameraX), (m_worldY - m_cameraY));
     m_bounds->X(x);
     m_bounds->Y(y);
 }
@@ -173,11 +173,11 @@ void GameSprite::Draw(const GameWindow& win)
             }
             if(Animating())
             {
-                  if(m_animationTimer.GetElapsedTime() >= m_animationDelay)
+                  if(m_animationTimer.getElapsedTime().asSeconds() >= m_animationDelay)
                     {
                        (m_currentFrame >= (m_numFrames-1))?  m_currentFrame = 0: m_currentFrame += 1;
                        SetClipPosition( m_currentFrame*this->Bounds().Width(),m_clipY);
-                       m_animationTimer.Reset();
+                       m_animationTimer.restart();
 
                     }
             }

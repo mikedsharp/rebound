@@ -24,18 +24,18 @@ void MainMenuState::CheckEvent()
     while(m_engineInstance->GetGameWindow()->QueuedEvents())
     {
         sf::Event* Event = m_engineInstance->GetGameWindow()->GetEvent();
-        if(Event->Type == sf::Event::Closed)
+        if(Event->type == sf::Event::Closed)
         {
             this->m_engineInstance->Running(false);
             m_engineInstance->GetGameWindow()->Close();
         }
-        else if(Event->Type == sf::Event::JoyButtonPressed)
+        else if(Event->type == sf::Event::JoystickButtonPressed)
         {
             this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
         }
-        else if(Event->Type == sf::Event::KeyPressed)
+        else if(Event->type == sf::Event::KeyPressed)
         {
-            if(Event->Key.Code == sf::Key::Return)
+            if(Event->key.code == sf::Keyboard::Return)
             {
                 this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
             }
@@ -56,16 +56,16 @@ void MainMenuState::InitState()
     ImageResourceManager::LoadImageResource("StartScreen", "img/titlescreen.png");
     m_titlescreen = new GameSprite(Rect(0,0,640,480), Point(0,0), ImageResourceManager::GetImageResource("StartScreen"));
     m_theme = new sf::Music();
-    m_theme->OpenFromFile("music/theme.wav");
+    m_theme->openFromFile("music/theme.wav");
 }
 void MainMenuState::EndState()
 {
 }
 void MainMenuState::StartState()
 {
-    m_theme->SetLoop(true);
-    m_theme->SetVolume(25);
-    m_theme->Play();
+    m_theme->setLoop(true);
+    m_theme->setVolume(25);
+    m_theme->play();
     // pass ownership of the theme music to this track to the game over state
     m_engineInstance->SetObject(STATE_GAMEOVER,"theme_music", m_theme);
 }

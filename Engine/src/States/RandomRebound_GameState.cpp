@@ -51,11 +51,11 @@ RandomRebound_GameState::~RandomRebound_GameState()
 void RandomRebound_GameState::CheckEvent()
 {
 
-    const sf::Input& input = m_engineInstance->GetGameWindow()->GetRawWindow()->GetInput();
+    // const sf::Input& input = m_engineInstance->GetGameWindow()->GetRawWindow()->GetInput();
     // grab X axis of 1st joystick (xbox left thumb stick) and check angle
-    float joystick1X = input.GetJoystickAxis(0, sf::Joy::AxisX);
+    float joystick1X = sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::X);
 
-    if((input.IsKeyDown(sf::Key::Left) || (joystick1X < -85)) && !Paused())
+    if((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || (joystick1X < -85)) && !Paused())
     {
         RotatedRectangle playerBounds = m_player->Bounds();
         if(playerBounds.X()-m_player->XSpeed() > m_minPaddleX)
@@ -67,7 +67,7 @@ void RandomRebound_GameState::CheckEvent()
             m_player->SetPosition(m_minPaddleX, playerBounds.Y());
         }
     }
-    if((input.IsKeyDown(sf::Key::Right) || (joystick1X > 85)) && !Paused())
+    if((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) || (joystick1X > 85)) && !Paused())
     {
         RotatedRectangle playerBounds = m_player->Bounds();
 
@@ -87,13 +87,13 @@ void RandomRebound_GameState::CheckEvent()
         sf::Event* Event = m_engineInstance->GetGameWindow()->GetEvent();
 
 
-        if(Event->Type == sf::Event::Closed)
+        if(Event->type == sf::Event::Closed)
         {
             this->m_engineInstance->Running(false);
             EndState();
             m_engineInstance->GetGameWindow()->Close();
         }
-        else if(Event->Type == sf::Event::MouseButtonPressed)
+        /*else if(Event->type == sf::Event::MouseButtonPressed)
         {
             switch(Event->MouseButton.Button)
             {
@@ -104,18 +104,18 @@ void RandomRebound_GameState::CheckEvent()
             default:
                 break;
             }
-        }
-        else if(Event->Type == sf::Event::KeyPressed)
+        }*/
+        else if(Event->type == sf::Event::KeyPressed)
         {
             {
-                switch(Event->Key.Code)
+                switch(Event->key.code)
                 {
-                case sf::Key::P:
+                case sf::Keyboard::Key::P:
                 {
                     Paused(!Paused());
                     break;
                 }
-                case sf::Key::Escape:
+                case sf::Keyboard::Key::Escape:
                 {
                     this->m_engineInstance->Running(false);
                     EndState();
@@ -157,7 +157,7 @@ void RandomRebound_GameState::UpdateLogic()
         }
         m_playerIsServer = true;
         PlanMove();
-        m_paddleBash.Play();
+        m_paddleBash.play();
 
     }
     if(m_gameBall->Collision(m_opponent->Bounds()) && m_playerIsServer)
@@ -177,7 +177,7 @@ void RandomRebound_GameState::UpdateLogic()
             (m_gameBall->YSpeed() > 0) ?  m_gameBall->YSpeed(m_gameBall->YSpeed() + 1) : m_gameBall->YSpeed(m_gameBall->YSpeed() -1);
         }
         m_playerIsServer = false;
-        m_paddleBash.Play();
+        m_paddleBash.play();
 
     }
     // horizontal bounds checks
@@ -204,7 +204,7 @@ void RandomRebound_GameState::UpdateLogic()
 
         (!m_playerIsServer)? m_player->AddScore(1) : m_opponent->AddScore(1);
         PlanMove();
-        m_goalCheer.Play();
+        m_goalCheer.play();
         UpdateScoreBoards();
 
     }
@@ -214,7 +214,7 @@ void RandomRebound_GameState::UpdateLogic()
         m_playerIsServer = false;
         m_gameBall->YSpeed(BALL_BASE_SPEED);
         (!m_playerIsServer)? m_player->AddScore(1) : m_opponent->AddScore(1);
-        m_goalCheer.Play();
+        m_goalCheer.play();
         UpdateScoreBoards();
     }
 
@@ -555,8 +555,8 @@ void RandomRebound_GameState::ChangeTheme(int theme)
         m_player->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("paddle_temple"));
         m_opponent->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("paddle_temple"));
         m_gameBall->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("ball_temple"));
-        m_paddleBash.SetBuffer(AudioResourceManager::GetSoundResource("blip_temple"));
-        m_goalCheer.SetBuffer(AudioResourceManager::GetSoundResource("goal_temple"));
+        m_paddleBash.setBuffer(AudioResourceManager::GetSoundResource("blip_temple"));
+        m_goalCheer.setBuffer(AudioResourceManager::GetSoundResource("goal_temple"));
 
         m_playerScoreText->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("numbers_temple"));
         m_opponentScoreText->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("numbers_temple"));
@@ -574,8 +574,8 @@ void RandomRebound_GameState::ChangeTheme(int theme)
         m_opponent->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("paddle_retro"));
         m_gameBall->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("ball_retro"));
 
-        m_paddleBash.SetBuffer(AudioResourceManager::GetSoundResource("blip_retro"));
-        m_goalCheer.SetBuffer(AudioResourceManager::GetSoundResource("goal_retro"));
+        m_paddleBash.setBuffer(AudioResourceManager::GetSoundResource("blip_retro"));
+        m_goalCheer.setBuffer(AudioResourceManager::GetSoundResource("goal_retro"));
 
         m_playerScoreText->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("numbers_retro"));
         m_opponentScoreText->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("numbers_retro"));
@@ -594,8 +594,8 @@ void RandomRebound_GameState::ChangeTheme(int theme)
         m_opponent->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("paddle_stadium_red"));
         m_gameBall->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("ball_stadium"));
 
-        m_paddleBash.SetBuffer(AudioResourceManager::GetSoundResource("blip_stadium"));
-        m_goalCheer.SetBuffer(AudioResourceManager::GetSoundResource("goal_stadium"));
+        m_paddleBash.setBuffer(AudioResourceManager::GetSoundResource("blip_stadium"));
+        m_goalCheer.setBuffer(AudioResourceManager::GetSoundResource("goal_stadium"));
 
 
         m_playerScoreText->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("numbers_stadium_blue"));

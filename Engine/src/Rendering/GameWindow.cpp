@@ -4,7 +4,7 @@ GameWindow::GameWindow(int width, int height, int bpp, const std::string& captio
 {
     //ctor
     m_windowObj = new sf::RenderWindow();
-    m_windowObj->Create(sf::VideoMode(width, height, bpp), caption,sf::Style::Close);
+    m_windowObj->create(sf::VideoMode(width, height, bpp), caption,sf::Style::Close);
 
     this->m_width = width;
     this->m_height = height;
@@ -30,7 +30,7 @@ GameWindow::~GameWindow()
 
 void GameWindow::Resize(int width, int height)
 {
-    m_windowObj->Create(sf::VideoMode(width, height, this->m_bpp), this->m_caption, sf::Style::Close);
+    m_windowObj->create(sf::VideoMode(width, height, this->m_bpp), this->m_caption, sf::Style::Close);
     this->m_width = width;
     this->m_height = height;
 }
@@ -39,7 +39,7 @@ void GameWindow::Draw(const GameSprite* wrappedSprite)const
 {
     if(wrappedSprite)
     {
-        this->m_windowObj->Draw(*wrappedSprite->GetBaseSprite());
+        this->m_windowObj->draw(*wrappedSprite->GetBaseSprite());
     }
     else
     {
