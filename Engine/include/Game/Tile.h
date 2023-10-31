@@ -9,7 +9,7 @@ using namespace std;
 class Tile : public GameSprite
 {
 public:
-    Tile(const Rect& dimensions, const Point& clip, const sf::Image& spritesheet);
+    Tile(const Rect& dimensions, const Point& clip, const sf::Texture& spritesheet);
     virtual ~Tile();
     void Type(int type)
     {

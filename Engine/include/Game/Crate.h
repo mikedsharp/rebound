@@ -8,7 +8,7 @@ enum CrateType {CRATE_RANDOM=0, CRATE_ONEUP, CRATE_ONEDOWN, CRATE_SLOWBALL, CRAT
 class Crate : public GameSprite
 {
     public:
-        Crate(const Rect&  dimensions , int crateType , const sf::Image& spriteSheet);
+        Crate(const Rect&  dimensions , int crateType , const sf::Texture& spriteSheet);
         void Type(int type);
         int Type();
         virtual ~Crate();

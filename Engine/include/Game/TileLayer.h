@@ -20,12 +20,12 @@
 class TileLayer : public Composite, public Drawable
 {
     public:
-        TileLayer(int tileX, int tileY, const Point& initialPosition, const Dimension& tileDims, const sf::Image& spriteSheet, const std::string& layerName, int zPos=0);
+        TileLayer(int tileX, int tileY, const Point& initialPosition, const Dimension& tileDims, const sf::Texture& spriteSheet, const std::string& layerName, int zPos=0);
         virtual ~TileLayer();
 
         void SetMapSize(int xTiles, int yTiles);
         void SetTileSize(int width, int height);
-        void SetTilesheet(const sf::Image& newSheet );
+        void SetTilesheet(const sf::Texture& newSheet );
         void LayerVisible(bool b);
         bool LayerVisible()const;
         void SetPosition(float x, float y);

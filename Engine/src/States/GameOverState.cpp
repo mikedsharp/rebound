@@ -98,11 +98,11 @@ void GameOverState::StartState()
     m_engineInstance->GetGameWindow()->GetRawWindow()->setMouseCursorVisible(true);
     if(m_victory > 0)
     {
-        m_backdrop->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("gameover_win"));
+        m_backdrop->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("gameover_win"));
     }
     else
     {
-        m_backdrop->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("gameover_lose"));
+        m_backdrop->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("gameover_lose"));
     }
 }
 

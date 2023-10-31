@@ -109,7 +109,7 @@ void  TileMap::SetTileSize(int width, int height)
 
     }
 }
-void  TileMap::SetTilesheet(const std::string& layerName, const sf::Image& newSheet)
+void  TileMap::SetTilesheet(const std::string& layerName, const sf::Texture& newSheet)
 {
     for(std::vector<TileLayer*>::iterator it = m_layers.begin();it < m_layers.end();it++){
          if((*it)->Name() == layerName){

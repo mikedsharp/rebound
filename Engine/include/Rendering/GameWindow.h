@@ -22,7 +22,7 @@ public:
     }
     bool QueuedEvents()const
     {
-        return m_windowObj->waitEvent(*m_eventObj);
+        return m_windowObj->pollEvent(*m_eventObj);
     }
     sf::Event* GetEvent()const
     {

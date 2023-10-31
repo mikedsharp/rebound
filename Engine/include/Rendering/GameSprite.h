@@ -19,14 +19,14 @@ enum Direction {DIRECTION_UP = 0, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGH
 class GameSprite : public Drawable
 {
 public:
-    GameSprite(const Rect&  dimensions , const Point&  clipLocation , const sf::Image& spriteSheet);
+    GameSprite(const Rect&  dimensions , const Point&  clipLocation , const sf::Texture& spriteSheet);
 
     void SetSize(int width, int height);
     void SetPosition(float x, float y);
     void SetDimensions(int x, int y, int width, int height);
     void SetClipPosition(int x, int y);
     void SetAnimation(int action);
-    void SetSpritesheet(const sf::Image& spriteSheet);
+    void SetSpritesheet(const sf::Texture& spriteSheet);
     void UpdateCameraPosition(float x, float y);
     bool Collision(const RotatedRectangle& obstacle);
 

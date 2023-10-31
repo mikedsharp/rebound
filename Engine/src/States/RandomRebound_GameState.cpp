@@ -549,17 +549,17 @@ void RandomRebound_GameState::ChangeTheme(int theme)
     {
         for(unsigned int i = 0; i < m_crates.size(); i++)
         {
-            m_crates[i]->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("crate_temple"));
+            m_crates[i]->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("crate_temple"));
         }
-        m_backdrop->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("backdrop_temple"));
-        m_player->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("paddle_temple"));
-        m_opponent->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("paddle_temple"));
-        m_gameBall->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("ball_temple"));
+        m_backdrop->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("backdrop_temple"));
+        m_player->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("paddle_temple"));
+        m_opponent->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("paddle_temple"));
+        m_gameBall->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("ball_temple"));
         m_paddleBash.setBuffer(AudioResourceManager::GetSoundResource("blip_temple"));
         m_goalCheer.setBuffer(AudioResourceManager::GetSoundResource("goal_temple"));
 
-        m_playerScoreText->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("numbers_temple"));
-        m_opponentScoreText->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("numbers_temple"));
+        m_playerScoreText->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("numbers_temple"));
+        m_opponentScoreText->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("numbers_temple"));
 
         break;
     }
@@ -567,18 +567,18 @@ void RandomRebound_GameState::ChangeTheme(int theme)
     {
         for(unsigned int i = 0; i < m_crates.size(); i++)
         {
-            m_crates[i]->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("crate_retro"));
+            m_crates[i]->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("crate_retro"));
         }
-        m_backdrop->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("backdrop_retro"));
-        m_player->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("paddle_retro"));
-        m_opponent->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("paddle_retro"));
-        m_gameBall->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("ball_retro"));
+        m_backdrop->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("backdrop_retro"));
+        m_player->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("paddle_retro"));
+        m_opponent->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("paddle_retro"));
+        m_gameBall->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("ball_retro"));
 
         m_paddleBash.setBuffer(AudioResourceManager::GetSoundResource("blip_retro"));
         m_goalCheer.setBuffer(AudioResourceManager::GetSoundResource("goal_retro"));
 
-        m_playerScoreText->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("numbers_retro"));
-        m_opponentScoreText->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("numbers_retro"));
+        m_playerScoreText->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("numbers_retro"));
+        m_opponentScoreText->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("numbers_retro"));
 
         break;
     }
@@ -586,20 +586,20 @@ void RandomRebound_GameState::ChangeTheme(int theme)
     {
         for(unsigned int i = 0; i < m_crates.size(); i++)
         {
-            m_crates[i]->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("crate_stadium"));
+            m_crates[i]->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("crate_stadium"));
 
         }
-        m_backdrop->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("backdrop_stadium"));
-        m_player->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("paddle_stadium_blue"));
-        m_opponent->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("paddle_stadium_red"));
-        m_gameBall->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("ball_stadium"));
+        m_backdrop->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("backdrop_stadium"));
+        m_player->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("paddle_stadium_blue"));
+        m_opponent->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("paddle_stadium_red"));
+        m_gameBall->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("ball_stadium"));
 
         m_paddleBash.setBuffer(AudioResourceManager::GetSoundResource("blip_stadium"));
         m_goalCheer.setBuffer(AudioResourceManager::GetSoundResource("goal_stadium"));
 
 
-        m_playerScoreText->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("numbers_stadium_blue"));
-        m_opponentScoreText->GetBaseSprite()->SetImage(ImageResourceManager::GetImageResource("numbers_stadium_red"));
+        m_playerScoreText->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("numbers_stadium_blue"));
+        m_opponentScoreText->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("numbers_stadium_red"));
         break;
     }
     default:

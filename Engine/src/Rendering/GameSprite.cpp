@@ -17,9 +17,10 @@ GameSprite::~GameSprite()
     }
 
 }
-GameSprite::GameSprite(const Rect&  dimensions , const Point&  clipLocation , const sf::Image& spriteSheet)
+GameSprite::GameSprite(const Rect&  dimensions , const Point&  clipLocation , const sf::Texture& spriteSheet)
 {
         // init the inner sprite, setup start params
+
         m_wrappedSprite = new sf::Sprite();
         this->m_worldX = dimensions.X();
         this->m_worldY = dimensions.Y();
@@ -32,8 +33,8 @@ GameSprite::GameSprite(const Rect&  dimensions , const Point&  clipLocation , co
         this->m_clipY  = clipLocation.Y();
 
         m_wrappedSprite->setPosition(m_worldX, m_worldY);
-        m_wrappedSprite->setImage(spriteSheet);
-        m_wrappedSprite->SetSubRect(sf::IntRect(m_clipX,
+        m_wrappedSprite->setTexture(spriteSheet);
+        m_wrappedSprite->setTextureRect(sf::IntRect(m_clipX,
                                                 m_clipY,
                                                 this->m_clipX+this->m_width,
                                                 this->m_clipY+this->m_height));
@@ -44,7 +45,7 @@ GameSprite::GameSprite(const Rect&  dimensions , const Point&  clipLocation , co
         m_alive = true;
 
         m_animationTimer.restart();
-        m_numFrames = (m_wrappedSprite->GetImage()->GetWidth())/(this->Bounds().Width());
+        m_numFrames = ((spriteSheet.getSize().x))/(this->Bounds().Width());
         m_currentFrame = 1;
         m_animationDelay = 0.05;
 
@@ -100,17 +101,17 @@ void GameSprite::SetSize(int width, int height)
 {
     this->m_width = width;
     this->m_height = height;
-    m_wrappedSprite->SetSubRect(sf::IntRect(m_clipX,m_clipY,width,height));
+    m_wrappedSprite->setTextureRect(sf::IntRect(m_clipX,m_clipY,width,height));
 }
-void GameSprite::SetSpritesheet(const sf::Image& spriteSheet)
+void GameSprite::SetSpritesheet(const sf::Texture& spriteSheet)
 {
-    m_wrappedSprite->SetImage(spriteSheet);
+    m_wrappedSprite->setTexture(spriteSheet);
 }
 void GameSprite::SetClipPosition(int x, int y)
 {
     this->m_clipX = x;
     this->m_clipY = y;
-    m_wrappedSprite->SetSubRect(sf::IntRect(m_clipX,m_clipY,this->m_clipX+this->m_width,this->m_clipY+this->m_height));
+    m_wrappedSprite->setTextureRect(sf::IntRect(m_clipX,m_clipY,this->m_clipX+this->m_width,this->m_clipY+this->m_height));
 }
 void GameSprite::SetPosition(float x, float y)
 {

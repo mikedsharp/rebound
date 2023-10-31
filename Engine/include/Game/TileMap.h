@@ -25,7 +25,7 @@ class TileMap : public Drawable, public Composite
         void  SetPosition(float x, float y);
         void  SetMapSize(int xTiles, int yTiles);
         void  SetTileSize(int width, int height);
-        void  SetTilesheet(const std::string& layerName, const sf::Image& newSheet);
+        void  SetTilesheet(const std::string& layerName, const sf::Texture& newSheet);
         void  SetLayerZPosition(const std::string& layerName, int order);
         virtual void Draw(const GameWindow& win);
         virtual bool HandleEvent(const sf::Event* event);

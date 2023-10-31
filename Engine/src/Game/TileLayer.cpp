@@ -1,6 +1,6 @@
 #include "Game/TileLayer.h"
 
-TileLayer::TileLayer(int tileX, int tileY, const Point& initialPosition, const Dimension& tileDims, const sf::Image& spriteSheet, const std::string& layerName, int zPos):Composite()
+TileLayer::TileLayer(int tileX, int tileY, const Point& initialPosition, const Dimension& tileDims, const sf::Texture& spriteSheet, const std::string& layerName, int zPos):Composite()
 {
     //ctor
     // assign what we need to keep tiles correct
@@ -68,7 +68,7 @@ void TileLayer::SetTileSize(int width, int height)
         }
     }
 }
-void TileLayer::SetTilesheet(const sf::Image& newSheet )
+void TileLayer::SetTilesheet(const sf::Texture& newSheet )
 {
      std::vector<Tile*>::iterator it = m_tiles.begin();
     for(int j = 0; j < m_tileY;j++)
