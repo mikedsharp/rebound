@@ -91,18 +91,6 @@ void RandomRebound_GameState::CheckEvent()
             EndState();
             m_engineInstance->GetGameWindow()->Close();
         }
-        /*else if(Event->type == sf::Event::MouseButtonPressed)
-        {
-            switch(Event->MouseButton.Button)
-            {
-            case sf::Mouse::Left:
-            {
-                break;
-            }
-            default:
-                break;
-            }
-        }*/
         else if(Event->type == sf::Event::KeyPressed)
         {
             {
@@ -401,7 +389,7 @@ void RandomRebound_GameState::InitState()
     m_playerScoreText = new GameSprite(Rect(80,120,160,240),Point(0,0), ImageResourceManager::GetImageResource(("numbers_temple")));
     m_opponentScoreText = new GameSprite(Rect(400,120,160,240),Point(0,0), ImageResourceManager::GetImageResource(("numbers_temple")));
     /* fill  play area with random crates dotted around */
-    int crateMinX, crateMinY, crateWidth, crateHeight, crateType;
+    int crateMinX, crateMinY, crateWidth, crateHeight;
     crateMinX = 16;
     crateMinY = 64;
     crateWidth = 32;
@@ -439,7 +427,7 @@ void RandomRebound_GameState::InitState()
     // add crates to play area
     for(unsigned int i = 0; i < selectedPoints.size(); i++)
     {
-        crateType = 0 + (int)rand()/((int)RAND_MAX/(8-0));
+        int crateType = 0 + (int)rand()/((int)RAND_MAX/(8-0));
         m_crates.push_back(new Crate(Rect((selectedPoints[i]->X() * crateWidth)+crateMinX,(selectedPoints[i]->Y() * crateHeight)+crateMinY,crateWidth,crateHeight),
                                      crateType, ImageResourceManager::GetImageResource("crate_retro")));
     }
@@ -607,7 +595,7 @@ void RandomRebound_GameState::ChangeTheme(int theme)
 void RandomRebound_GameState::RegenerateCrates()
 {
     /* fill  play area with random crates dotted around */
-    int crateMinX, crateMinY, crateWidth, crateHeight, crateType;
+    int crateMinX, crateMinY, crateWidth, crateHeight;
     crateMinX = 16;
     crateMinY = 64;
     crateWidth = 32;
@@ -645,7 +633,6 @@ void RandomRebound_GameState::RegenerateCrates()
     // add crates to play area
     for(unsigned int i = 0; i < m_crates.size(); i++)
     {
-        crateType = 0 + (int)rand()/((int)RAND_MAX/(8-0));
         m_crates[i]->Visible(true);
         m_crates[i]->SetPosition((selectedPoints[i]->X() * crateWidth)+crateMinX,(selectedPoints[i]->Y() * crateHeight)+crateMinY);
     }
