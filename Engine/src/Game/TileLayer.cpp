@@ -1,6 +1,6 @@
 #include "Game/TileLayer.h"
-
-TileLayer::TileLayer(int tileX, int tileY, const Point &initialPosition, const Dimension &tileDims, const sf::Texture &spriteSheet, const std::string &layerName, int zPos) : Composite()
+#include <string>
+TileLayer::TileLayer(int tileX, int tileY, const Point &initialPosition, const Dimension &tileDims, const std::string &layerName, int zPos) : Composite()
 {
     // ctor
     //  assign what we need to keep tiles correct
@@ -25,7 +25,7 @@ TileLayer::TileLayer(int tileX, int tileY, const Point &initialPosition, const D
     {
         for (int i = 0; i < m_tileX; i++)
         {
-            m_tiles.push_back(new Tile(Rect(0, 0, 0, 0), Point(0, 0), spriteSheet));
+            m_tiles.push_back(new Tile(Rect(0, 0, 0, 0), Point(0, 0)));
         }
     }
     SetPosition(this->m_worldX, this->m_worldY);

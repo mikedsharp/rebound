@@ -26,16 +26,13 @@
 
 1698781192 c:\users\mshar\rebound\engine\include\util\camera.h
 
-1698798391 source:c:\users\mshar\rebound\engine\src\game\ball.cpp
+1698959270 source:c:\users\mshar\rebound\engine\src\game\ball.cpp
 	"Game/Ball.h"
 
-1698798391 c:\users\mshar\rebound\engine\include\game\ball.h
+1698959211 c:\users\mshar\rebound\engine\include\game\ball.h
 	<Rendering/GameSprite.h>
 
-1698798391 c:\users\mshar\rebound\engine\include\rendering\gamesprite.h
-	<SFML/System.hpp>
-	<SFML/Window.hpp>
-	<SFML/Graphics.hpp>
+1698961854 c:\users\mshar\rebound\engine\include\rendering\gamesprite.h
 	"Util/Rect.h"
 	<Util/RotatedRectangle.h>
 	"Util/Point.h"
@@ -460,37 +457,33 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1698781192 c:\users\mshar\rebound\engine\include\util\rotatedrectangle.h
+1698962558 c:\users\mshar\rebound\engine\include\util\rotatedrectangle.h
 	<Util/Rect.h>
-	<SFML/System.hpp>
-	<SFML/Window.hpp>
-	<SFML/Graphics.hpp>
+	<Util/Vector2f.h>
 
-1698781192 c:\users\mshar\rebound\engine\include\util\point.h
+1698958972 c:\users\mshar\rebound\engine\include\util\point.h
 
-1698798391 c:\users\mshar\rebound\engine\include\rendering\gamewindow.h
+1698961516 c:\users\mshar\rebound\engine\include\rendering\gamewindow.h
 	"Rendering/GameSprite.h"
-	<SFML/System.hpp>
-	<SFML/Window.hpp>
-	<SFML/Graphics.hpp>
+	<iostream>
 	<string>
 
-1698798391 source:c:\users\mshar\rebound\engine\src\game\crate.cpp
+1698959342 source:c:\users\mshar\rebound\engine\src\game\crate.cpp
 	"Game/Crate.h"
 
-1698798391 c:\users\mshar\rebound\engine\include\game\crate.h
+1698959199 c:\users\mshar\rebound\engine\include\game\crate.h
 	<Rendering/GameSprite.h>
 
-1698798391 source:c:\users\mshar\rebound\engine\src\game\paddle.cpp
+1698959289 source:c:\users\mshar\rebound\engine\src\game\paddle.cpp
 	"Game/Paddle.h"
 
-1698798391 c:\users\mshar\rebound\engine\include\game\paddle.h
+1698959261 c:\users\mshar\rebound\engine\include\game\paddle.h
 	<Rendering/GameSprite.h>
 
 1698798391 source:c:\users\mshar\rebound\engine\src\game\tile.cpp
 	"Game/Tile.h"
 
-1698798391 c:\users\mshar\rebound\engine\include\game\tile.h
+1698962651 c:\users\mshar\rebound\engine\include\game\tile.h
 	<Rendering/GameWindow.h>
 	<Rendering/GameSprite.h>
 	<iostream>
@@ -511,16 +504,16 @@
 	<string>
 	<vector>
 
-1698781192 c:\users\mshar\rebound\engine\include\util\composite.h
+1698961384 c:\users\mshar\rebound\engine\include\util\composite.h
 	"Rendering/GameWindow.h"
 
 1698781192 source:c:\users\mshar\rebound\engine\src\gamestate.cpp
 	"GameState.h"
 
-1698781192 c:\users\mshar\rebound\engine\include\gamestate.h
+1698965909 c:\users\mshar\rebound\engine\include\gamestate.h
 	<GameEngine.h>
-	<SFML/Window.hpp>
 	"Rendering/RenderManager.h"
+	<string>
 
 1698781192 c:\users\mshar\rebound\engine\include\gameengine.h
 	"GameState.h"
@@ -540,8 +533,7 @@
 	"States/GameOverState.h"
 	"States/RandomRebound_GameState.h"
 
-1698781192 c:\users\mshar\rebound\engine\include\states\mainmenustate.h
-	<SFML/Audio.hpp>
+1698962624 c:\users\mshar\rebound\engine\include\states\mainmenustate.h
 	<GameState.h>
 	"Game/Tile.h"
 
@@ -649,21 +641,19 @@
 	<SFML/Audio/Export.hpp>
 	<string>
 
-1698781192 c:\users\mshar\rebound\engine\include\states\gameoverstate.h
-	<SFML/Audio.hpp>
+1698961660 c:\users\mshar\rebound\engine\include\states\gameoverstate.h
 	<GameState.h>
 	<string>
 	"Rendering/GameSprite.h"
 	"Util/Rect.h"
 	"Util/Point.h"
 
-1698781192 c:\users\mshar\rebound\engine\include\states\randomrebound_gamestate.h
+1698962243 c:\users\mshar\rebound\engine\include\states\randomrebound_gamestate.h
 	<vector>
 	<GameState.h>
 	<Game/Ball.h>
 	<Game/Paddle.h>
 	<Game/Crate.h>
-	<SFML/Audio.hpp>
 
 1698781192 source:c:\users\mshar\rebound\engine\src\main.cpp
 	<iostream>
@@ -690,21 +680,20 @@
 1698781192 c:\users\mshar\rebound\engine\include\util\focusable.h
 	<Util/Camera.h>
 
-1698781192 source:c:\users\mshar\rebound\engine\src\util\vector2f.cpp
+1698965670 source:c:\users\mshar\rebound\engine\src\util\vector2f.cpp
 	"Util/Vector2f.h"
 
-1698781192 c:\users\mshar\rebound\engine\include\util\vector2f.h
+1698965668 c:\users\mshar\rebound\engine\include\util\vector2f.h
 
-1698798391 source:c:\users\mshar\rebound\engine\src\util\audioresourcemanager.cpp
+1698962944 source:c:\users\mshar\rebound\engine\src\util\audioresourcemanager.cpp
 	"Util/AudioResourceManager.h"
 	<iostream>
 
-1698781192 c:\users\mshar\rebound\engine\include\util\audioresourcemanager.h
-	<SFML/System.hpp>
-	<SFML/Audio.hpp>
+1698962961 c:\users\mshar\rebound\engine\include\util\audioresourcemanager.h
 	<map>
+	<string>
 
-1698781630 source:c:\users\mshar\rebound\engine\src\rendering\gamewindow.cpp
+1698961115 source:c:\users\mshar\rebound\engine\src\rendering\gamewindow.cpp
 	"Rendering/GameWindow.h"
 	<iostream>
 
@@ -722,45 +711,43 @@
 	<vector>
 	<Util/RotatedRectangle.h>
 
-1698798391 c:\users\mshar\rebound\engine\include\util\imageresourcemanager.h
+1698960525 c:\users\mshar\rebound\engine\include\util\imageresourcemanager.h
 	<string>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
 	<map>
 
-1698782082 source:c:\users\mshar\rebound\engine\src\util\rotatedrectangle.cpp
+1698963717 source:c:\users\mshar\rebound\engine\src\util\rotatedrectangle.cpp
 	"Util/RotatedRectangle.h"
 	<vector>
 	<iostream>
 	<cmath>
 
-1698798391 source:c:\users\mshar\rebound\engine\src\gameengine.cpp
+1698965750 source:c:\users\mshar\rebound\engine\src\gameengine.cpp
 	"GameEngine.h"
-	<SFML/System.hpp>
+	<string>
 
-1698784599 source:c:\users\mshar\rebound\engine\src\states\mainmenustate.cpp
+1698962936 source:c:\users\mshar\rebound\engine\src\states\mainmenustate.cpp
 	"States/MainMenuState.h"
 	"Util/ImageResourceManager.h"
 	"Util/Point.h"
 	"Util/Rect.h"
 
-1698798391 source:c:\users\mshar\rebound\engine\src\states\gameoverstate.cpp
+1698961732 source:c:\users\mshar\rebound\engine\src\states\gameoverstate.cpp
 	"States/GameOverState.h"
 	"Util/ImageResourceManager.h"
 	<sstream>
 
-1698798391 source:c:\users\mshar\rebound\engine\src\states\randomrebound_gamestate.cpp
+1698963152 source:c:\users\mshar\rebound\engine\src\states\randomrebound_gamestate.cpp
 	"States/RandomRebound_GameState.h"
 	"Util/ImageResourceManager.h"
 	"Util/AudioResourceManager.h"
 	<ctime>
 	<sstream>
 
-1698798391 source:c:\users\mshar\rebound\engine\src\rendering\gamesprite.cpp
+1698962604 source:c:\users\mshar\rebound\engine\src\rendering\gamesprite.cpp
 	"Rendering/GameSprite.h"
 	<iostream>
 
-1698798391 source:c:\users\mshar\rebound\engine\src\util\imageresourcemanager.cpp
+1698960791 source:c:\users\mshar\rebound\engine\src\util\imageresourcemanager.cpp
 	"Util/ImageResourceManager.h"
 	<iostream>
 

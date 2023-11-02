@@ -132,9 +132,6 @@
 		<Unit filename="Engine/include/Game/Ball.h" />
 		<Unit filename="Engine/include/Game/Crate.h" />
 		<Unit filename="Engine/include/Game/Paddle.h" />
-		<Unit filename="Engine/include/Game/Tile.h" />
-		<Unit filename="Engine/include/Game/TileLayer.h" />
-		<Unit filename="Engine/include/Game/TileMap.h" />
 		<Unit filename="Engine/include/Rendering/Drawable.h" />
 		<Unit filename="Engine/include/Rendering/GameSprite.h" />
 		<Unit filename="Engine/include/Rendering/GameWindow.h" />
@@ -166,9 +163,6 @@
 		<Unit filename="Engine/src/Game/Ball.cpp" />
 		<Unit filename="Engine/src/Game/Crate.cpp" />
 		<Unit filename="Engine/src/Game/Paddle.cpp" />
-		<Unit filename="Engine/src/Game/Tile.cpp" />
-		<Unit filename="Engine/src/Game/TileLayer.cpp" />
-		<Unit filename="Engine/src/Game/TileMap.cpp" />
 		<Unit filename="Engine/src/Rendering/Drawable.cpp" />
 		<Unit filename="Engine/src/Rendering/GameSprite.cpp" />
 		<Unit filename="Engine/src/Rendering/GameWindow.cpp" />
