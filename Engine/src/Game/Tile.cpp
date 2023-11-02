@@ -1,13 +1,13 @@
 #include "Game/Tile.h"
 
-Tile::Tile(const Rect& dimensions, const Point& clip, const sf::Texture& spritesheet): GameSprite(dimensions, clip, spritesheet)
+Tile::Tile(const Rect &dimensions, const Point &clip, const sf::Texture &spritesheet) : GameSprite(dimensions, clip)
 {
     m_type = 0;
 
-    //ctor
+    // ctor
 }
 
 Tile::~Tile()
 {
-    //dtor
+    // dtor
 }

@@ -11,14 +11,12 @@ AR = ar.exe
 LD = g++.exe
 WINDRES = windres.exe
 
-# BE SURE TO UPDATE THIS TO A PATH WHERE YOU HAVE SFML INSTALLED
-SFML_LOCATION = C:\\dev\lib\SFML-2.6.0
 
-INC = -I${SFML_LOCATION}\\include -IEngine\\include
+INC = -IEngine\\include
 CFLAGS = -Wall -fexceptions
 RESINC = 
-LIBDIR = -L${SFML_LOCATION}\\lib
-LIB = ${SFML_LOCATION}\\lib
+LIBDIR = 
+LIB = 
 LDFLAGS = 
 
 INC_DEBUG = $(INC)
@@ -26,7 +24,7 @@ CFLAGS_DEBUG = $(CFLAGS) -g
 RESINC_DEBUG = $(RESINC)
 RCFLAGS_DEBUG = $(RCFLAGS)
 LIBDIR_DEBUG = $(LIBDIR)
-LIB_DEBUG = $(LIB)\libsfml-audio-d.a $(LIB)\libsfml-graphics-d.a $(LIB)\libsfml-main-d.a $(LIB)\libsfml-network-d.a $(LIB)\libsfml-system-d.a $(LIB)\libsfml-window-d.a
+LIB_DEBUG = $(LIB)
 LDFLAGS_DEBUG = $(LDFLAGS)
 OBJDIR_DEBUG = obj\\Debug
 DEP_DEBUG = 
@@ -37,15 +35,15 @@ CFLAGS_RELEASE = $(CFLAGS) -O2
 RESINC_RELEASE = $(RESINC)
 RCFLAGS_RELEASE = $(RCFLAGS)
 LIBDIR_RELEASE = $(LIBDIR)
-LIB_RELEASE = $(LIB)\libsfml-audio.a $(LIB)\libsfml-graphics.a $(LIB)\libsfml-main.a $(LIB)\libsfml-network.a $(LIB)\libsfml-system.a $(LIB)\libsfml-window.a
+LIB_RELEASE = $(LIB)
 LDFLAGS_RELEASE = $(LDFLAGS) -s
 OBJDIR_RELEASE = obj\\Release
 DEP_RELEASE = 
 OUT_RELEASE = bin\\Release\\rebound.exe
 
-OBJ_DEBUG = $(OBJDIR_DEBUG)\\Engine\\src\\Rendering\\GameSprite.o $(OBJDIR_DEBUG)\\Engine\\src\\Rendering\\GameWindow.o $(OBJDIR_DEBUG)\\Engine\\src\\Rendering\\RenderManager.o $(OBJDIR_DEBUG)\\Engine\\src\\States\\GameOverState.o $(OBJDIR_DEBUG)\\Engine\\src\\States\\MainMenuState.o $(OBJDIR_DEBUG)\\Engine\\src\\States\\RandomRebound_GameState.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\AudioResourceManager.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\Camera.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\Composite.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\Dimension.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\ImageResourceManager.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\Point.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\Rect.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\RotatedRectangle.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\Util\\Focusable.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\Vector2f.o $(OBJDIR_DEBUG)\\Engine\\src\\main.o $(OBJDIR_DEBUG)\\Engine\\src\\Exception\\FileNotFoundException.o $(OBJDIR_DEBUG)\\Engine\\src\\GameEngine.o $(OBJDIR_DEBUG)\\Engine\\src\\GameState.o $(OBJDIR_DEBUG)\\Engine\\src\\GameStateFactory.o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\Ball.o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\Crate.o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\Paddle.o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\Tile.o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\TileLayer.o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\TileMap.o $(OBJDIR_DEBUG)\\Engine\\src\\Rendering\\Drawable.o
+OBJ_DEBUG = $(OBJDIR_DEBUG)\\Engine\\src\\Rendering\\GameSprite.o $(OBJDIR_DEBUG)\\Engine\\src\\Rendering\\GameWindow.o $(OBJDIR_DEBUG)\\Engine\\src\\Rendering\\RenderManager.o $(OBJDIR_DEBUG)\\Engine\\src\\States\\GameOverState.o $(OBJDIR_DEBUG)\\Engine\\src\\States\\MainMenuState.o $(OBJDIR_DEBUG)\\Engine\\src\\States\\RandomRebound_GameState.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\AudioResourceManager.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\Camera.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\Composite.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\Dimension.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\ImageResourceManager.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\Point.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\Rect.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\RotatedRectangle.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\Util\\Focusable.o $(OBJDIR_DEBUG)\\Engine\\src\\Util\\Vector2f.o $(OBJDIR_DEBUG)\\Engine\\src\\main.o $(OBJDIR_DEBUG)\\Engine\\src\\Exception\\FileNotFoundException.o $(OBJDIR_DEBUG)\\Engine\\src\\GameEngine.o $(OBJDIR_DEBUG)\\Engine\\src\\GameState.o $(OBJDIR_DEBUG)\\Engine\\src\\GameStateFactory.o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\Ball.o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\Crate.o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\Paddle.o  $(OBJDIR_DEBUG)\\Engine\\src\\Rendering\\Drawable.o
 
-OBJ_RELEASE = $(OBJDIR_RELEASE)\\Engine\\src\\Rendering\\GameSprite.o $(OBJDIR_RELEASE)\\Engine\\src\\Rendering\\GameWindow.o $(OBJDIR_RELEASE)\\Engine\\src\\Rendering\\RenderManager.o $(OBJDIR_RELEASE)\\Engine\\src\\States\\GameOverState.o $(OBJDIR_RELEASE)\\Engine\\src\\States\\MainMenuState.o $(OBJDIR_RELEASE)\\Engine\\src\\States\\RandomRebound_GameState.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\AudioResourceManager.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\Camera.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\Composite.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\Dimension.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\ImageResourceManager.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\Point.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\Rect.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\RotatedRectangle.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\Util\\Focusable.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\Vector2f.o $(OBJDIR_RELEASE)\\Engine\\src\\main.o $(OBJDIR_RELEASE)\\Engine\\src\\Exception\\FileNotFoundException.o $(OBJDIR_RELEASE)\\Engine\\src\\GameEngine.o $(OBJDIR_RELEASE)\\Engine\\src\\GameState.o $(OBJDIR_RELEASE)\\Engine\\src\\GameStateFactory.o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\Ball.o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\Crate.o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\Paddle.o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\Tile.o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\TileLayer.o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\TileMap.o $(OBJDIR_RELEASE)\\Engine\\src\\Rendering\\Drawable.o
+OBJ_RELEASE = $(OBJDIR_RELEASE)\\Engine\\src\\Rendering\\GameSprite.o $(OBJDIR_RELEASE)\\Engine\\src\\Rendering\\GameWindow.o $(OBJDIR_RELEASE)\\Engine\\src\\Rendering\\RenderManager.o $(OBJDIR_RELEASE)\\Engine\\src\\States\\GameOverState.o $(OBJDIR_RELEASE)\\Engine\\src\\States\\MainMenuState.o $(OBJDIR_RELEASE)\\Engine\\src\\States\\RandomRebound_GameState.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\AudioResourceManager.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\Camera.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\Composite.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\Dimension.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\ImageResourceManager.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\Point.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\Rect.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\RotatedRectangle.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\Util\\Focusable.o $(OBJDIR_RELEASE)\\Engine\\src\\Util\\Vector2f.o $(OBJDIR_RELEASE)\\Engine\\src\\main.o $(OBJDIR_RELEASE)\\Engine\\src\\Exception\\FileNotFoundException.o $(OBJDIR_RELEASE)\\Engine\\src\\GameEngine.o $(OBJDIR_RELEASE)\\Engine\\src\\GameState.o $(OBJDIR_RELEASE)\\Engine\\src\\GameStateFactory.o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\Ball.o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\Crate.o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\Paddle.o $(OBJDIR_RELEASE)\\Engine\\src\\Rendering\\Drawable.o
 
 all: debug release
 
@@ -140,14 +138,14 @@ $(OBJDIR_DEBUG)\\Engine\\src\\Game\\Crate.o: Engine\\src\\Game\\Crate.cpp
 $(OBJDIR_DEBUG)\\Engine\\src\\Game\\Paddle.o: Engine\\src\\Game\\Paddle.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c Engine\\src\\Game\\Paddle.cpp -o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\Paddle.o
 
-$(OBJDIR_DEBUG)\\Engine\\src\\Game\\Tile.o: Engine\\src\\Game\\Tile.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c Engine\\src\\Game\\Tile.cpp -o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\Tile.o
+# $(OBJDIR_DEBUG)\\Engine\\src\\Game\\Tile.o: Engine\\src\\Game\\Tile.cpp
+# 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c Engine\\src\\Game\\Tile.cpp -o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\Tile.o
 
-$(OBJDIR_DEBUG)\\Engine\\src\\Game\\TileLayer.o: Engine\\src\\Game\\TileLayer.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c Engine\\src\\Game\\TileLayer.cpp -o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\TileLayer.o
+# $(OBJDIR_DEBUG)\\Engine\\src\\Game\\TileLayer.o: Engine\\src\\Game\\TileLayer.cpp
+# 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c Engine\\src\\Game\\TileLayer.cpp -o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\TileLayer.o
 
-$(OBJDIR_DEBUG)\\Engine\\src\\Game\\TileMap.o: Engine\\src\\Game\\TileMap.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c Engine\\src\\Game\\TileMap.cpp -o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\TileMap.o
+# $(OBJDIR_DEBUG)\\Engine\\src\\Game\\TileMap.o: Engine\\src\\Game\\TileMap.cpp
+# 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c Engine\\src\\Game\\TileMap.cpp -o $(OBJDIR_DEBUG)\\Engine\\src\\Game\\TileMap.o
 
 $(OBJDIR_DEBUG)\\Engine\\src\\Rendering\\Drawable.o: Engine\\src\\Rendering\\Drawable.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c Engine\\src\\Rendering\\Drawable.cpp -o $(OBJDIR_DEBUG)\\Engine\\src\\Rendering\\Drawable.o
@@ -252,14 +250,14 @@ $(OBJDIR_RELEASE)\\Engine\\src\\Game\\Crate.o: Engine\\src\\Game\\Crate.cpp
 $(OBJDIR_RELEASE)\\Engine\\src\\Game\\Paddle.o: Engine\\src\\Game\\Paddle.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c Engine\\src\\Game\\Paddle.cpp -o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\Paddle.o
 
-$(OBJDIR_RELEASE)\\Engine\\src\\Game\\Tile.o: Engine\\src\\Game\\Tile.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c Engine\\src\\Game\\Tile.cpp -o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\Tile.o
+# $(OBJDIR_RELEASE)\\Engine\\src\\Game\\Tile.o: Engine\\src\\Game\\Tile.cpp
+# 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c Engine\\src\\Game\\Tile.cpp -o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\Tile.o
 
-$(OBJDIR_RELEASE)\\Engine\\src\\Game\\TileLayer.o: Engine\\src\\Game\\TileLayer.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c Engine\\src\\Game\\TileLayer.cpp -o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\TileLayer.o
+# $(OBJDIR_RELEASE)\\Engine\\src\\Game\\TileLayer.o: Engine\\src\\Game\\TileLayer.cpp
+# 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c Engine\\src\\Game\\TileLayer.cpp -o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\TileLayer.o
 
-$(OBJDIR_RELEASE)\\Engine\\src\\Game\\TileMap.o: Engine\\src\\Game\\TileMap.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c Engine\\src\\Game\\TileMap.cpp -o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\TileMap.o
+# $(OBJDIR_RELEASE)\\Engine\\src\\Game\\TileMap.o: Engine\\src\\Game\\TileMap.cpp
+# 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c Engine\\src\\Game\\TileMap.cpp -o $(OBJDIR_RELEASE)\\Engine\\src\\Game\\TileMap.o
 
 $(OBJDIR_RELEASE)\\Engine\\src\\Rendering\\Drawable.o: Engine\\src\\Rendering\\Drawable.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c Engine\\src\\Rendering\\Drawable.cpp -o $(OBJDIR_RELEASE)\\Engine\\src\\Rendering\\Drawable.o

@@ -1,9 +1,9 @@
 #include "Game/TileLayer.h"
 
-TileLayer::TileLayer(int tileX, int tileY, const Point& initialPosition, const Dimension& tileDims, const sf::Texture& spriteSheet, const std::string& layerName, int zPos):Composite()
+TileLayer::TileLayer(int tileX, int tileY, const Point &initialPosition, const Dimension &tileDims, const sf::Texture &spriteSheet, const std::string &layerName, int zPos) : Composite()
 {
-    //ctor
-    // assign what we need to keep tiles correct
+    // ctor
+    //  assign what we need to keep tiles correct
     this->m_tileX = tileX;
     this->m_tileY = tileY;
 
@@ -21,25 +21,25 @@ TileLayer::TileLayer(int tileX, int tileY, const Point& initialPosition, const D
 
     // allocate the tiles, but provide incomplete parameters, the parent (containing) class will take care
     // of allocating the idividual stuff
-    for(int j = 0; j < m_tileY; j++)
+    for (int j = 0; j < m_tileY; j++)
     {
-        for(int i = 0; i < m_tileX; i++)
+        for (int i = 0; i < m_tileX; i++)
         {
-            m_tiles.push_back(new Tile(Rect(0,0,0,0), Point(0,0), spriteSheet));
+            m_tiles.push_back(new Tile(Rect(0, 0, 0, 0), Point(0, 0), spriteSheet));
         }
     }
     SetPosition(this->m_worldX, this->m_worldY);
-    SetTileSize(this->m_tileWidth,this->m_tileHeight);
+    SetTileSize(this->m_tileWidth, this->m_tileHeight);
 
     // as for everything else that needs to be set, the tilemap will explicitly set the tiles, the layer
-    //doesnt know this information yet.
+    // doesnt know this information yet.
 }
- TileLayer::~TileLayer()
+TileLayer::~TileLayer()
 {
-    //dtor
-    for(std::vector<Tile*>::iterator it = m_tiles.begin(); it < m_tiles.end(); it++)
+    // dtor
+    for (std::vector<Tile *>::iterator it = m_tiles.begin(); it < m_tiles.end(); it++)
     {
-        if((*it) != NULL)
+        if ((*it) != NULL)
         {
             delete (*it);
             (*it) = NULL;
@@ -57,30 +57,29 @@ void TileLayer::SetTileSize(int width, int height)
     this->m_tileWidth = width;
     this->m_tileHeight = height;
 
-     std::vector<Tile*>::iterator it = m_tiles.begin();
-    for(int j = 0; j < m_tileY;j++)
+    std::vector<Tile *>::iterator it = m_tiles.begin();
+    for (int j = 0; j < m_tileY; j++)
     {
-        for(int i = 0; i < m_tileX; i++)
+        for (int i = 0; i < m_tileX; i++)
         {
             // set given position for each tile
-            (*it)->SetSize(m_tileWidth,m_tileHeight);
+            (*it)->SetSize(m_tileWidth, m_tileHeight);
             it++;
         }
     }
 }
-void TileLayer::SetTilesheet(const sf::Texture& newSheet )
+void TileLayer::SetTilesheet(const std::string newSheet)
 {
-     std::vector<Tile*>::iterator it = m_tiles.begin();
-    for(int j = 0; j < m_tileY;j++)
+    std::vector<Tile *>::iterator it = m_tiles.begin();
+    for (int j = 0; j < m_tileY; j++)
     {
-        for(int i = 0; i < m_tileX; i++)
+        for (int i = 0; i < m_tileX; i++)
         {
             // set given position for each tile
-            (*it)->SetSpritesheet(newSheet);
+            // (*it)->SetSpritesheet(newSheet);
             it++;
         }
     }
-
 }
 
 void TileLayer::LayerVisible(bool b)
@@ -94,31 +93,32 @@ bool TileLayer::LayerVisible() const
 void TileLayer::SetPosition(float x, float y)
 {
 
-    std::vector<Tile*>::iterator it = m_tiles.begin();
-    for(int j = 0; j < m_tileY;j++)
+    std::vector<Tile *>::iterator it = m_tiles.begin();
+    for (int j = 0; j < m_tileY; j++)
     {
-        for(int i = 0; i < m_tileX; i++)
+        for (int i = 0; i < m_tileX; i++)
         {
             // set given position for each tile
-            (*it)->SetPosition((i*m_tileWidth)+x, (j*m_tileHeight)+y);
+            (*it)->SetPosition((i * m_tileWidth) + x, (j * m_tileHeight) + y);
             it++;
         }
     }
 }
-Tile* TileLayer::GetTile(int x, int y)const
+Tile *TileLayer::GetTile(int x, int y) const
 {
-    return this->m_tiles[x +(y * m_tileX)];
+    return this->m_tiles[x + (y * m_tileX)];
 }
-Tile* TileLayer::GetCollidingTile(const RotatedRectangle& obstacle)const
+Tile *TileLayer::GetCollidingTile(const RotatedRectangle &obstacle) const
 {
-    std::vector<Tile*>::const_iterator it = m_tiles.begin();
-    for(int j = 0; j < m_tileY;j++)
+    std::vector<Tile *>::const_iterator it = m_tiles.begin();
+    for (int j = 0; j < m_tileY; j++)
     {
-        for(int i = 0; i < m_tileX; i++)
+        for (int i = 0; i < m_tileX; i++)
         {
             // set given position for each tile
-            if((*it)->Collision(obstacle)){
-                return(*it);
+            if ((*it)->Collision(obstacle))
+            {
+                return (*it);
             }
             it++;
         }
@@ -126,14 +126,14 @@ Tile* TileLayer::GetCollidingTile(const RotatedRectangle& obstacle)const
     return NULL;
 }
 
-void TileLayer::Draw(const GameWindow& win)
+void TileLayer::Draw(const GameWindow &win)
 {
-    if(m_visible)
+    if (m_visible)
     {
-        std::vector<Tile*>::const_iterator it = m_tiles.begin();
-        for(int j = 0; j < m_tileY;j++)
+        std::vector<Tile *>::const_iterator it = m_tiles.begin();
+        for (int j = 0; j < m_tileY; j++)
         {
-            for(int i = 0; i < m_tileX; i++)
+            for (int i = 0; i < m_tileX; i++)
             {
                 // set given position for each tile
                 win.Draw((*it));
@@ -141,16 +141,13 @@ void TileLayer::Draw(const GameWindow& win)
             }
         }
     }
-
-
 }
-bool TileLayer::HandleEvent(const sf::Event* event)
+bool TileLayer::HandleEvent(const sf::Event *event)
 {
     return false;
 }
 void TileLayer::UpdateLogic()
 {
-
 }
 void TileLayer::UpdateCameraPosition(float x, float y)
 {
@@ -160,10 +157,8 @@ void TileLayer::UpdateCameraPosition(float x, float y)
     // ressign world position of map
     this->SetPosition(m_worldX, m_worldY);
     // update the camera for all component objects
-    for(std::vector<Tile*>::iterator it = m_tiles.begin(); it < m_tiles.end(); it++)
+    for (std::vector<Tile *>::iterator it = m_tiles.begin(); it < m_tiles.end(); it++)
     {
-      (*it)->UpdateCameraPosition(m_cameraX,m_cameraY);
+        (*it)->UpdateCameraPosition(m_cameraX, m_cameraY);
     }
-
 }
-

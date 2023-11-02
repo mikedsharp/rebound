@@ -1,28 +1,30 @@
 #include "GameEngine.h"
-#include <SFML/System.hpp>
+
+//  #include <SFML/System.hpp>
+#include <string>
 
 using namespace std;
 
 GameEngine::GameEngine()
 {
-    //ctor
+    // ctor
     m_running = true;
 }
 
 GameEngine::~GameEngine()
 {
-    //dtor
-    if(win != NULL)
+    // dtor
+    if (win != NULL)
     {
         delete win;
         win = NULL;
     }
     // removes all states from memory
-    map<int,GameState*>::iterator it;
-    for(it = m_states.begin(); it != m_states.end(); it++)
+    map<int, GameState *>::iterator it;
+    for (it = m_states.begin(); it != m_states.end(); it++)
     {
         // delete the values in the map, they are pointers
-        if((*it).second)
+        if ((*it).second)
         {
             delete (*it).second;
             (*it).second = NULL;
@@ -32,18 +34,17 @@ GameEngine::~GameEngine()
     m_states.clear();
 }
 
-
 void GameEngine::SwitchState(int stateType)
 {
     // switch current game engine state to a given state;
-    if(m_states.count(stateType) > 0)
+    if (m_states.count(stateType) > 0)
     {
         m_currentState = m_states[stateType];
         m_currentState->EngineInstance(this);
 
         bool init;
         init = m_currentState->Initiated();
-        if(!init)
+        if (!init)
         {
             m_currentState->Initiated(true);
             m_currentState->InitState();
@@ -62,10 +63,10 @@ void GameEngine::SwitchState(int stateType)
 void GameEngine::RemoveState(int stateType)
 {
     // remove a given state from state map
-    if(m_states.count(stateType) > 0)
+    if (m_states.count(stateType) > 0)
     {
-        GameState* gs = m_states[stateType];
-        if(gs != NULL)
+        GameState *gs = m_states[stateType];
+        if (gs != NULL)
         {
             // remove state from memory
             delete gs;
@@ -80,12 +81,12 @@ void GameEngine::RemoveState(int stateType)
         std::cout << "Error:: Requested State Does not exist in Engine..." << std::endl;
     }
 }
-void GameEngine::AddState(GameState* gs)
+void GameEngine::AddState(GameState *gs)
 {
     // add a given state to state map by GameState pointer
-    if(gs != NULL)
+    if (gs != NULL)
     {
-        if(m_states.count(gs->StateType()) == 0)
+        if (m_states.count(gs->StateType()) == 0)
         {
             m_states[gs->StateType()] = gs;
         }
@@ -98,11 +99,10 @@ void GameEngine::AddState(GameState* gs)
     {
         std::cout << "Error:: State was NULL, it is likely that it was improperly allocated..." << std::endl;
     }
-
 }
 void GameEngine::InvokeEngine(int width, int height, int bpp, std::string caption)
 {
-    //init the window
+    // init the window
     win = new GameWindow(width, height, bpp, caption);
     // init other subsystems
     // init start state
@@ -114,49 +114,44 @@ void GameEngine::InvokeEngine(int width, int height, int bpp, std::string captio
 
     this->SwitchState(STATE_MAINMENU);
 
-    this->GetGameWindow()->GetRawWindow()->setFramerateLimit(30); // Limit to 30 frames per second
-    this->GetGameWindow()->GetRawWindow()->setVerticalSyncEnabled(true);
+    // this->GetGameWindow()->GetRawWindow()->setFramerateLimit(30); // Limit to 30 frames per second
+    // this->GetGameWindow()->GetRawWindow()->setVerticalSyncEnabled(true);
 
     float nowTime;
-    sf::Clock clock;
-    clock.restart();
-    while(m_running)
+    // sf::Clock clock;
+    // clock.restart();
+    while (m_running)
     {
         // 60 fps?
-        nowTime = clock.getElapsedTime().asSeconds();
-      if((nowTime) > 0.0166666666666667){
-             m_currentState->CheckEvent();
-             if(!m_currentState->Paused()){
-                m_currentState->UpdateLogic();
-             }
+        // nowTime = clock.getElapsedTime().asSeconds();
+        //   if((nowTime) > 0.0166666666666667){
+        //          m_currentState->CheckEvent();
+        //          if(!m_currentState->Paused()){
+        //             m_currentState->UpdateLogic();
+        //          }
 
+        //         clock.restart();
+        //     }
 
-            clock.restart();
-        }
         m_currentState->Paint();
         win->Display();
-
     }
 }
 
-//value  passing methods
-void GameEngine::SetInt(int destinationState,const std::string& key, int value)
+// value  passing methods
+void GameEngine::SetInt(int destinationState, const std::string &key, int value)
 {
     m_states[destinationState]->SetInt(key, value);
 }
-void GameEngine::SetFloat(int destinationState,const std::string& key, float value)
+void GameEngine::SetFloat(int destinationState, const std::string &key, float value)
 {
     m_states[destinationState]->SetFloat(key, value);
 }
-void GameEngine::SetString(int destinationState,const std::string& key, const std::string& value)
+void GameEngine::SetString(int destinationState, const std::string &key, const std::string &value)
 {
     m_states[destinationState]->SetString(key, value);
 }
-void GameEngine::SetObject(int destinationState,const std::string& key, void* value)
+void GameEngine::SetObject(int destinationState, const std::string &key, void *value)
 {
     m_states[destinationState]->SetObject(key, value);
 }
-
-
-
-

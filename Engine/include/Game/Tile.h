@@ -1,28 +1,29 @@
 #ifndef TILE_H
 #define TILE_H
 
-#include<Rendering/GameWindow.h>
+#include <Rendering/GameWindow.h>
 #include <Rendering/GameSprite.h>
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 class Tile : public GameSprite
 {
 public:
-    Tile(const Rect& dimensions, const Point& clip, const sf::Texture& spritesheet);
+    Tile(const Rect &dimensions, const Point &clip);
     virtual ~Tile();
     void Type(int type)
     {
         m_type = type;
     }
-    int Type()const
+    int Type() const
     {
         return m_type;
     }
-    virtual void Draw(GameWindow& win){
+    virtual void Draw(GameWindow &win)
+    {
         GameSprite::Draw(win);
     }
-    virtual void Kill(){}
+    virtual void Kill() {}
 
 protected:
 private:
