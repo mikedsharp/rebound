@@ -30,12 +30,37 @@
     "system_error": "cpp",
     "tuple": "cpp",
     "type_traits": "cpp",
-    "typeinfo": "cpp"
+    "typeinfo": "cpp",
+    "array": "cpp",
+    "atomic": "cpp",
+    "cstdarg": "cpp",
+    "ctime": "cpp",
+    "deque": "cpp",
+    "map": "cpp",
+    "unordered_map": "cpp",
+    "algorithm": "cpp",
+    "functional": "cpp",
+    "iterator": "cpp",
+    "memory": "cpp",
+    "memory_resource": "cpp",
+    "numeric": "cpp",
+    "optional": "cpp",
+    "random": "cpp",
+    "utility": "cpp",
+    "sstream": "cpp",
+    "cinttypes": "cpp",
+    "unordered_set": "cpp",
+    "ratio": "cpp"
   },
   "makefile.launchConfigurations": [
     {
-      "cwd": "c:\\Users\\mshar\\rebound\\bin\\Release",
-      "binaryPath": "c:\\Users\\mshar\\rebound\\bin\\Release\\rebound.exe",
+      "cwd": "C:\\Users\\mshar\\rebound\\bin\\Release",
+      "binaryPath": "C:\\Users\\mshar\\rebound\\bin\\Release\\rebound.exe",
+      "binaryArgs": []
+    },
+    {
+      "cwd": "C:\\Users\\mshar\\rebound\\bin\\Debug",
+      "binaryPath": "C:\\Users\\mshar\\rebound\\bin\\Debug\\rebound.exe",
       "binaryArgs": []
     }
   ]

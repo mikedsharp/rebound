@@ -1,35 +1,54 @@
 #include "Rendering/GameWindow.h"
 #include <iostream>
+struct context
+{
+    SDL_Renderer *renderer;
+    SDL_Rect dest;
+    SDL_Rect purpleSquare;
+};
+
 GameWindow::GameWindow(int width, int height, int bpp, const std::string &caption)
 {
     // ctor
-    //  m_windowObj = new sf::RenderWindow();
-    //  m_windowObj->create(sf::VideoMode(width, height, bpp), caption,sf::Style::Close);
-
     this->m_width = width;
     this->m_height = height;
     this->m_bpp = bpp;
 
-    // m_eventObj = new sf::Event();
+    struct context ctx;
+
+    ctx.purpleSquare.x = 320;
+    ctx.purpleSquare.y = 240;
+    ctx.purpleSquare.w = 32;
+    ctx.purpleSquare.h = 32;
+
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+
+    SDL_Rect purpleSquare = {0, 0, 320, 240};
+    SDL_Window *window = NULL;
+    SDL_Renderer *renderer = NULL;
+    SDL_CreateWindowAndRenderer(width, height, 0, &window, &renderer);
+    SDL_SetWindowTitle(window, "Rebound");
+    SDL_Event event;
+    m_eventObj = event;
+    m_renderer = renderer;
+    m_windowObj = window;
 }
 
 GameWindow::~GameWindow()
 {
-    // if (m_eventObj)
-    // {
-    //     delete m_eventObj;
-    //     m_eventObj = NULL;
-    // }
-    // if (m_windowObj)
-    // {
-    //     delete m_windowObj;
-    //     m_windowObj = NULL;
-    // }
+    if (m_renderer)
+    {
+        SDL_DestroyRenderer(m_renderer);
+    }
+    if (m_windowObj)
+    {
+        SDL_DestroyWindow(m_windowObj);
+    }
 }
 
 void GameWindow::Resize(int width, int height)
 {
-    // m_windowObj->create(sf::VideoMode(width, height, this->m_bpp), this->m_caption, sf::Style::Close);
+    SDL_SetWindowSize(m_windowObj, width, height);
     this->m_width = width;
     this->m_height = height;
 }

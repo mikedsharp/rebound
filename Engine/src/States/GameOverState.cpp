@@ -29,7 +29,7 @@ void GameOverState::CheckEvent()
     while (m_engineInstance->GetGameWindow()->QueuedEvents())
     {
         // Get next event in event queue
-        int *Event = m_engineInstance->GetGameWindow()->GetEvent();
+        // int *Event = m_engineInstance->GetGameWindow()->GetEvent();
 
         // if (Event->type == sf::Event::Closed)
         // {

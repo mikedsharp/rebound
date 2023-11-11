@@ -104,6 +104,12 @@ void GameEngine::InvokeEngine(int width, int height, int bpp, std::string captio
 {
     // init the window
     win = new GameWindow(width, height, bpp, caption);
+
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    {
+        printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+    }
+
     // init other subsystems
     // init start state
     // begin loop, call state methods in sequence while running is true
@@ -120,12 +126,15 @@ void GameEngine::InvokeEngine(int width, int height, int bpp, std::string captio
     float nowTime;
     // sf::Clock clock;
     // clock.restart();
+    SDL_Event e;
+
     while (m_running)
     {
+
         // 60 fps?
         // nowTime = clock.getElapsedTime().asSeconds();
         //   if((nowTime) > 0.0166666666666667){
-        //          m_currentState->CheckEvent();
+        m_currentState->CheckEvent();
         //          if(!m_currentState->Paused()){
         //             m_currentState->UpdateLogic();
         //          }
@@ -133,6 +142,7 @@ void GameEngine::InvokeEngine(int width, int height, int bpp, std::string captio
         //         clock.restart();
         //     }
 
+        win->Clear(255, 255, 0);
         m_currentState->Paint();
         win->Display();
     }

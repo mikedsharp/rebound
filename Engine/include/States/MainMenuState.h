@@ -2,7 +2,8 @@
 #define MAINMENUSTATE_H
 
 // #include<SFML/Audio.hpp>
-
+#include <SDL_mixer.h>
+#include "Util/MusicPlayer.h"
 #include <GameState.h>
 #include "Game/Tile.h"
 
@@ -33,7 +34,7 @@ private:
     std::string m_titleText;
     // sf::Font m_titleFont;
     GameSprite *m_titlescreen;
-    // sf::Music* m_theme;
+    Mix_Music *m_theme;
 };
 
 #endif // MAINMENUSTATE_H
