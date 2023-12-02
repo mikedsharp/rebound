@@ -1,11 +1,5 @@
 #include "Rendering/GameWindow.h"
 #include <iostream>
-struct context
-{
-    SDL_Renderer *renderer;
-    SDL_Rect dest;
-    SDL_Rect purpleSquare;
-};
 
 GameWindow::GameWindow(int width, int height, int bpp, const std::string &caption)
 {
@@ -14,16 +8,7 @@ GameWindow::GameWindow(int width, int height, int bpp, const std::string &captio
     this->m_height = height;
     this->m_bpp = bpp;
 
-    struct context ctx;
-
-    ctx.purpleSquare.x = 320;
-    ctx.purpleSquare.y = 240;
-    ctx.purpleSquare.w = 32;
-    ctx.purpleSquare.h = 32;
-
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
-
-    SDL_Rect purpleSquare = {0, 0, 320, 240};
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
     SDL_CreateWindowAndRenderer(width, height, 0, &window, &renderer);

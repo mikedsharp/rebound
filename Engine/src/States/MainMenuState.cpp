@@ -61,10 +61,10 @@ void MainMenuState::UpdateLogic()
 }
 void MainMenuState::Paint() const
 {
-    SDL_Rect purpleSquare = {0, 0, 320, 240};
+    SDL_Rect purpleRectangle = {0, 0, 320, 240};
     GameWindow *gameWin = m_engineInstance->GetGameWindow();
-    SDL_SetRenderDrawColor(gameWin->m_renderer, 0, 255, 255, 255);
-    SDL_RenderFillRect(gameWin->m_renderer, &purpleSquare);
+    SDL_SetRenderDrawColor(gameWin->m_renderer, 255, 0, 255, 255);
+    SDL_RenderFillRect(gameWin->m_renderer, &purpleRectangle);
     // m_titlescreen->Draw(*gameWin);
     //  std::cout << "Drawing screen..." << std::endl;
 }
@@ -76,12 +76,12 @@ void MainMenuState::InitState()
 }
 void MainMenuState::EndState()
 {
+    // pass ownership of the theme music to this track to the game over state
+    m_engineInstance->SetObject(STATE_GAMEOVER, "theme_music", m_theme);
 }
 void MainMenuState::StartState()
 {
     MusicPlayer::Play(m_theme, true);
-    // pass ownership of the theme music to this track to the game over state
-    // m_engineInstance->SetObject(STATE_GAMEOVER, "theme_music", m_theme);
 }
 void MainMenuState::ExitState()
 {
