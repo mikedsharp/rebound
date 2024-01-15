@@ -6,7 +6,7 @@
 class Paddle : public GameSprite
 {
 public:
-    Paddle(const Rect &dimensions, const Point &clipLocation);
+    Paddle(const Rect &dimensions, const Point &clipLocation, SDL_Texture *texture);
     int Score() { return m_score; }
     void Score(int score) { m_score = score; }
     void AddScore(int score) { m_score += score; }

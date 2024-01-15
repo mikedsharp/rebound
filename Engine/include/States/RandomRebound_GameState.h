@@ -57,6 +57,8 @@ private:
     int m_currentTheme;
     bool m_playerIsServer;
     float m_opponentsTarget;
+    bool m_leftKeyState;
+    bool m_rightKeyState;
 
     GameSprite *m_playerScoreText;
     GameSprite *m_opponentScoreText;

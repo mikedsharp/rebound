@@ -30,6 +30,7 @@ public:
     GameSprite(const Rect &dimensions, const Point &clipLocation, SDL_Texture *texture);
 
     void SetSize(int width, int height);
+    void SetTexture(SDL_Texture *texture);
     void SetPosition(float x, float y);
     void SetDimensions(int x, int y, int width, int height);
     void SetClipPosition(int x, int y);

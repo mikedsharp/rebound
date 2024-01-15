@@ -50,6 +50,38 @@ RandomRebound_GameState::~RandomRebound_GameState()
 }
 void RandomRebound_GameState::CheckEvent()
 {
+    // Handle events on queue
+    GameWindow *gameWin = m_engineInstance->GetGameWindow();
+    SDL_Event *e = gameWin->GetEvent();
+    while (SDL_PollEvent(e) != 0)
+    {
+        // User requests quit
+        if (e->type == SDL_QUIT)
+        {
+            m_engineInstance->Running(false);
+            break;
+        }
+        else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_LEFT)
+        {
+            m_leftKeyState = true;
+        }
+        else if (e->type == SDL_KEYUP && e->key.keysym.sym == SDLK_LEFT)
+        {
+            m_leftKeyState = false;
+        }
+        else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_RIGHT)
+        {
+            m_rightKeyState = true;
+        }
+        else if (e->type == SDL_KEYUP && e->key.keysym.sym == SDLK_RIGHT)
+        {
+            m_rightKeyState = false;
+        }
+        else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_p)
+        {
+            Paused(!Paused());
+        }
+    }
     // // grab X axis of 1st joystick (xbox left thumb stick) and check angle
     // float joystick1X = sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::X);
 
@@ -116,6 +148,23 @@ void RandomRebound_GameState::CheckEvent()
 }
 void RandomRebound_GameState::UpdateLogic()
 {
+    RotatedRectangle playerBounds = m_player->Bounds();
+    if (m_leftKeyState && playerBounds.X() - m_player->XSpeed() > m_minPaddleX)
+    {
+        m_player->Move(DIRECTION_LEFT);
+    }
+    // else if (playerBounds.X() - m_player->XSpeed() < m_player->XSpeed())
+    // {
+    //     m_player->SetPosition(m_minPaddleX, playerBounds.Y());
+    // }
+    if (m_rightKeyState && playerBounds.X() + playerBounds.Width() < m_maxPaddleX)
+    {
+        m_player->Move(DIRECTION_RIGHT);
+    }
+    // else if (playerBounds.X() + playerBounds.Width() + m_player->XSpeed() >= m_maxPaddleX)
+    // {
+    //     m_player->SetPosition(m_maxPaddleX - playerBounds.Width(), playerBounds.Y());
+    // }
 
     // make ball move at pre-defined speeds
     m_gameBall->Move(DIRECTION_AUTO);
@@ -323,10 +372,10 @@ void RandomRebound_GameState::Paint() const
     win = m_engineInstance->GetGameWindow();
 
     win->Clear(128, 128, 255);
-    win->Draw(m_backdrop);
+    m_backdrop->Draw(*win);
 
-    win->Draw(m_playerScoreText);
-    win->Draw(m_opponentScoreText);
+    m_playerScoreText->Draw(*win);
+    m_opponentScoreText->Draw(*win);
 
     m_gameBall->Draw(*win);
     m_player->Draw(*win);
@@ -339,32 +388,34 @@ void RandomRebound_GameState::Paint() const
 void RandomRebound_GameState::InitState()
 {
     // paddle bounds
-    m_maxPaddleX = 624;
+    m_maxPaddleX = 610;
     m_minPaddleX = 16;
 
     srand(time(NULL));
 
-    ImageResourceManager::LoadImageResource("ball_temple", "img/ball_temple.png", NULL);
-    ImageResourceManager::LoadImageResource("ball_retro", "img/ball_retro.png", NULL);
-    ImageResourceManager::LoadImageResource("ball_stadium", "img/ball_stadium.png", NULL);
+    GameWindow *gameWin = m_engineInstance->GetGameWindow();
 
-    ImageResourceManager::LoadImageResource("paddle_temple", "img/paddle_temple.png", NULL);
-    ImageResourceManager::LoadImageResource("paddle_retro", "img/paddle_retro.png", NULL);
-    ImageResourceManager::LoadImageResource("paddle_stadium_red", "img/paddle_stadium_red.png", NULL);
-    ImageResourceManager::LoadImageResource("paddle_stadium_blue", "img/paddle_stadium_blue.png", NULL);
+    ImageResourceManager::LoadImageResource("ball_temple", "img/ball_temple.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("ball_retro", "img/ball_retro.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("ball_stadium", "img/ball_stadium.png", gameWin->m_renderer);
 
-    ImageResourceManager::LoadImageResource("numbers_temple", "img/Numbersheet_Temple.png", NULL);
-    ImageResourceManager::LoadImageResource("numbers_retro", "img/Numbersheet_Retro.png", NULL);
-    ImageResourceManager::LoadImageResource("numbers_stadium_red", "img/Numbersheet_Stadium_Red.png", NULL);
-    ImageResourceManager::LoadImageResource("numbers_stadium_blue", "img/Numbersheet_Stadium_Blue.png", NULL);
+    ImageResourceManager::LoadImageResource("paddle_temple", "img/paddle_temple.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("paddle_retro", "img/paddle_retro.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("paddle_stadium_red", "img/paddle_stadium_red.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("paddle_stadium_blue", "img/paddle_stadium_blue.png", gameWin->m_renderer);
 
-    ImageResourceManager::LoadImageResource("crate_temple", "img/crate_temple.png", NULL);
-    ImageResourceManager::LoadImageResource("crate_retro", "img/crate_retro.png", NULL);
-    ImageResourceManager::LoadImageResource("crate_stadium", "img/crate_stadium.png", NULL);
+    ImageResourceManager::LoadImageResource("numbers_temple", "img/Numbersheet_Temple.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("numbers_retro", "img/Numbersheet_Retro.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("numbers_stadium_red", "img/Numbersheet_Stadium_Red.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("numbers_stadium_blue", "img/Numbersheet_Stadium_Blue.png", gameWin->m_renderer);
+
+    ImageResourceManager::LoadImageResource("crate_temple", "img/crate_temple.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("crate_retro", "img/crate_retro.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("crate_stadium", "img/crate_stadium.png", gameWin->m_renderer);
     // themes
-    ImageResourceManager::LoadImageResource("backdrop_temple", "img/backdrop_temple.png", NULL);
-    ImageResourceManager::LoadImageResource("backdrop_retro", "img/backdrop_retro.png", NULL);
-    ImageResourceManager::LoadImageResource("backdrop_stadium", "img/backdrop_stadium.png", NULL);
+    ImageResourceManager::LoadImageResource("backdrop_temple", "img/backdrop_temple.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("backdrop_retro", "img/backdrop_retro.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("backdrop_stadium", "img/backdrop_stadium.png", gameWin->m_renderer);
 
     // sounds
     AudioResourceManager::LoadSoundResource("blip_retro", "sounds/blip_retro.wav");
@@ -375,10 +426,10 @@ void RandomRebound_GameState::InitState()
     AudioResourceManager::LoadSoundResource("goal_retro", "sounds/goal_retro.wav");
     AudioResourceManager::LoadSoundResource("goal_stadium", "sounds/goal_stadium.wav");
 
-    m_gameBall = new Ball(Rect(312, 232, 16, 16), Point(0, 0));
-    m_player = new Paddle(Rect(280, 438, 96, 16), Point(0, 0));
-    m_opponent = new Paddle(Rect(280, 32, 96, 16), Point(0, 0));
-    m_backdrop = new GameSprite(Rect(0, 0, 640, 480), Point(0, 0), NULL);
+    m_gameBall = new Ball(Rect(312, 232, 16, 16), Point(0, 0), ImageResourceManager::GetImageResource("ball_temple"));
+    m_player = new Paddle(Rect(280, 438, 96, 16), Point(0, 0), ImageResourceManager::GetImageResource("paddle_temple"));
+    m_opponent = new Paddle(Rect(280, 32, 96, 16), Point(0, 0), ImageResourceManager::GetImageResource("paddle_temple"));
+    m_backdrop = new GameSprite(Rect(0, 0, 640, 480), Point(0, 0), ImageResourceManager::GetImageResource("backdrop_temple"));
 
     m_playerScoreText = new GameSprite(Rect(80, 120, 160, 240), Point(0, 0), NULL);
     m_opponentScoreText = new GameSprite(Rect(400, 120, 160, 240), Point(0, 0), NULL);
@@ -508,7 +559,7 @@ void RandomRebound_GameState::CheckOpponentBounds()
     }
     else if (playerBounds.X() - m_opponent->XSpeed() < m_opponent->XSpeed())
     {
-        m_opponent->SetPosition(m_minPaddleX, playerBounds.Y());
+        m_opponent->SetPosition(m_minPaddleX + 20, playerBounds.Y());
     }
     if (playerBounds.X() + playerBounds.Width() < m_maxPaddleX)
     {
@@ -516,7 +567,7 @@ void RandomRebound_GameState::CheckOpponentBounds()
     }
     else if (playerBounds.X() + playerBounds.Width() + m_opponent->XSpeed() >= m_maxPaddleX)
     {
-        m_opponent->SetPosition(m_maxPaddleX - playerBounds.Width(), playerBounds.Y());
+        m_opponent->SetPosition(m_maxPaddleX - playerBounds.Width() - 20, playerBounds.Y());
     }
 }
 void RandomRebound_GameState::ChangeTheme(int theme)
@@ -527,17 +578,17 @@ void RandomRebound_GameState::ChangeTheme(int theme)
     {
         for (unsigned int i = 0; i < m_crates.size(); i++)
         {
-            // m_crates[i]->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("crate_temple"));
+            m_crates[i]->SetTexture(ImageResourceManager::GetImageResource("crate_temple"));
         }
-        // m_backdrop->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("backdrop_temple"));
-        // m_player->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("paddle_temple"));
-        // m_opponent->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("paddle_temple"));
-        // m_gameBall->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("ball_temple"));
+        m_backdrop->SetTexture(ImageResourceManager::GetImageResource("backdrop_temple"));
+        m_player->SetTexture(ImageResourceManager::GetImageResource("paddle_temple"));
+        m_opponent->SetTexture(ImageResourceManager::GetImageResource("paddle_temple"));
+        m_gameBall->SetTexture(ImageResourceManager::GetImageResource("ball_temple"));
         // m_paddleBash.setBuffer(AudioResourceManager::GetSoundResource("blip_temple"));
         // m_goalCheer.setBuffer(AudioResourceManager::GetSoundResource("goal_temple"));
 
-        // m_playerScoreText->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("numbers_temple"));
-        // m_opponentScoreText->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("numbers_temple"));
+        m_playerScoreText->SetTexture(ImageResourceManager::GetImageResource("numbers_temple"));
+        m_opponentScoreText->SetTexture(ImageResourceManager::GetImageResource("numbers_temple"));
 
         break;
     }
@@ -545,18 +596,18 @@ void RandomRebound_GameState::ChangeTheme(int theme)
     {
         for (unsigned int i = 0; i < m_crates.size(); i++)
         {
-            // m_crates[i]->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("crate_retro"));
+            m_crates[i]->SetTexture(ImageResourceManager::GetImageResource("crate_retro"));
         }
-        // m_backdrop->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("backdrop_retro"));
-        // m_player->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("paddle_retro"));
-        // m_opponent->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("paddle_retro"));
-        // m_gameBall->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("ball_retro"));
+        m_backdrop->SetTexture(ImageResourceManager::GetImageResource("backdrop_retro"));
+        m_player->SetTexture(ImageResourceManager::GetImageResource("paddle_retro"));
+        m_opponent->SetTexture(ImageResourceManager::GetImageResource("paddle_retro"));
+        m_gameBall->SetTexture(ImageResourceManager::GetImageResource("ball_retro"));
 
         // m_paddleBash.setBuffer(AudioResourceManager::GetSoundResource("blip_retro"));
         // m_goalCheer.setBuffer(AudioResourceManager::GetSoundResource("goal_retro"));
 
-        // m_playerScoreText->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("numbers_retro"));
-        // m_opponentScoreText->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("numbers_retro"));
+        m_playerScoreText->SetTexture(ImageResourceManager::GetImageResource("numbers_retro"));
+        m_opponentScoreText->SetTexture(ImageResourceManager::GetImageResource("numbers_retro"));
 
         break;
     }
@@ -564,18 +615,18 @@ void RandomRebound_GameState::ChangeTheme(int theme)
     {
         for (unsigned int i = 0; i < m_crates.size(); i++)
         {
-            // m_crates[i]->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("crate_stadium"));
+            m_crates[i]->SetTexture(ImageResourceManager::GetImageResource("crate_stadium"));
         }
-        // m_backdrop->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("backdrop_stadium"));
-        // m_player->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("paddle_stadium_blue"));
-        // m_opponent->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("paddle_stadium_red"));
-        // m_gameBall->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("ball_stadium"));
+        m_backdrop->SetTexture(ImageResourceManager::GetImageResource("backdrop_stadium"));
+        m_player->SetTexture(ImageResourceManager::GetImageResource("paddle_stadium_blue"));
+        m_opponent->SetTexture(ImageResourceManager::GetImageResource("paddle_stadium_red"));
+        m_gameBall->SetTexture(ImageResourceManager::GetImageResource("ball_stadium"));
 
         // m_paddleBash.setBuffer(AudioResourceManager::GetSoundResource("blip_stadium"));
         // m_goalCheer.setBuffer(AudioResourceManager::GetSoundResource("goal_stadium"));
 
-        // m_playerScoreText->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("numbers_stadium_blue"));
-        // m_opponentScoreText->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("numbers_stadium_red"));
+        m_playerScoreText->SetTexture(ImageResourceManager::GetImageResource("numbers_stadium_blue"));
+        m_opponentScoreText->SetTexture(ImageResourceManager::GetImageResource("numbers_stadium_red"));
         break;
     }
     default:

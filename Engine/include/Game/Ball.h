@@ -8,7 +8,7 @@ const int BALL_BASE_SPEED = 5;
 class Ball : public GameSprite
 {
 public:
-    Ball(const Rect &dimensions, const Point &clipLocation);
+    Ball(const Rect &dimensions, const Point &clipLocation, SDL_Texture *texture);
     virtual ~Ball();
 
 protected:

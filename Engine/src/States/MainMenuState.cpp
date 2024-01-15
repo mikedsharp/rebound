@@ -34,6 +34,12 @@ void MainMenuState::CheckEvent()
         if (e->type == SDL_QUIT)
         {
             m_engineInstance->Running(false);
+            break;
+        }
+        if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_RETURN)
+        {
+            this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
+            break;
         }
     }
     // while (m_engineInstance->GetGameWindow()->QueuedEvents())
@@ -62,10 +68,7 @@ void MainMenuState::UpdateLogic()
 }
 void MainMenuState::Paint() const
 {
-    SDL_Rect purpleRectangle = {0, 0, 320, 240};
     GameWindow *gameWin = m_engineInstance->GetGameWindow();
-    SDL_SetRenderDrawColor(gameWin->m_renderer, 255, 0, 255, 255);
-    SDL_RenderFillRect(gameWin->m_renderer, &purpleRectangle);
     m_titlescreen->Draw(*gameWin);
     //  std::cout << "Drawing screen..." << std::endl;
 }

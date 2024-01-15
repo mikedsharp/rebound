@@ -120,31 +120,28 @@ void GameEngine::InvokeEngine(int width, int height, int bpp, std::string captio
 
     this->SwitchState(STATE_MAINMENU);
 
-    // this->GetGameWindow()->GetRawWindow()->setFramerateLimit(30); // Limit to 30 frames per second
-    // this->GetGameWindow()->GetRawWindow()->setVerticalSyncEnabled(true);
-
     float nowTime;
-    // sf::Clock clock;
-    // clock.restart();
+    float startTime = SDL_GetTicks();
+
     SDL_Event e;
 
     while (m_running)
     {
 
-        // 60 fps?
-        // nowTime = clock.getElapsedTime().asSeconds();
-        //   if((nowTime) > 0.0166666666666667){
-        m_currentState->CheckEvent();
-        //          if(!m_currentState->Paused()){
-        //             m_currentState->UpdateLogic();
-        //          }
-
-        //         clock.restart();
-        //     }
-
-        win->Clear(255, 255, 0);
-        m_currentState->Paint();
-        win->Display();
+        // 30 fps?
+        nowTime = SDL_GetTicks();
+        if ((nowTime - startTime) > 33.3333333333)
+        {
+            m_currentState->CheckEvent();
+            if (!m_currentState->Paused())
+            {
+                m_currentState->UpdateLogic();
+            }
+            win->Clear(255, 255, 0);
+            m_currentState->Paint();
+            win->Display();
+            startTime = SDL_GetTicks();
+        }
     }
 }
 

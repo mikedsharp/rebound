@@ -50,6 +50,11 @@ GameSprite::GameSprite(const Rect &dimensions, const Point &clipLocation, SDL_Te
     Animating(false);
 }
 
+void GameSprite::SetTexture(SDL_Texture *texture)
+{
+    m_texture = texture;
+}
+
 void GameSprite::Move(int direction)
 {
     switch (direction)
