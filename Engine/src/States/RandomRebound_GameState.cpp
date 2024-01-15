@@ -344,27 +344,27 @@ void RandomRebound_GameState::InitState()
 
     srand(time(NULL));
 
-    ImageResourceManager::LoadImageResource("ball_temple", "img/ball_temple.png");
-    ImageResourceManager::LoadImageResource("ball_retro", "img/ball_retro.png");
-    ImageResourceManager::LoadImageResource("ball_stadium", "img/ball_stadium.png");
+    ImageResourceManager::LoadImageResource("ball_temple", "img/ball_temple.png", NULL);
+    ImageResourceManager::LoadImageResource("ball_retro", "img/ball_retro.png", NULL);
+    ImageResourceManager::LoadImageResource("ball_stadium", "img/ball_stadium.png", NULL);
 
-    ImageResourceManager::LoadImageResource("paddle_temple", "img/paddle_temple.png");
-    ImageResourceManager::LoadImageResource("paddle_retro", "img/paddle_retro.png");
-    ImageResourceManager::LoadImageResource("paddle_stadium_red", "img/paddle_stadium_red.png");
-    ImageResourceManager::LoadImageResource("paddle_stadium_blue", "img/paddle_stadium_blue.png");
+    ImageResourceManager::LoadImageResource("paddle_temple", "img/paddle_temple.png", NULL);
+    ImageResourceManager::LoadImageResource("paddle_retro", "img/paddle_retro.png", NULL);
+    ImageResourceManager::LoadImageResource("paddle_stadium_red", "img/paddle_stadium_red.png", NULL);
+    ImageResourceManager::LoadImageResource("paddle_stadium_blue", "img/paddle_stadium_blue.png", NULL);
 
-    ImageResourceManager::LoadImageResource("numbers_temple", "img/Numbersheet_Temple.png");
-    ImageResourceManager::LoadImageResource("numbers_retro", "img/Numbersheet_Retro.png");
-    ImageResourceManager::LoadImageResource("numbers_stadium_red", "img/Numbersheet_Stadium_Red.png");
-    ImageResourceManager::LoadImageResource("numbers_stadium_blue", "img/Numbersheet_Stadium_Blue.png");
+    ImageResourceManager::LoadImageResource("numbers_temple", "img/Numbersheet_Temple.png", NULL);
+    ImageResourceManager::LoadImageResource("numbers_retro", "img/Numbersheet_Retro.png", NULL);
+    ImageResourceManager::LoadImageResource("numbers_stadium_red", "img/Numbersheet_Stadium_Red.png", NULL);
+    ImageResourceManager::LoadImageResource("numbers_stadium_blue", "img/Numbersheet_Stadium_Blue.png", NULL);
 
-    ImageResourceManager::LoadImageResource("crate_temple", "img/crate_temple.png");
-    ImageResourceManager::LoadImageResource("crate_retro", "img/crate_retro.png");
-    ImageResourceManager::LoadImageResource("crate_stadium", "img/crate_stadium.png");
+    ImageResourceManager::LoadImageResource("crate_temple", "img/crate_temple.png", NULL);
+    ImageResourceManager::LoadImageResource("crate_retro", "img/crate_retro.png", NULL);
+    ImageResourceManager::LoadImageResource("crate_stadium", "img/crate_stadium.png", NULL);
     // themes
-    ImageResourceManager::LoadImageResource("backdrop_temple", "img/backdrop_temple.png");
-    ImageResourceManager::LoadImageResource("backdrop_retro", "img/backdrop_retro.png");
-    ImageResourceManager::LoadImageResource("backdrop_stadium", "img/backdrop_stadium.png");
+    ImageResourceManager::LoadImageResource("backdrop_temple", "img/backdrop_temple.png", NULL);
+    ImageResourceManager::LoadImageResource("backdrop_retro", "img/backdrop_retro.png", NULL);
+    ImageResourceManager::LoadImageResource("backdrop_stadium", "img/backdrop_stadium.png", NULL);
 
     // sounds
     AudioResourceManager::LoadSoundResource("blip_retro", "sounds/blip_retro.wav");
@@ -378,10 +378,10 @@ void RandomRebound_GameState::InitState()
     m_gameBall = new Ball(Rect(312, 232, 16, 16), Point(0, 0));
     m_player = new Paddle(Rect(280, 438, 96, 16), Point(0, 0));
     m_opponent = new Paddle(Rect(280, 32, 96, 16), Point(0, 0));
-    m_backdrop = new GameSprite(Rect(0, 0, 640, 480), Point(0, 0));
+    m_backdrop = new GameSprite(Rect(0, 0, 640, 480), Point(0, 0), NULL);
 
-    m_playerScoreText = new GameSprite(Rect(80, 120, 160, 240), Point(0, 0));
-    m_opponentScoreText = new GameSprite(Rect(400, 120, 160, 240), Point(0, 0));
+    m_playerScoreText = new GameSprite(Rect(80, 120, 160, 240), Point(0, 0), NULL);
+    m_opponentScoreText = new GameSprite(Rect(400, 120, 160, 240), Point(0, 0), NULL);
     /* fill  play area with random crates dotted around */
     int crateMinX, crateMinY, crateWidth, crateHeight;
     crateMinX = 16;

@@ -16,11 +16,12 @@ GameSprite::~GameSprite()
     //     m_bounds = NULL;
     // }
 }
-GameSprite::GameSprite(const Rect &dimensions, const Point &clipLocation)
+GameSprite::GameSprite(const Rect &dimensions, const Point &clipLocation, SDL_Texture *texture)
 {
     // init the inner sprite, setup start params
 
     // m_wrappedSprite = new sf::Sprite();
+    this->m_texture = texture;
     this->m_worldX = dimensions.X();
     this->m_worldY = dimensions.Y();
 
@@ -170,7 +171,9 @@ void GameSprite::Draw(const GameWindow &win)
 {
     if (Visible())
     {
-        win.Draw(this);
+        SDL_Rect renderLocation = {m_worldX, m_worldY, m_width, m_height};
+        SDL_Rect clipRect = {m_clipX, m_clipY, m_width, m_height};
+        SDL_RenderCopy(win.m_renderer, m_texture, &clipRect, &renderLocation);
     }
     if (Animating())
     {

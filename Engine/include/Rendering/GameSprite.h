@@ -4,6 +4,7 @@
 // #include <SFML/System.hpp>
 // #include <SFML/Window.hpp>
 // #include <SFML/Graphics.hpp>
+#include "SDL_image.h"
 
 #include "Util/Rect.h"
 #include <Util/RotatedRectangle.h>
@@ -26,7 +27,7 @@ enum Direction
 class GameSprite : public Drawable
 {
 public:
-    GameSprite(const Rect &dimensions, const Point &clipLocation);
+    GameSprite(const Rect &dimensions, const Point &clipLocation, SDL_Texture *texture);
 
     void SetSize(int width, int height);
     void SetPosition(float x, float y);
@@ -41,6 +42,11 @@ public:
     // {
     //     return m_wrappedSprite;
     // };
+
+    SDL_Texture *Texture() const
+    {
+        return m_texture;
+    };
 
     int XSpeed() const
     {
@@ -119,6 +125,7 @@ private:
     bool m_visible;
     bool m_alive;
     bool m_animating;
+    SDL_Texture *m_texture;
     // sf::Sprite *m_wrappedSprite;
     // Rect* m_bounds;
     RotatedRectangle *m_bounds;

@@ -4,8 +4,8 @@
 TileMap::TileMap(const std::string &fileName)
 {
     // ctor
-    ImageResourceManager::LoadImageResource("Tiles2", "img/tileset.png");
-    ImageResourceManager::LoadImageResource("Tiles", "img/tileset2.png");
+    ImageResourceManager::LoadImageResource("Tiles2", "img/tileset.png", NULL);
+    ImageResourceManager::LoadImageResource("Tiles", "img/tileset2.png", NULL);
     m_tileX = 35;
     m_tileY = 30;
     m_tileWidth = 32;

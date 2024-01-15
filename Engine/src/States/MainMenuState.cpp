@@ -15,6 +15,7 @@ MainMenuState::~MainMenuState()
     // dtor
     if (m_titlescreen)
     {
+        ImageResourceManager::RemoveImageResource("StartScreen");
         delete m_titlescreen;
         m_titlescreen = NULL;
     }
@@ -65,14 +66,15 @@ void MainMenuState::Paint() const
     GameWindow *gameWin = m_engineInstance->GetGameWindow();
     SDL_SetRenderDrawColor(gameWin->m_renderer, 255, 0, 255, 255);
     SDL_RenderFillRect(gameWin->m_renderer, &purpleRectangle);
-    // m_titlescreen->Draw(*gameWin);
+    m_titlescreen->Draw(*gameWin);
     //  std::cout << "Drawing screen..." << std::endl;
 }
 void MainMenuState::InitState()
 {
-    ImageResourceManager::LoadImageResource("StartScreen", "img/titlescreen.png");
+    GameWindow *gameWin = m_engineInstance->GetGameWindow();
+    ImageResourceManager::LoadImageResource("StartScreen", "img/titlescreen.png", gameWin->m_renderer);
     m_theme = AudioResourceManager::LoadMusicResource("GameTheme", "music/theme.wav");
-    m_titlescreen = new GameSprite(Rect(0, 0, 640, 480), Point(0, 0));
+    m_titlescreen = new GameSprite(Rect(0, 0, 640, 480), Point(0, 0), ImageResourceManager::GetImageResource("StartScreen"));
 }
 void MainMenuState::EndState()
 {

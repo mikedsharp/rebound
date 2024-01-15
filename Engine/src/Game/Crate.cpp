@@ -1,6 +1,6 @@
 #include "Game/Crate.h"
 
-Crate::Crate(const Rect &dimensions, int crateType) : GameSprite(dimensions, Point(0, 0))
+Crate::Crate(const Rect &dimensions, int crateType) : GameSprite(dimensions, Point(0, 0), NULL)
 {
     // ctor
     Alive(true);

@@ -3,18 +3,19 @@
 
 #include <string>
 #include <map>
+#include "SDL_image.h";
 class ImageResourceManager
 {
 public:
-    static const int LoadImageResource(std::string key, std::string fileName) throw();
-    static const int GetImageResource(std::string key);
+    static SDL_Texture *LoadImageResource(std::string key, std::string fileName, SDL_Renderer *renderer) throw();
+    static SDL_Texture *GetImageResource(std::string key);
     static void DeallocateAll();
     static void RemoveImageResource(std::string key);
 
 protected:
 private:
     ImageResourceManager();
-    static std::map<std::string, std::string> m_imageResources;
+    static std::map<std::string, SDL_Texture *> m_imageResources;
 };
 
 #endif // IMAGERESOURCEMANAGER_H

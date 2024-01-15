@@ -1,6 +1,6 @@
 #include "Game/Paddle.h"
 
-Paddle::Paddle(const Rect &dimensions, const Point &clipLocation) : GameSprite(dimensions, clipLocation)
+Paddle::Paddle(const Rect &dimensions, const Point &clipLocation) : GameSprite(dimensions, clipLocation, NULL)
 {
     // ctor
     Alive(true);

@@ -11,6 +11,7 @@ int main()
     instance->InvokeEngine(640, 480, 32, "Rebound!");
 
     SDL_Quit();
+    IMG_Quit();
     Mix_Quit();
     return 0;
 }
