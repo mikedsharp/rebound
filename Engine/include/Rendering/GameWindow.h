@@ -22,12 +22,6 @@ public:
         SDL_SetRenderDrawColor(this->m_renderer, r, g, b, 255);
         SDL_RenderClear(this->m_renderer);
     }
-    bool QueuedEvents() const
-    {
-        std::cout << "simulate event polling" << std::endl;
-        // return m_windowObj->pollEvent(*m_eventObj);
-        return false;
-    }
     SDL_Event *GetEvent()
     {
         return &this->m_eventObj;

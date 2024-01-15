@@ -26,42 +26,29 @@ GameOverState::~GameOverState()
 
 void GameOverState::CheckEvent()
 {
-    while (m_engineInstance->GetGameWindow()->QueuedEvents())
+    // Handle events on queue
+    GameWindow *gameWin = m_engineInstance->GetGameWindow();
+    SDL_Event *e = gameWin->GetEvent();
+    while (SDL_PollEvent(e) != 0)
     {
-        // Get next event in event queue
-        // int *Event = m_engineInstance->GetGameWindow()->GetEvent();
-
-        // if (Event->type == sf::Event::Closed)
-        // {
-        //     this->m_engineInstance->Running(false);
-        //     EndState();
-        //     m_engineInstance->GetGameWindow()->Close();
-        // }
-        // else if (Event->type == sf::Event::JoystickButtonPressed)
-        // {
-        //     this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
-        // }
-        // else if (Event->type == sf::Event::KeyPressed)
-        // {
-        //     switch (Event->key.code)
-        //     {
-        //     case sf::Keyboard::Key::Return:
-        //     {
-        //         this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
-        //         break;
-        //     }
-
-        //     case sf::Keyboard::Key::Escape:
-        //     {
-        //         this->m_engineInstance->Running(false);
-        //         EndState();
-        //         m_engineInstance->GetGameWindow()->Close();
-        //         break;
-        //     }
-        //     default:
-        //         break;
-        //     }
-        // }
+        // User requests quit
+        if (e->type == SDL_QUIT)
+        {
+            m_engineInstance->Running(false);
+            break;
+        }
+        else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_RETURN)
+        {
+            this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
+            break;
+        }
+        else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_ESCAPE)
+        {
+            this->m_engineInstance->Running(false);
+            EndState();
+            m_engineInstance->GetGameWindow()->Close();
+            break;
+        }
     }
 }
 
@@ -77,8 +64,9 @@ void GameOverState::Paint() const
 
 void GameOverState::InitState()
 {
-    ImageResourceManager::LoadImageResource("gameover_lose", "img/gameover_lose.png", NULL);
-    ImageResourceManager::LoadImageResource("gameover_win", "img/gameover_win.png", NULL);
+    GameWindow *gameWin = m_engineInstance->GetGameWindow();
+    ImageResourceManager::LoadImageResource("gameover_lose", "img/gameover_lose.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("gameover_win", "img/gameover_win.png", gameWin->m_renderer);
 
     m_backdrop = new GameSprite(Rect(0, 0, 640, 480), Point(0, 0), NULL);
 }
@@ -93,14 +81,13 @@ void GameOverState::EndState()
 
 void GameOverState::StartState()
 {
-    // m_engineInstance->GetGameWindow()->GetRawWindow()->setMouseCursorVisible(true);
     if (m_victory > 0)
     {
-        // m_backdrop->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("gameover_win"));
+        m_backdrop->SetTexture(ImageResourceManager::GetImageResource("gameover_win"));
     }
     else
     {
-        // m_backdrop->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("gameover_lose"));
+        m_backdrop->SetTexture(ImageResourceManager::GetImageResource("gameover_lose"));
     }
 }
 

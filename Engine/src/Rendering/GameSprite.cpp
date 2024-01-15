@@ -114,12 +114,10 @@ void GameSprite::SetClipPosition(int x, int y)
 {
     this->m_clipX = x;
     this->m_clipY = y;
-    std::cout << "Setting sprite clip position... but not really" << std::endl;
 }
 void GameSprite::SetPosition(float x, float y)
 {
     this->SetWorldPosition(x, y);
-    std::cout << "Setting sprite world position... but not really" << std::endl;
     m_bounds->X(x);
     m_bounds->Y(y);
 }

@@ -49,26 +49,6 @@ void MainMenuState::CheckEvent()
             break;
         }
     }
-    // while (m_engineInstance->GetGameWindow()->QueuedEvents())
-    // {
-    //     // int *Event = m_engineInstance->GetGameWindow()->GetEvent();
-    //     // if (Event->type == sf::Event::Closed)
-    //     // {
-    //     //     this->m_engineInstance->Running(false);
-    //     //     m_engineInstance->GetGameWindow()->Close();
-    //     // }
-    //     // else if (Event->type == sf::Event::JoystickButtonPressed)
-    //     // {
-    //     //     this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
-    //     // }
-    //     // else if (Event->type == sf::Event::KeyPressed)
-    //     // {
-    //     //     if (Event->key.code == sf::Keyboard::Return)
-    //     //     {
-    //     //         this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
-    //     //     }
-    //     // }
-    // }
 }
 void MainMenuState::UpdateLogic()
 {
