@@ -1,9 +1,6 @@
 #ifndef GAMESPRITE_H
 #define GAMESPRITE_H
 
-// #include <SFML/System.hpp>
-// #include <SFML/Window.hpp>
-// #include <SFML/Graphics.hpp>
 #include "SDL_image.h"
 
 #include "Util/Rect.h"
@@ -122,10 +119,7 @@ private:
     bool m_alive;
     bool m_animating;
     SDL_Texture *m_texture;
-    // sf::Sprite *m_wrappedSprite;
-    // Rect* m_bounds;
     RotatedRectangle *m_bounds;
-    // sf::Clock m_animationTimer;
     int m_currentFrame;
     int m_numFrames;
     float m_animationDelay;
