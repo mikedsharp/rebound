@@ -39,11 +39,6 @@ public:
     void UpdateCameraPosition(float x, float y);
     bool Collision(const RotatedRectangle &obstacle);
 
-    // sf::Sprite *GetBaseSprite() const
-    // {
-    //     return m_wrappedSprite;
-    // };
-
     SDL_Texture *Texture() const
     {
         return m_texture;

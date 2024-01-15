@@ -81,70 +81,14 @@ void RandomRebound_GameState::CheckEvent()
         {
             Paused(!Paused());
         }
+        else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_ESCAPE)
+        {
+            this->m_engineInstance->Running(false);
+            EndState();
+            m_engineInstance->GetGameWindow()->Close();
+            break;
+        }
     }
-    // // grab X axis of 1st joystick (xbox left thumb stick) and check angle
-    // float joystick1X = sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::X);
-
-    // if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || (joystick1X < -85)) && !Paused())
-    // {
-    //     RotatedRectangle playerBounds = m_player->Bounds();
-    //     if (playerBounds.X() - m_player->XSpeed() > m_minPaddleX)
-    //     {
-    //         m_player->Move(DIRECTION_LEFT);
-    //     }
-    //     else if (playerBounds.X() - m_player->XSpeed() < m_player->XSpeed())
-    //     {
-    //         m_player->SetPosition(m_minPaddleX, playerBounds.Y());
-    //     }
-    // }
-    // if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) || (joystick1X > 85)) && !Paused())
-    // {
-    //     RotatedRectangle playerBounds = m_player->Bounds();
-
-    //     if (playerBounds.X() + playerBounds.Width() < m_maxPaddleX)
-    //     {
-    //         m_player->Move(DIRECTION_RIGHT);
-    //     }
-    //     if (playerBounds.X() + playerBounds.Width() + m_player->XSpeed() >= m_maxPaddleX)
-    //     {
-    //         m_player->SetPosition(m_maxPaddleX - playerBounds.Width(), playerBounds.Y());
-    //     }
-    // }
-
-    // while (m_engineInstance->GetGameWindow()->QueuedEvents())
-    // {
-    //     // Get next event in event queue
-    //     sf::Event *Event = m_engineInstance->GetGameWindow()->GetEvent();
-
-    //     if (Event->type == sf::Event::Closed)
-    //     {
-    //         this->m_engineInstance->Running(false);
-    //         EndState();
-    //         m_engineInstance->GetGameWindow()->Close();
-    //     }
-    //     else if (Event->type == sf::Event::KeyPressed)
-    //     {
-    //         {
-    //             switch (Event->key.code)
-    //             {
-    //             case sf::Keyboard::Key::P:
-    //             {
-    //                 Paused(!Paused());
-    //                 break;
-    //             }
-    //             case sf::Keyboard::Key::Escape:
-    //             {
-    //                 this->m_engineInstance->Running(false);
-    //                 EndState();
-    //                 m_engineInstance->GetGameWindow()->Close();
-    //                 break;
-    //             }
-    //             default:
-    //                 break;
-    //             }
-    //         }
-    //     }
-    // }
 }
 void RandomRebound_GameState::UpdateLogic()
 {

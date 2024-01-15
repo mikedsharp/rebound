@@ -36,9 +36,16 @@ void MainMenuState::CheckEvent()
             m_engineInstance->Running(false);
             break;
         }
-        if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_RETURN)
+        else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_RETURN)
         {
             this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
+            break;
+        }
+        else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_ESCAPE)
+        {
+            this->m_engineInstance->Running(false);
+            EndState();
+            m_engineInstance->GetGameWindow()->Close();
             break;
         }
     }
