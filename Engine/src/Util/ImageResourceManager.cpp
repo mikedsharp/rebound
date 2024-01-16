@@ -23,7 +23,6 @@ void ImageResourceManager::DeallocateAll()
 
 SDL_Texture *ImageResourceManager::LoadImageResource(std::string key, std::string fileName, SDL_Renderer *renderer) throw()
 {
-    std::cout << "loading image resource with path: " << fileName << " and key: " << key << std::endl;
     SDL_Surface *spriteSurface = IMG_Load(fileName.c_str());
     m_imageResources[key.c_str()] = SDL_CreateTextureFromSurface(renderer, spriteSurface);
     SDL_FreeSurface(spriteSurface);
@@ -31,7 +30,6 @@ SDL_Texture *ImageResourceManager::LoadImageResource(std::string key, std::strin
 }
 SDL_Texture *ImageResourceManager::GetImageResource(std::string key)
 {
-    std::cout << "returning image resource with key: " << key << std::endl;
     // if the resource exists, return it, otherwise warn user and return NULL
     if (m_imageResources.count(key.c_str()) > 0)
     {

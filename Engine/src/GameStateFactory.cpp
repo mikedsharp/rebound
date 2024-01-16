@@ -7,18 +7,18 @@
 
 GameStateFactory::GameStateFactory()
 {
-    //ctor
+    // ctor
 }
 
 GameStateFactory::~GameStateFactory()
 {
-    //dtor
+    // dtor
 }
 
-GameState* GameStateFactory::BuildState(int stateType)
+GameState *GameStateFactory::BuildState(int stateType)
 {
     // try to determine which type of state needs building, then allocate and return in
-    switch(stateType)
+    switch (stateType)
     {
     case STATE_MAINMENU:
     {
@@ -27,13 +27,13 @@ GameState* GameStateFactory::BuildState(int stateType)
     }
     case STATE_RANDOMREBOUND_GAMELEVEL:
     {
-       return new RandomRebound_GameState();
-       break;
+        return new RandomRebound_GameState();
+        break;
     }
     case STATE_GAMEOVER:
     {
-       return new GameOverState();
-       break;
+        return new GameOverState();
+        break;
     }
     default:
     {

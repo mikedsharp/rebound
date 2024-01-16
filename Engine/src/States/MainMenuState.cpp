@@ -57,7 +57,6 @@ void MainMenuState::Paint() const
 {
     GameWindow *gameWin = m_engineInstance->GetGameWindow();
     m_titlescreen->Draw(*gameWin);
-    //  std::cout << "Drawing screen..." << std::endl;
 }
 void MainMenuState::InitState()
 {

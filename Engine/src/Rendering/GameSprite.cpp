@@ -32,9 +32,6 @@ GameSprite::GameSprite(const Rect &dimensions, const Point &clipLocation, SDL_Te
     this->m_clipX = clipLocation.X();
     this->m_clipY = clipLocation.Y();
 
-    std::cout << "Setting sprite initial world position" << std::endl;
-    std::cout << "Setting texture" << std::endl;
-    std::cout << "Setting texture clip rectange" << std::endl;
     XSpeed(0);
     YSpeed(0);
     m_xSpeed = m_ySpeed = 0;

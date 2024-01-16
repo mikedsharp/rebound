@@ -153,7 +153,6 @@ bool RotatedRectangle::AxisCollision(RotatedRectangle obstacle, Vector2f axis)
 
     for (std::vector<float>::iterator it = rectangleAScalars.begin(); it < rectangleAScalars.end(); it++)
     {
-        //   std::cout << "valueA:" <<(*it) << std::endl;
         if ((*it) > rectangleAMax)
         {
             rectangleAMax = (*it);
@@ -165,7 +164,6 @@ bool RotatedRectangle::AxisCollision(RotatedRectangle obstacle, Vector2f axis)
     }
     for (std::vector<float>::iterator it = rectangleBScalars.begin(); it < rectangleBScalars.end(); it++)
     {
-        // std::cout << "valueB:" <<(*it) << std::endl;
 
         if ((*it) > rectangleBMax)
         {

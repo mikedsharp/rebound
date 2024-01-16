@@ -135,7 +135,7 @@ void RandomRebound_GameState::UpdateLogic()
         }
         m_playerIsServer = true;
         PlanMove();
-        // m_paddleBash.play();
+        SoundPlayer::Play(m_paddleBash, false);
     }
     if (m_gameBall->Collision(m_opponent->Bounds()) && m_playerIsServer)
     {
@@ -154,7 +154,7 @@ void RandomRebound_GameState::UpdateLogic()
             (m_gameBall->YSpeed() > 0) ? m_gameBall->YSpeed(m_gameBall->YSpeed() + 1) : m_gameBall->YSpeed(m_gameBall->YSpeed() - 1);
         }
         m_playerIsServer = false;
-        // m_paddleBash.play();
+        SoundPlayer::Play(m_paddleBash, false);
     }
     // horizontal bounds checks
     if ((m_gameBall->Bounds().X()) < 16)
@@ -180,8 +180,8 @@ void RandomRebound_GameState::UpdateLogic()
 
         (!m_playerIsServer) ? m_player->AddScore(1) : m_opponent->AddScore(1);
         PlanMove();
-        // m_goalCheer.play();
         UpdateScoreBoards();
+        SoundPlayer::Play(m_goalCheer, false);
     }
     else if ((m_gameBall->Bounds().Y()) <= 16)
     {
@@ -189,8 +189,8 @@ void RandomRebound_GameState::UpdateLogic()
         m_playerIsServer = false;
         m_gameBall->YSpeed(BALL_BASE_SPEED);
         (!m_playerIsServer) ? m_player->AddScore(1) : m_opponent->AddScore(1);
-        // m_goalCheer.play();
         UpdateScoreBoards();
+        SoundPlayer::Play(m_goalCheer, false);
     }
 
     for (unsigned int i = 0; i < m_crates.size(); i++)
@@ -528,8 +528,9 @@ void RandomRebound_GameState::ChangeTheme(int theme)
         m_player->SetTexture(ImageResourceManager::GetImageResource("paddle_temple"));
         m_opponent->SetTexture(ImageResourceManager::GetImageResource("paddle_temple"));
         m_gameBall->SetTexture(ImageResourceManager::GetImageResource("ball_temple"));
-        // m_paddleBash.setBuffer(AudioResourceManager::GetSoundResource("blip_temple"));
-        // m_goalCheer.setBuffer(AudioResourceManager::GetSoundResource("goal_temple"));
+
+        m_paddleBash = AudioResourceManager::GetSoundResource("blip_temple");
+        m_goalCheer = AudioResourceManager::GetSoundResource("goal_temple");
 
         m_playerScoreText->SetTexture(ImageResourceManager::GetImageResource("numbers_temple"));
         m_opponentScoreText->SetTexture(ImageResourceManager::GetImageResource("numbers_temple"));
@@ -547,9 +548,8 @@ void RandomRebound_GameState::ChangeTheme(int theme)
         m_opponent->SetTexture(ImageResourceManager::GetImageResource("paddle_retro"));
         m_gameBall->SetTexture(ImageResourceManager::GetImageResource("ball_retro"));
 
-        // m_paddleBash.setBuffer(AudioResourceManager::GetSoundResource("blip_retro"));
-        // m_goalCheer.setBuffer(AudioResourceManager::GetSoundResource("goal_retro"));
-
+        m_paddleBash = AudioResourceManager::GetSoundResource("blip_retro");
+        m_goalCheer = AudioResourceManager::GetSoundResource("goal_retro");
         m_playerScoreText->SetTexture(ImageResourceManager::GetImageResource("numbers_retro"));
         m_opponentScoreText->SetTexture(ImageResourceManager::GetImageResource("numbers_retro"));
 
@@ -566,8 +566,8 @@ void RandomRebound_GameState::ChangeTheme(int theme)
         m_opponent->SetTexture(ImageResourceManager::GetImageResource("paddle_stadium_red"));
         m_gameBall->SetTexture(ImageResourceManager::GetImageResource("ball_stadium"));
 
-        // m_paddleBash.setBuffer(AudioResourceManager::GetSoundResource("blip_stadium"));
-        // m_goalCheer.setBuffer(AudioResourceManager::GetSoundResource("goal_stadium"));
+        m_paddleBash = AudioResourceManager::GetSoundResource("blip_stadium");
+        m_goalCheer = AudioResourceManager::GetSoundResource("goal_stadium");
 
         m_playerScoreText->SetTexture(ImageResourceManager::GetImageResource("numbers_stadium_blue"));
         m_opponentScoreText->SetTexture(ImageResourceManager::GetImageResource("numbers_stadium_red"));

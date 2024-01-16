@@ -18,7 +18,6 @@ public:
     void Resize(int width, int height);
     void Clear(int r, int g, int b)
     {
-        // std::cout << "Clearing windows" << std::endl;
         SDL_SetRenderDrawColor(this->m_renderer, r, g, b, 255);
         SDL_RenderClear(this->m_renderer);
     }
@@ -29,14 +28,11 @@ public:
     void Draw(const GameSprite *wrappedSprite) const;
     void Display() const
     {
-        // std::cout << "simulate window.display" << std::endl;
-        // m_windowObj->display();
         SDL_RenderPresent(this->m_renderer);
     }
     void Close()
     {
-        std::cout << "simulate window close" << std::endl;
-        // m_windowObj->close();
+        SDL_Quit();
     }
     SDL_Window *m_windowObj;
     SDL_Renderer *m_renderer;

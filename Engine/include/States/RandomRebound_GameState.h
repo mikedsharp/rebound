@@ -7,6 +7,7 @@
 #include <Game/Ball.h>
 #include <Game/Paddle.h>
 #include <Game/Crate.h>
+#include "Util/SoundPlayer.h"
 
 enum themes
 {
@@ -64,8 +65,8 @@ private:
     GameSprite *m_opponentScoreText;
 
     // sounds
-    // sf::Sound m_paddleBash;
-    // sf::Sound m_goalCheer;
+    Mix_Chunk *m_paddleBash;
+    Mix_Chunk *m_goalCheer;
 };
 // factor for working out where ball 'rebounds'
 const float REBOUND_SCALE_FACTOR = 0.2083333333333333;
