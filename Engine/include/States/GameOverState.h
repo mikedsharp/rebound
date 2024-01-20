@@ -1,8 +1,6 @@
 #ifndef GAMEOVERSTATE_H
 #define GAMEOVERSTATE_H
 
-// #include <SFML/Audio.hpp>
-
 #include <GameState.h>
 #include <string>
 #include "Rendering/GameSprite.h"

@@ -8,7 +8,7 @@ class SoundPlayer
 public:
     SoundPlayer();
     ~SoundPlayer();
-    static void Play(Mix_Chunk *soundToPlayer, bool loop);
+    static void Play(Mix_Chunk *soundToPlay, bool loop);
 
 protected:
 private:

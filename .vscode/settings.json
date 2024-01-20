@@ -54,13 +54,13 @@
   },
   "makefile.launchConfigurations": [
     {
-      "cwd": "C:\\Users\\mshar\\rebound\\bin\\Release",
-      "binaryPath": "C:\\Users\\mshar\\rebound\\bin\\Release\\rebound.exe",
+      "cwd": "${workspaceRoot}\\bin\\Release",
+      "binaryPath": "${workspaceRoot}\\bin\\Release\\rebound.exe",
       "binaryArgs": []
     },
     {
-      "cwd": "C:\\Users\\mshar\\rebound\\bin\\Debug",
-      "binaryPath": "C:\\Users\\mshar\\rebound\\bin\\Debug\\rebound.exe",
+      "cwd": "${workspaceRoot}\\bin\\Debug",
+      "binaryPath": "${workspaceRoot}\\bin\\Debug\\rebound.exe",
       "binaryArgs": []
     }
   ]

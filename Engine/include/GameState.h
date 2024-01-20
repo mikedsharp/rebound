@@ -2,7 +2,6 @@
 #define GAMESTATE_H
 // includes
 #include <GameEngine.h>
-// #include<SFML/Window.hpp>
 #include "Rendering/RenderManager.h"
 #include <string>
 class GameEngine;

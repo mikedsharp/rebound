@@ -2,9 +2,6 @@
 #define ROTATEDRECTANGLE_H
 
 #include <Util/Rect.h>
-// #include <SFML/System.hpp>
-// #include <SFML/Window.hpp>
-// #include <SFML/Graphics.hpp>
 #include <Util/Vector2f.h>
 
 class RotatedRectangle

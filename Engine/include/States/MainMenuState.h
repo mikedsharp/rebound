@@ -1,7 +1,6 @@
 #ifndef MAINMENUSTATE_H
 #define MAINMENUSTATE_H
 
-// #include<SFML/Audio.hpp>
 #include <SDL_mixer.h>
 #include "Util/MusicPlayer.h"
 #include <GameState.h>
