@@ -29,7 +29,6 @@ public:
     Tile *GetCollidingTile(const RotatedRectangle &obstacle) const;
 
     virtual void Draw(const GameWindow &win);
-    virtual bool HandleEvent();
     virtual void UpdateLogic();
     void UpdateCameraPosition(float x, float y);
 

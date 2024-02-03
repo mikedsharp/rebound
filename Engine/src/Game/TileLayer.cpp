@@ -142,10 +142,6 @@ void TileLayer::Draw(const GameWindow &win)
         }
     }
 }
-bool TileLayer::HandleEvent(const sf::Event *event)
-{
-    return false;
-}
 void TileLayer::UpdateLogic()
 {
 }

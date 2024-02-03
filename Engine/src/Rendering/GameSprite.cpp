@@ -5,22 +5,15 @@
 GameSprite::~GameSprite()
 {
     // dtor
-    // if (m_wrappedSprite)
-    // {
-    //     delete m_wrappedSprite;
-    //     m_wrappedSprite = NULL;
-    // }
-    // if (m_bounds)
-    // {
-    //     delete m_bounds;
-    //     m_bounds = NULL;
-    // }
+    if (m_bounds)
+    {
+        delete m_bounds;
+        m_bounds = NULL;
+    }
 }
 GameSprite::GameSprite(const Rect &dimensions, const Point &clipLocation, SDL_Texture *texture)
 {
     // init the inner sprite, setup start params
-
-    // m_wrappedSprite = new sf::Sprite();
     this->m_texture = texture;
     this->m_worldX = dimensions.X();
     this->m_worldY = dimensions.Y();

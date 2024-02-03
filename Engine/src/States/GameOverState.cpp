@@ -118,8 +118,4 @@ void GameOverState::SetString(const std::string &key, const std::string &value)
 }
 void GameOverState::SetObject(const std::string &key, void *value)
 {
-    if (key == "theme_music")
-    {
-        // m_theme = (sf::Music *)value;
-    }
 }

@@ -150,19 +150,6 @@ void TileMap::Draw(const GameWindow &win)
 }
 bool TileMap::HandleEvent()
 {
-    // if (event->type == sf::Event::KeyPressed)
-    // {
-    //     if (event->key.code == sf::Keyboard::Key::F)
-    //     {
-    //         std::cout << "F Key Pressed" << std::endl;
-    //         return true;
-    //     }
-    //     else if (event->key.code == sf::Keyboard::Key::E)
-    //     {
-    //         std::cout << "E Key Pressed" << std::endl;
-    //         return true;
-    //     }
-    // }
     return false;
 }
 void TileMap::UpdateLogic()

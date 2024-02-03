@@ -36,7 +36,6 @@ private:
     int m_victory;
 
     GameSprite *m_backdrop;
-    // sf::Music* m_theme;
 };
 
 #endif // GAMEOVERSTATE_H

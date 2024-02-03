@@ -31,7 +31,6 @@ public:
 protected:
 private:
     std::string m_titleText;
-    // sf::Font m_titleFont;
     GameSprite *m_titlescreen;
     Mix_Music *m_theme;
 };
