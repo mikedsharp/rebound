@@ -10,14 +10,14 @@ ImageResourceManager::ImageResourceManager()
 
 void ImageResourceManager::DeallocateAll()
 {
-    // for (std::map<std::string, std::string>::iterator it = m_imageResources.begin(); it != m_imageResources.end(); it++)
-    // {
-    //     if (it->second)
-    //     {
-    //         delete (it->second);
-    //         (it->second) = NULL;
-    //     }
-    // }
+    for (std::map<std::string, SDL_Texture *>::iterator it = m_imageResources.begin(); it != m_imageResources.end(); it++)
+    {
+        if (it->second)
+        {
+            delete (it->second);
+            (it->second) = NULL;
+        }
+    }
     m_imageResources.clear();
 }
 
