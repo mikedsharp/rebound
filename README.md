@@ -24,3 +24,14 @@ In the game, there are the following crates:
 After each time player hits ball, ball speeds up slightly until a point is scored or a 'ball speed down' crate is hit.
 
 Player plays against AI
+
+## Building the game for Windows
+
+1. I would recommend installing MinGW to get the C++ compiler and Make, you might need to do a bit of googling to figure out exactly how to do that
+2. Install the SDL developer libraries and add the location where you've installed the libraries to the `windows.Makefile` file, it's probably easiest just to place it in the same location i've placed it, as referenced in the Makefile.
+3. run `make -f windows.Makefile` and the game will build into the `bin` folder, you will need to keep an `assets` folder within the `bin` folder containing all of the assets (i.e. the graphics and sound) and you will need all of the SDL2 DLLs in the `bin` folder, too (these are `SDL2.dll`, `SDL2_image.dll` and `SDL2_mixer.dll`)
+
+## Building for web
+
+1. Please follow the tutorial for installing the emscripten SDK locally for your operating system, docs can be found at: https://emscripten.org/docs/getting_started/downloads.html
+2. with the emscripten SDK (emsdk) enabled, run `make -f web.Makefile` and the game should build in the `web` folder, you should be able to host this folder like any other website and play the game
