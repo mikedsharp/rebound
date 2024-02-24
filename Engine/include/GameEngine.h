@@ -24,6 +24,7 @@ public:
     // state switching methods
     void SwitchState(int stateType);
     void InvokeEngine(int width, int height, int bpp, std::string caption);
+    void RunLoop();
     void AddState(GameState *gs);
     void RemoveState(int stateType);
 

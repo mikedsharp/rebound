@@ -61,8 +61,8 @@ void MainMenuState::Paint() const
 void MainMenuState::InitState()
 {
     GameWindow *gameWin = m_engineInstance->GetGameWindow();
-    ImageResourceManager::LoadImageResource("StartScreen", "img/titlescreen.png", gameWin->m_renderer);
-    m_theme = AudioResourceManager::LoadMusicResource("GameTheme", "music/theme.wav");
+    ImageResourceManager::LoadImageResource("StartScreen", "assets/img/titlescreen.png", gameWin->m_renderer);
+    m_theme = AudioResourceManager::LoadMusicResource("GameTheme", "assets/music/theme.wav");
     m_titlescreen = new GameSprite(Rect(0, 0, 640, 480), Point(0, 0), ImageResourceManager::GetImageResource("StartScreen"));
 }
 void MainMenuState::EndState()

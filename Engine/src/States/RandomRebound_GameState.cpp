@@ -339,36 +339,36 @@ void RandomRebound_GameState::InitState()
 
     GameWindow *gameWin = m_engineInstance->GetGameWindow();
 
-    ImageResourceManager::LoadImageResource("ball_temple", "img/ball_temple.png", gameWin->m_renderer);
-    ImageResourceManager::LoadImageResource("ball_retro", "img/ball_retro.png", gameWin->m_renderer);
-    ImageResourceManager::LoadImageResource("ball_stadium", "img/ball_stadium.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("ball_temple", "assets/img/ball_temple.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("ball_retro", "assets/img/ball_retro.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("ball_stadium", "assets/img/ball_stadium.png", gameWin->m_renderer);
 
-    ImageResourceManager::LoadImageResource("paddle_temple", "img/paddle_temple.png", gameWin->m_renderer);
-    ImageResourceManager::LoadImageResource("paddle_retro", "img/paddle_retro.png", gameWin->m_renderer);
-    ImageResourceManager::LoadImageResource("paddle_stadium_red", "img/paddle_stadium_red.png", gameWin->m_renderer);
-    ImageResourceManager::LoadImageResource("paddle_stadium_blue", "img/paddle_stadium_blue.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("paddle_temple", "assets/img/paddle_temple.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("paddle_retro", "assets/img/paddle_retro.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("paddle_stadium_red", "assets/img/paddle_stadium_red.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("paddle_stadium_blue", "assets/img/paddle_stadium_blue.png", gameWin->m_renderer);
 
-    ImageResourceManager::LoadImageResource("numbers_temple", "img/Numbersheet_Temple.png", gameWin->m_renderer);
-    ImageResourceManager::LoadImageResource("numbers_retro", "img/Numbersheet_Retro.png", gameWin->m_renderer);
-    ImageResourceManager::LoadImageResource("numbers_stadium_red", "img/Numbersheet_Stadium_Red.png", gameWin->m_renderer);
-    ImageResourceManager::LoadImageResource("numbers_stadium_blue", "img/Numbersheet_Stadium_Blue.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("numbers_temple", "assets/img/Numbersheet_Temple.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("numbers_retro", "assets/img/Numbersheet_Retro.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("numbers_stadium_red", "assets/img/Numbersheet_Stadium_Red.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("numbers_stadium_blue", "assets/img/Numbersheet_Stadium_Blue.png", gameWin->m_renderer);
 
-    ImageResourceManager::LoadImageResource("crate_temple", "img/crate_temple.png", gameWin->m_renderer);
-    ImageResourceManager::LoadImageResource("crate_retro", "img/crate_retro.png", gameWin->m_renderer);
-    ImageResourceManager::LoadImageResource("crate_stadium", "img/crate_stadium.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("crate_temple", "assets/img/crate_temple.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("crate_retro", "assets/img/crate_retro.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("crate_stadium", "assets/img/crate_stadium.png", gameWin->m_renderer);
     // themes
-    ImageResourceManager::LoadImageResource("backdrop_temple", "img/backdrop_temple.png", gameWin->m_renderer);
-    ImageResourceManager::LoadImageResource("backdrop_retro", "img/backdrop_retro.png", gameWin->m_renderer);
-    ImageResourceManager::LoadImageResource("backdrop_stadium", "img/backdrop_stadium.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("backdrop_temple", "assets/img/backdrop_temple.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("backdrop_retro", "assets/img/backdrop_retro.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("backdrop_stadium", "assets/img/backdrop_stadium.png", gameWin->m_renderer);
 
     // sounds
-    AudioResourceManager::LoadSoundResource("blip_retro", "sounds/blip_retro.wav");
-    AudioResourceManager::LoadSoundResource("blip_stadium", "sounds/blip_stadium.wav");
-    AudioResourceManager::LoadSoundResource("blip_temple", "sounds/blip_temple.wav");
+    AudioResourceManager::LoadSoundResource("blip_retro", "assets/sounds/blip_retro.wav");
+    AudioResourceManager::LoadSoundResource("blip_stadium", "assets/sounds/blip_stadium.wav");
+    AudioResourceManager::LoadSoundResource("blip_temple", "assets/sounds/blip_temple.wav");
 
-    AudioResourceManager::LoadSoundResource("goal_temple", "sounds/goal_temple.wav");
-    AudioResourceManager::LoadSoundResource("goal_retro", "sounds/goal_retro.wav");
-    AudioResourceManager::LoadSoundResource("goal_stadium", "sounds/goal_stadium.wav");
+    AudioResourceManager::LoadSoundResource("goal_temple", "assets/sounds/goal_temple.wav");
+    AudioResourceManager::LoadSoundResource("goal_retro", "assets/sounds/goal_retro.wav");
+    AudioResourceManager::LoadSoundResource("goal_stadium", "assets/sounds/goal_stadium.wav");
 
     m_gameBall = new Ball(Rect(312, 232, 16, 16), Point(0, 0), ImageResourceManager::GetImageResource("ball_temple"));
     m_player = new Paddle(Rect(280, 438, 96, 16), Point(0, 0), ImageResourceManager::GetImageResource("paddle_temple"));

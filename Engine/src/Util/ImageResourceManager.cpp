@@ -14,7 +14,8 @@ void ImageResourceManager::DeallocateAll()
     {
         if (it->second)
         {
-            delete (it->second);
+            // TODO investigate
+            // delete (it->second);
             (it->second) = NULL;
         }
     }

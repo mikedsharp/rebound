@@ -119,29 +119,41 @@ void GameEngine::InvokeEngine(int width, int height, int bpp, std::string captio
 
     this->SwitchState(STATE_MAINMENU);
 
-    float nowTime;
-    float startTime = SDL_GetTicks();
+    // float nowTime;
+    // float startTime = SDL_GetTicks();
 
-    SDL_Event e;
+    // SDL_Event e;
 
-    while (m_running)
+    // while (m_running)
+    // {
+
+    //     // 30 fps?
+    //     nowTime = SDL_GetTicks();
+    //     if ((nowTime - startTime) > 33.3333333333)
+    //     {
+    //         m_currentState->CheckEvent();
+    //         if (!m_currentState->Paused())
+    //         {
+    //             m_currentState->UpdateLogic();
+    //         }
+    //         win->Clear(255, 255, 0);
+    //         m_currentState->Paint();
+    //         win->Display();
+    //         startTime = SDL_GetTicks();
+    //     }
+    // }
+}
+
+void GameEngine::RunLoop()
+{
+    m_currentState->CheckEvent();
+    if (!m_currentState->Paused())
     {
-
-        // 30 fps?
-        nowTime = SDL_GetTicks();
-        if ((nowTime - startTime) > 33.3333333333)
-        {
-            m_currentState->CheckEvent();
-            if (!m_currentState->Paused())
-            {
-                m_currentState->UpdateLogic();
-            }
-            win->Clear(255, 255, 0);
-            m_currentState->Paint();
-            win->Display();
-            startTime = SDL_GetTicks();
-        }
+        m_currentState->UpdateLogic();
     }
+    win->Clear(255, 255, 0);
+    m_currentState->Paint();
+    win->Display();
 }
 
 // value  passing methods
