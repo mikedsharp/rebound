@@ -25,7 +25,33 @@ OBJDIR = obj\\build
 DEP = 
 OUT = bin\\rebound.exe
 
-OBJ = $(OBJDIR)\\Engine\\src\\Rendering\\GameSprite.o $(OBJDIR)\\Engine\\src\\Rendering\\GameWindow.o $(OBJDIR)\\Engine\\src\\Rendering\\RenderManager.o $(OBJDIR)\\Engine\\src\\States\\GameOverState.o $(OBJDIR)\\Engine\\src\\States\\MainMenuState.o $(OBJDIR)\\Engine\\src\\States\\RandomRebound_GameState.o $(OBJDIR)\\Engine\\src\\Util\\AudioResourceManager.o $(OBJDIR)\\Engine\\src\\Util\\MusicPlayer.o $(OBJDIR)\\Engine\\src\\Util\\SoundPlayer.o $(OBJDIR)\\Engine\\src\\Util\\Camera.o $(OBJDIR)\\Engine\\src\\Util\\Composite.o $(OBJDIR)\\Engine\\src\\Util\\Dimension.o $(OBJDIR)\\Engine\\src\\Util\\ImageResourceManager.o $(OBJDIR)\\Engine\\src\\Util\\Point.o $(OBJDIR)\\Engine\\src\\Util\\Rect.o $(OBJDIR)\\Engine\\src\\Util\\RotatedRectangle.o $(OBJDIR)\\Engine\\src\\Util\\Util\\Focusable.o $(OBJDIR)\\Engine\\src\\Util\\Vector2f.o $(OBJDIR)\\Engine\\src\\main.o $(OBJDIR)\\Engine\\src\\Exception\\FileNotFoundException.o $(OBJDIR)\\Engine\\src\\GameEngine.o $(OBJDIR)\\Engine\\src\\GameState.o $(OBJDIR)\\Engine\\src\\GameStateFactory.o $(OBJDIR)\\Engine\\src\\Game\\Ball.o $(OBJDIR)\\Engine\\src\\Game\\Crate.o $(OBJDIR)\\Engine\\src\\Game\\Paddle.o $(OBJDIR)\\Engine\\src\\Rendering\\Drawable.o
+OBJ = $(OBJDIR)\\Engine\\src\\Rendering\\GameSprite.o \
+      $(OBJDIR)\\Engine\\src\\Rendering\\GameWindow.o \
+	  $(OBJDIR)\\Engine\\src\\Rendering\\RenderManager.o \
+	  $(OBJDIR)\\Engine\\src\\States\\GameOverState.o \
+	  $(OBJDIR)\\Engine\\src\\States\\MainMenuState.o \
+	  $(OBJDIR)\\Engine\\src\\States\\RandomRebound_GameState.o \
+	  $(OBJDIR)\\Engine\\src\\Util\\AudioResourceManager.o \
+	  $(OBJDIR)\\Engine\\src\\Util\\MusicPlayer.o \
+	  $(OBJDIR)\\Engine\\src\\Util\\SoundPlayer.o \
+	  $(OBJDIR)\\Engine\\src\\Util\\Camera.o \
+	  $(OBJDIR)\\Engine\\src\\Util\\Composite.o \
+	  $(OBJDIR)\\Engine\\src\\Util\\Dimension.o \
+	  $(OBJDIR)\\Engine\\src\\Util\\ImageResourceManager.o \
+	  $(OBJDIR)\\Engine\\src\\Util\\Point.o \
+	  $(OBJDIR)\\Engine\\src\\Util\\Rect.o \
+	  $(OBJDIR)\\Engine\\src\\Util\\RotatedRectangle.o \
+	  $(OBJDIR)\\Engine\\src\\Util\\Util\\Focusable.o \
+	  $(OBJDIR)\\Engine\\src\\Util\\Vector2f.o \
+	  $(OBJDIR)\\Engine\\src\\main.o \
+	  $(OBJDIR)\\Engine\\src\\Exception\\FileNotFoundException.o \
+	  $(OBJDIR)\\Engine\\src\\GameEngine.o \
+	  $(OBJDIR)\\Engine\\src\\GameState.o \
+	  $(OBJDIR)\\Engine\\src\\GameStateFactory.o \
+	  $(OBJDIR)\\Engine\\src\\Game\\Ball.o \
+	  $(OBJDIR)\\Engine\\src\\Game\\Crate.o \
+	  $(OBJDIR)\\Engine\\src\\Game\\Paddle.o \
+	  $(OBJDIR)\\Engine\\src\\Rendering\\Drawable.o
 
 all: build
 
