@@ -8,7 +8,7 @@ EMFLAGS = -s WASM=1 \
 		  -O3 \
 		  --preload-file assets \
 		  --shell-file app-container.html
-		  
+
 SOURCES = Engine\\src\\Rendering\\GameSprite.cpp \
 		  Engine\\src\\Rendering\\GameWindow.cpp \
 		  Engine\\src\\Rendering\\RenderManager.cpp \
@@ -39,8 +39,15 @@ SOURCES = Engine\\src\\Rendering\\GameSprite.cpp \
 
 all: before_build build
 
-build: $(SOURCES)
-	   $(CC) $(EMFLAGS) $(INC) $(SOURCES) -o web\\index.html
+build: before_build OUT
+
+OUT: $(SOURCES)
+	 $(CC) $(EMFLAGS) $(INC) $(SOURCES) -o web\\index.html
+
+clean_build: clean build
+
+clean: 
+	cmd /c if exist web rd /s /q web
 
 before_build: 
 	cmd /c if not exist web md web
