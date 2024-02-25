@@ -12,6 +12,7 @@ SDL_MIXER_LOCATION = C:\\SDL2
 SDL_IMAGE_LOCATION = C:\\SDL2
 
 INC = -I${SDL_LOCATION}\\include\\SDL2 -IEngine\\include
+ASSETSDIR=assets
 RESINC = 
 LIBDIR = -L${SDL_LOCATION}\\lib -L${SDL_IMAGE_LOCATION}\\lib -L${SDL_MIXER_LOCATION}\\lib
 LIB = ${SDL_LOCATION}\\lib
@@ -20,10 +21,11 @@ LDFLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image
 CFLAGS = -g -w -Wl,-subsystem,windows
 RESINC = $(RESINC)
 RCFLAGS = $(RCFLAGS)
+BINDIR = bin
 LIB = 
 OBJDIR = obj\\build
 DEP = 
-OUT = bin\\rebound.exe
+OUT = $(BINDIR)\\rebound.exe
 
 OBJ = $(OBJDIR)\\Engine\\src\\Rendering\\GameSprite.o \
       $(OBJDIR)\\Engine\\src\\Rendering\\GameWindow.o \
@@ -55,10 +57,14 @@ OBJ = $(OBJDIR)\\Engine\\src\\Rendering\\GameSprite.o \
 
 all: build
 
-clean: clean_build
+clean: 	
+	cmd /c if exist obj rd /s /q obj
+	cmd /c if exist $(OUT) del /q $(OUT)
 
 before_build: 
 	cmd /c if not exist bin md bin
+	cmd /c if not exist $(BINDIR)\\assets md $(BINDIR)\\assets
+	cmd /c xcopy /s /e /h /y $(ASSETSDIR) $(BINDIR)\\assets
 	cmd /c if not exist $(OBJDIR)\\Engine\\src\\Rendering md $(OBJDIR)\\Engine\\src\\Rendering
 	cmd /c if not exist $(OBJDIR)\\Engine\\src\\States md $(OBJDIR)\\Engine\\src\\States
 	cmd /c if not exist $(OBJDIR)\\Engine\\src\\Util md $(OBJDIR)\\Engine\\src\\Util
@@ -155,13 +161,5 @@ $(OBJDIR)\\Engine\\src\\Game\\Paddle.o: Engine\\src\\Game\\Paddle.cpp
 $(OBJDIR)\\Engine\\src\\Rendering\\Drawable.o: Engine\\src\\Rendering\\Drawable.cpp
 	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Rendering\\Drawable.cpp -o $(OBJDIR)\\Engine\\src\\Rendering\\Drawable.o
 
-clean_build: 
-	cmd /c del /f $(OBJ) $(OUT)
-	cmd /c rd bin
-	cmd /c rd $(OBJDIR)\\Engine\\src\\Rendering
-	cmd /c rd $(OBJDIR)\\Engine\\src\\States
-	cmd /c rd $(OBJDIR)\\Engine\\src\\Util
-	cmd /c rd $(OBJDIR)\\Engine\\src\\Util\\Util
-	cmd /c rd $(OBJDIR)\\Engine\\src
-	cmd /c rd $(OBJDIR)\\Engine\\src\\Exception
-	cmd /c rd $(OBJDIR)\\Engine\\src\\Game
+clean_build: clean build
+
