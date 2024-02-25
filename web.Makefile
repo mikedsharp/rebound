@@ -1,6 +1,14 @@
 CC = emcc
 INC = -IEngine\\include
-EMFLAGS = -s WASM=1 -s USE_SDL=2 -s USE_SDL_MIXER=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS=png -O3 --preload-file assets --shell-file app-container.html
+EMFLAGS = -s WASM=1 \
+		  -s USE_SDL=2 \
+		  -s USE_SDL_MIXER=2 \
+		  -s USE_SDL_IMAGE=2 \
+		  -s SDL2_IMAGE_FORMATS=png \
+		  -O3 \
+		  --preload-file assets \
+		  --shell-file app-container.html
+		  
 SOURCES = Engine\\src\\Rendering\\GameSprite.cpp \
 		  Engine\\src\\Rendering\\GameWindow.cpp \
 		  Engine\\src\\Rendering\\RenderManager.cpp \
