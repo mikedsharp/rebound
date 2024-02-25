@@ -1,7 +1,7 @@
 #ifndef GAMESPRITE_H
 #define GAMESPRITE_H
 
-#include "SDL_image.h"
+#include <SDL_image.h>
 
 #include "Util/Rect.h"
 #include <Util/RotatedRectangle.h>

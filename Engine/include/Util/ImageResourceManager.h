@@ -3,7 +3,7 @@
 
 #include <string>
 #include <map>
-#include "SDL_image.h"
+#include <SDL_image.h>
 class ImageResourceManager
 {
 public:
