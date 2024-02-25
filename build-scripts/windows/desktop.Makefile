@@ -62,7 +62,6 @@ clean:
 	cmd /c if exist $(OUT) del /q $(OUT)
 
 before_build: 
-	cmd /c if not exist bin md bin
 	cmd /c if not exist bin\\windows md bin\\windows
 	cmd /c if not exist $(BINDIR)\\assets md $(BINDIR)\\assets
 	cmd /c xcopy /s /e /h /y $(ASSETSDIR) $(BINDIR)\\assets
