@@ -2,4 +2,6 @@
 */*.o
 obj
 web/**
-bin/**
+bin/windows
+bin/mac
+bin/linux
