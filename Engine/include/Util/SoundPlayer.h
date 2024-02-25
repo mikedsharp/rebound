@@ -1,7 +1,11 @@
 #ifndef SOUNDPLAYERLAYER_H
 #define SOUNDPLAYERLAYER_H
 
-#include <SDL_mixer.h>
+#ifdef _WIN32
+    #include <SDL_mixer.h>
+#else
+    #include <SDL2/SDL_mixer.h>
+#endif
 
 class SoundPlayer
 {

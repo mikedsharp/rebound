@@ -3,7 +3,11 @@
 
 #include <map>
 #include <string>
-#include <SDL_mixer.h>
+#ifdef _WIN32
+    #include <SDL_mixer.h>
+#else
+    #include <SDL2/SDL_mixer.h>
+#endif
 class AudioResourceManager
 {
 public:
