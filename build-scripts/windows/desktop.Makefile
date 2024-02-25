@@ -21,7 +21,7 @@ LDFLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image
 CFLAGS = -g -w -Wl,-subsystem,windows
 RESINC = $(RESINC)
 RCFLAGS = $(RCFLAGS)
-BINDIR = bin
+BINDIR = bin\\windows
 LIB = 
 OBJDIR = obj\\build
 DEP = 
@@ -63,6 +63,7 @@ clean:
 
 before_build: 
 	cmd /c if not exist bin md bin
+	cmd /c if not exist bin\\windows md bin\\windows
 	cmd /c if not exist $(BINDIR)\\assets md $(BINDIR)\\assets
 	cmd /c xcopy /s /e /h /y $(ASSETSDIR) $(BINDIR)\\assets
 	cmd /c if not exist $(OBJDIR)\\Engine\\src\\Rendering md $(OBJDIR)\\Engine\\src\\Rendering

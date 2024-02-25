@@ -1,7 +1,7 @@
 INC = -I SDL2 -I Engine/include
 
 ASSETSDIR = assets
-BINDIR = bin
+BINDIR = bin/linux
 
 OBJS = Engine/src/Rendering/GameSprite.cpp \
 	Engine/src/Rendering/GameWindow.cpp \
@@ -42,12 +42,12 @@ OBJ_NAME = bin/rebound
 all: build
 
 clean: 	
-	rm -rf obj
-	rm -rf bin
+	rm -rf bin/linux
 
 before_build: 
 	mkdir bin
-	mkdir bin/assets
+	mkdir bin/linux
+	mkdir bin/linux/assets
 	cp -R $(ASSETSDIR) $(BINDIR)
 
 

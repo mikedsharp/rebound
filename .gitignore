@@ -3,3 +3,4 @@
 obj
 web/**
 bin/rebound
+bin/**
