@@ -37,7 +37,7 @@ COMPILER_FLAGS = -g -w
 
 LINKER_FLAGS = -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image
 
-OBJ_NAME = bin/rebound
+OBJ_NAME = bin/linux/rebound
 
 all: build
 
@@ -45,7 +45,6 @@ clean:
 	rm -rf bin/linux
 
 before_build: 
-	mkdir bin
 	mkdir bin/linux
 	mkdir bin/linux/assets
 	cp -R $(ASSETSDIR) $(BINDIR)
