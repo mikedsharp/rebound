@@ -75,6 +75,9 @@ before_build:
 	cmd /c if not exist $(OBJDIR)\\Engine\\src\\Game md $(OBJDIR)\\Engine\\src\\Game
 
 after_build: 
+	cmd /c copy /y $(SDL_LOCATION)\\bin\\SDL2.dll $(BINDIR)\\SDL2.dll
+	cmd /c copy /y $(SDL_IMAGE_LOCATION)\\bin\\SDL2_image.dll $(BINDIR)\\SDL2_image.dll
+	cmd /c copy /y $(SDL_MIXER_LOCATION)\\bin\\SDL2_mixer.dll $(BINDIR)\\SDL2_mixer.dll
 
 build: before_build OUT after_build
 
