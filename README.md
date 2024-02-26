@@ -25,6 +25,10 @@ After each time player hits ball, ball speeds up slightly until a point is score
 
 Player plays against AI
 
+## Just want to play the game in web browser? I have it hosted!
+http://rebound.michaeldsharp.com/
+_game doesn't currently support mouse or touch screen input, only keyboard control for now. My plan is to add some form of mobile-friendly input soon_
+
 ## Building the game for Windows
 
 1. I would recommend installing MinGW to get the C++ compiler and Make, you might need to do a bit of googling to figure out exactly how to do that
