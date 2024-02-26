@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug (with breakpoints in windows)",
+      "name": "Debug (with breakpoints in Windows)",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/bin/windows/rebound.exe",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "name": "Debug (with breakpoints in linux)",
+      "name": "Debug (with breakpoints in Linux)",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/bin/linux/rebound",
@@ -46,6 +46,14 @@
           "ignoreFailures": true
         }
       ]
+    },
+    {
+      "name": "Debug (with breakpoints in MacOS)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/mac/rebound",
+      "args": [],
+      "cwd": "${workspaceFolder}/bin/mac"
     }
   ]
 }
