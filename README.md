@@ -74,3 +74,40 @@ _if you do not already have homebrew installed, follow the instructions to insta
    ### **Each OS has its own Makefile for building for the web, so please ensure you run the correct one for your operating system (windows, mac or linux)**
 
 2. with the emscripten SDK (emsdk) enabled, run `make -f build-scripts/<YOUR_OS, i.e windows, linux or mac>/web.Makefile` and the game should build in the `web` folder, you should be able to host this folder like any other website and play the game
+
+
+## Debugging the project in VSCode
+
+### Windows
+
+1. Build the project (see `Building the game for Windows`)
+
+2. Place your breakpoints wherever you want them
+
+3. From the list of `Run and debug` tasks, select `Debug (with breakpoints in Windows)` and then press the green play button.
+
+4. You should be able to debug the project
+
+
+### Linux
+1. Build the project (see `Building the game for Linux`)
+
+2. Place your breakpoints wherever you want them
+
+3. From the list of `Run and debug` tasks, select `Debug (with breakpoints in Linux)` and then press the green play button.
+
+4. You should be able to debug the project
+
+
+### MacOS
+The MacOS launch config for debugging uses the LLDB debugger, as GDB doesn't support Apple Silicon yet.
+
+You will need to install an extension called `CodeLLDB` before attempting to run the debugging task for MacOS.
+
+1. Build the project (see `Building the game for Mac`)
+
+2. Place your breakpoints wherever you want them
+
+3. From the list of `Run and debug` tasks, select `Debug (with breakpoints in MacOS)` and then press the green play button.
+
+4. You should be able to debug the project
