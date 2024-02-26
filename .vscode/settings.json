@@ -58,5 +58,6 @@
       "binaryPath": "${workspaceRoot}\\bin\\windows\\rebound.exe",
       "binaryArgs": []
     }
-  ]
+  ],
+  "makefile.makefilePath": "${workspaceRoot}\\build-scripts\\windows\\desktop.Makefile"
 }
