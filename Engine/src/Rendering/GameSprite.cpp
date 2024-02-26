@@ -32,7 +32,6 @@ GameSprite::GameSprite(const Rect &dimensions, const Point &clipLocation, SDL_Te
     m_alive = true;
 
     // m_animationTimer.restart();
-    std::cout << "Get number of frames by taking spritesheet width of spritesheet and dividing by sprite width" << std::endl;
     m_numFrames = 1;
     m_currentFrame = 1;
     m_animationDelay = 0.05;
