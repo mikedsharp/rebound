@@ -30,7 +30,8 @@ https://rebound.michaeldsharp.com/
 
 _game doesn't currently support mouse or touch screen input, only keyboard control for now. My plan is to add some form of mobile-friendly input soon_
 
-## Building the game for Windows
+## Building the game
+### Windows
 
 1. I would recommend installing MinGW to get the C++ compiler and Make, you might need to do a bit of googling to figure out exactly how to do that
    * To get started, try looking at https://winlibs.com , reading the preamble and then grabbing one of the GCC Zip archives on the same page. You will need to download, extract and then add the location you've extracted to your PATH via control panel/windows settings, the ZIP file contains a bin folder that you should add to your PATH, and then you'll be able to run g++ (the C++ compiler) and make (the build system that this project uses to compile the desktop version of the game)
@@ -39,7 +40,7 @@ _game doesn't currently support mouse or touch screen input, only keyboard contr
 4. run `make -f build-scripts/windows/desktop.Makefile` and the game will build into the `bin/windows` folder
 5. The DLLs and assets required to run the game will also be pulled into the `bin/windows` directory, so if you run `rebound.exe`, the game should start up and play correctly
 
-## Building the game for Linux
+### Linux
 
 1. You can obtain the SDL development libraries from your package manager, run the following commands:
    
@@ -52,7 +53,7 @@ _game doesn't currently support mouse or touch screen input, only keyboard contr
 3. once you have these libraries installed, you should be able to run `make -f ./build-scripts/linux/desktop.Makefile` and the game should build and bundle in the required assets
 4. you will now be able to run `rebound` from `bin/linux` and all of the required assets and dependencies should be installed
 
-## Building the game for Mac
+### Mac
 
 1. MacOS frameworks are a complete mess and break after each OS version, so I would recommend installing `SDL2`, `SDL2_mixer`, and `SDL2_image` using `brew`. I've configured the Makefiles for building on Mac expecting those libraries to be in the directory where hombrew stores all of its packages
 _if you do not already have homebrew installed, follow the instructions to install homebrew on your Mac, from https://brew.sh/_
