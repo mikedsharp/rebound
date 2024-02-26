@@ -54,13 +54,8 @@
   },
   "makefile.launchConfigurations": [
     {
-      "cwd": "${workspaceRoot}\\bin\\Release",
-      "binaryPath": "${workspaceRoot}\\bin\\Release\\rebound.exe",
-      "binaryArgs": []
-    },
-    {
-      "cwd": "${workspaceRoot}\\bin\\Debug",
-      "binaryPath": "${workspaceRoot}\\bin\\Debug\\rebound.exe",
+      "cwd": "${workspaceRoot}\\bin\\windows",
+      "binaryPath": "${workspaceRoot}\\bin\\windows\\rebound.exe",
       "binaryArgs": []
     }
   ]

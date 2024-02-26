@@ -2,13 +2,13 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug (with breakpoints)",
+      "name": "Debug (with breakpoints in windows)",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/bin/Debug/rebound.exe",
+      "program": "${workspaceFolder}/bin/windows/rebound.exe",
       "args": [],
       "stopAtEntry": false,
-      "cwd": "${workspaceFolder}/bin/Debug",
+      "cwd": "${workspaceFolder}/bin/windows",
       "environment": [],
       "externalConsole": false,
       "MIMode": "gdb",
