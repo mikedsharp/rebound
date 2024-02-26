@@ -26,7 +26,8 @@ After each time player hits ball, ball speeds up slightly until a point is score
 Player plays against AI
 
 ## Just want to play the game in web browser? I have it hosted!
-http://rebound.michaeldsharp.com/
+https://rebound.michaeldsharp.com/
+
 _game doesn't currently support mouse or touch screen input, only keyboard control for now. My plan is to add some form of mobile-friendly input soon_
 
 ## Building the game for Windows
@@ -39,12 +40,15 @@ _game doesn't currently support mouse or touch screen input, only keyboard contr
 ## Building the game for Linux
 
 1. You can obtain the SDL development libraries from your package manager, run the following commands:
+   
    `sudo apt-get install libsdl2-dev`
+   
    `sudo apt-get install libsdl2-image-dev`
+   
    `sudo apt-get install libsdl2-mixer-dev`
 
-2. once you have these libraries installed, you should be able to run `make -f ./build-scripts/linux/desktop.Makefile` and the game should build and bundle in the required assets
-3. you will now be able to run `rebound` from `bin/linux` and all of the required assets and dependencies should be installed
+3. once you have these libraries installed, you should be able to run `make -f ./build-scripts/linux/desktop.Makefile` and the game should build and bundle in the required assets
+4. you will now be able to run `rebound` from `bin/linux` and all of the required assets and dependencies should be installed
 
 ## Building the game for Mac
 
