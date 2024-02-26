@@ -1,7 +1,6 @@
 #ifndef POINT_H
 #define POINT_H
 
-
 class Point
 {
 public:
@@ -10,7 +9,7 @@ public:
         X(x);
         Y(y);
     }
-    float X()const
+    float X() const
     {
         return m_x;
     }
@@ -18,7 +17,7 @@ public:
     {
         this->m_x = x;
     }
-    float Y()const
+    float Y() const
     {
         return m_y;
     }
@@ -27,6 +26,7 @@ public:
         this->m_y = y;
     }
     virtual ~Point();
+
 protected:
 private:
     float m_x;

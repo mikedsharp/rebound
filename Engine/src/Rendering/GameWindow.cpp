@@ -1,49 +1,51 @@
 #include "Rendering/GameWindow.h"
 #include <iostream>
-GameWindow::GameWindow(int width, int height, int bpp, const std::string& caption)
-{
-    //ctor
-    m_windowObj = new sf::RenderWindow();
-    m_windowObj->create(sf::VideoMode(width, height, bpp), caption,sf::Style::Close);
 
+GameWindow::GameWindow(int width, int height, int bpp, const std::string &caption)
+{
+    // ctor
     this->m_width = width;
     this->m_height = height;
     this->m_bpp = bpp;
 
-    m_eventObj = new sf::Event();
-
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+    SDL_Window *window = NULL;
+    SDL_Renderer *renderer = NULL;
+    SDL_CreateWindowAndRenderer(width, height, 0, &window, &renderer);
+    SDL_SetWindowTitle(window, "Rebound");
+    SDL_Event event;
+    m_eventObj = event;
+    m_renderer = renderer;
+    m_windowObj = window;
 }
 
 GameWindow::~GameWindow()
 {
-    if(m_eventObj)
+    if (m_renderer)
     {
-        delete m_eventObj;
-        m_eventObj = NULL;
+        SDL_DestroyRenderer(m_renderer);
     }
-    if(m_windowObj)
+    if (m_windowObj)
     {
-        delete m_windowObj;
-        m_windowObj = NULL;
+        SDL_DestroyWindow(m_windowObj);
     }
 }
 
 void GameWindow::Resize(int width, int height)
 {
-    m_windowObj->create(sf::VideoMode(width, height, this->m_bpp), this->m_caption, sf::Style::Close);
+    SDL_SetWindowSize(m_windowObj, width, height);
     this->m_width = width;
     this->m_height = height;
 }
 
-void GameWindow::Draw(const GameSprite* wrappedSprite)const
+void GameWindow::Draw(const GameSprite *wrappedSprite) const
 {
-    if(wrappedSprite)
+    if (wrappedSprite)
     {
-        this->m_windowObj->draw(*wrappedSprite->GetBaseSprite());
+        // this->m_windowObj->draw(*wrappedSprite->GetBaseSprite());
     }
     else
     {
         std::cout << "Error: Sprite is NULL, thus can't be drawn" << std::endl;
     }
-
 }

@@ -2,9 +2,15 @@
 #define GAMEWINDOW_H
 
 #include "Rendering/GameSprite.h"
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
+
+#ifdef _WIN32
+    #include <SDL.h>
+#elif __APPLE__
+    #include <SDL.h>
+#else
+    #include <SDL2/SDL.h>
+#endif
+#include <iostream>
 #include <string>
 
 class Drawable;
@@ -13,38 +19,33 @@ class GameSprite;
 class GameWindow
 {
 public:
-    GameWindow(int width, int height, int bpp, const std::string& caption);
+    GameWindow(int width, int height, int bpp, const std::string &caption);
     ~GameWindow();
     void Resize(int width, int height);
-    void Clear(const sf::Color& colour = sf::Color(0,0,0))
+    void Clear(int r, int g, int b)
     {
-        m_windowObj->clear(colour);
+        SDL_SetRenderDrawColor(this->m_renderer, r, g, b, 255);
+        SDL_RenderClear(this->m_renderer);
     }
-    bool QueuedEvents()const
+    SDL_Event *GetEvent()
     {
-        return m_windowObj->pollEvent(*m_eventObj);
+        return &this->m_eventObj;
     }
-    sf::Event* GetEvent()const
+    void Draw(const GameSprite *wrappedSprite) const;
+    void Display() const
     {
-        return m_eventObj;
-    }
-    void Draw(const GameSprite* wrappedSprite)const;
-    void Display()const
-    {
-        m_windowObj->display();
+        SDL_RenderPresent(this->m_renderer);
     }
     void Close()
     {
-        m_windowObj->close();
+        SDL_Quit();
     }
-    sf::RenderWindow* GetRawWindow()const
-    {
-        return m_windowObj;
-    }
+    SDL_Window *m_windowObj;
+    SDL_Renderer *m_renderer;
+
 protected:
 private:
-    sf::RenderWindow* m_windowObj;
-    sf::Event* m_eventObj;
+    SDL_Event m_eventObj;
     int m_width, m_height, m_bpp;
     std::string m_caption;
 };

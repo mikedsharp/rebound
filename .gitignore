@@ -1,3 +1,7 @@
 *.o
 */*.o
 obj
+web/**
+bin/windows
+bin/mac
+bin/linux

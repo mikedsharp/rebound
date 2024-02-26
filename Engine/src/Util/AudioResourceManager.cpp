@@ -1,55 +1,73 @@
 #include "Util/AudioResourceManager.h"
 #include <iostream>
 
-
-std::map<std::string,sf::SoundBuffer*> AudioResourceManager::m_soundResources;
+std::map<std::string, Mix_Chunk *> AudioResourceManager::m_soundResources;
+std::map<std::string, Mix_Music *> AudioResourceManager::m_musicResources;
 
 AudioResourceManager::AudioResourceManager()
 {
-    //ctor
+    // ctor
 }
 
 AudioResourceManager::~AudioResourceManager()
 {
-    //dtor
+    // dtor
 }
 
-const sf::SoundBuffer& AudioResourceManager::LoadSoundResource(std::string key, std::string fileName)throw()
+Mix_Music *AudioResourceManager::LoadMusicResource(std::string key, std::string fileName)
 {
-    // declare a new sf::Texture pointer, try and allocate it and add it to the map
-    sf::SoundBuffer* newSnd = NULL;
-    newSnd = new sf::SoundBuffer();
-
-
-    // if load was successful
-    if(newSnd->loadFromFile(fileName))
+    Mix_Music *soundToLoad = NULL;
+    soundToLoad = Mix_LoadMUS(fileName.c_str());
+    if (soundToLoad == NULL)
     {
-        if(m_soundResources.count(key.c_str()) == 0)
-        {
-            // set the smooth property to false because SFML is dumb
-            m_soundResources[key.c_str()] = newSnd;
-        }
-        else
-        {
-            m_soundResources[key.c_str()] = newSnd;
-            std::cout << "Error: Object with this key already exists, returning original" << std::endl;
-        }
+        printf("Failed to load %s music! SDL_mixer Error: %s\n", key.c_str(), Mix_GetError());
+    }
+    if (m_musicResources.count(key.c_str()) == 0)
+    {
+        m_musicResources[key.c_str()] = soundToLoad;
+    }
+    return m_musicResources[key.c_str()];
+}
+
+Mix_Music *AudioResourceManager::GetMusicResource(std::string key)
+{
+    return m_musicResources[key.c_str()];
+}
+
+void AudioResourceManager::RemoveMusicResource(std::string key)
+{
+    // check if there is an ImageResource to delete, warn user if image doesnt exist
+    if (m_musicResources.count(key.c_str()) > 0)
+    {
+        Mix_FreeMusic(m_musicResources[key.c_str()]);
+        m_musicResources[key.c_str()] = NULL;
+        m_musicResources.erase(key.c_str());
     }
     else
     {
-        std::cout << "Error: File'" << fileName.c_str() << "' not found, exiting..." << std::endl;
-        exit(EXIT_FAILURE);
+        std::cout << "Error: Sound Resource doesn't exist, can't delete." << std::endl;
     }
-    // return new ImageResource to the user
-    return *(newSnd);
-
 }
-const sf::SoundBuffer& AudioResourceManager::GetSoundResource(std::string key)
+
+Mix_Chunk *AudioResourceManager::LoadSoundResource(std::string key, std::string fileName) throw()
+{
+    // if load was successful
+    if (m_soundResources.count(key.c_str()) == 0)
+    {
+        m_soundResources[key.c_str()] = Mix_LoadWAV(fileName.c_str());
+    }
+    else
+    {
+        std::cout << "Error: Object with this key already exists, returning original" << std::endl;
+    }
+    return m_soundResources[key.c_str()];
+}
+Mix_Chunk *AudioResourceManager::GetSoundResource(std::string key)
 {
     // if the resource exists, return it, otherwise warn user and return NULL
-    if(m_soundResources.count(key.c_str()) > 0)
+    if (m_soundResources.count(key.c_str()) > 0)
     {
-        return *(m_soundResources[key.c_str()]);
+        return m_soundResources[key.c_str()];
     }
     std::cout << "Error: ImageResource with specified key does not exist." << std::endl;
     exit(EXIT_FAILURE);
@@ -57,7 +75,7 @@ const sf::SoundBuffer& AudioResourceManager::GetSoundResource(std::string key)
 void AudioResourceManager::RemoveSoundResource(std::string key)
 {
     // check if there is an ImageResource to delete, warn user if image doesnt exist
-    if(m_soundResources.count(key.c_str()) > 0)
+    if (m_soundResources.count(key.c_str()) > 0)
     {
         delete m_soundResources[key.c_str()];
         m_soundResources[key.c_str()] = NULL;
@@ -65,7 +83,6 @@ void AudioResourceManager::RemoveSoundResource(std::string key)
     }
     else
     {
-        std::cout<< "Error: Sound Resource doesn't exist, can't delete." << std::endl;
+        std::cout << "Error: Sound Resource doesn't exist, can't delete." << std::endl;
     }
-
 }

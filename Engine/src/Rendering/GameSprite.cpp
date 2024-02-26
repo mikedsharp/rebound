@@ -1,96 +1,89 @@
 #include "Rendering/GameSprite.h"
 
-#include<iostream>
+#include <iostream>
 
 GameSprite::~GameSprite()
 {
-    //dtor
-    if(m_wrappedSprite)
-    {
-        delete m_wrappedSprite;
-        m_wrappedSprite = NULL;
-    }
-    if(m_bounds)
+    // dtor
+    if (m_bounds)
     {
         delete m_bounds;
         m_bounds = NULL;
     }
-
 }
-GameSprite::GameSprite(const Rect&  dimensions , const Point&  clipLocation , const sf::Texture& spriteSheet)
+GameSprite::GameSprite(const Rect &dimensions, const Point &clipLocation, SDL_Texture *texture)
 {
-        // init the inner sprite, setup start params
+    // init the inner sprite, setup start params
+    this->m_texture = texture;
+    this->m_worldX = dimensions.X();
+    this->m_worldY = dimensions.Y();
 
-        m_wrappedSprite = new sf::Sprite();
-        this->m_worldX = dimensions.X();
-        this->m_worldY = dimensions.Y();
+    this->m_bounds = new RotatedRectangle(Rect(dimensions.X(), dimensions.Y(), dimensions.Width(), dimensions.Height()), 0.0f);
 
-        this->m_bounds = new RotatedRectangle(Rect(dimensions.X(),dimensions.Y(), dimensions.Width(), dimensions.Height()), 0.0f);
+    this->m_width = dimensions.Width();
+    this->m_height = dimensions.Height();
+    this->m_clipX = clipLocation.X();
+    this->m_clipY = clipLocation.Y();
 
-        this->m_width = dimensions.Width();
-        this->m_height = dimensions.Height();
-        this->m_clipX = clipLocation.X();
-        this->m_clipY  = clipLocation.Y();
+    XSpeed(0);
+    YSpeed(0);
+    m_xSpeed = m_ySpeed = 0;
+    m_visible = true;
+    m_alive = true;
 
-        m_wrappedSprite->setPosition(m_worldX, m_worldY);
-        m_wrappedSprite->setTexture(spriteSheet);
-        m_wrappedSprite->setTextureRect(sf::IntRect(m_clipX,
-                                                m_clipY,
-                                                this->m_clipX+this->m_width,
-                                                this->m_clipY+this->m_height));
-        XSpeed(0);
-        YSpeed(0);
-        m_xSpeed = m_ySpeed = 0;
-        m_visible = true;
-        m_alive = true;
+    // m_animationTimer.restart();
+    std::cout << "Get number of frames by taking spritesheet width of spritesheet and dividing by sprite width" << std::endl;
+    m_numFrames = 1;
+    m_currentFrame = 1;
+    m_animationDelay = 0.05;
 
-        m_animationTimer.restart();
-        m_numFrames = ((spriteSheet.getSize().x))/(this->Bounds().Width());
-        m_currentFrame = 1;
-        m_animationDelay = 0.05;
+    Animating(false);
+}
 
-        Animating(false);
+void GameSprite::SetTexture(SDL_Texture *texture)
+{
+    m_texture = texture;
 }
 
 void GameSprite::Move(int direction)
 {
-    switch(direction)
+    switch (direction)
     {
-        case DIRECTION_UP:
-        {
-            SetPosition(m_worldX,m_worldY - YSpeed());
-            break;
-        }
-        case DIRECTION_DOWN:
-        {
-            SetPosition(m_worldX,m_worldY + YSpeed());
-            break;
-        }
-        case DIRECTION_LEFT:
-        {
-            SetPosition(m_worldX - XSpeed(),m_worldY);
-            break;
-        }
-        case DIRECTION_RIGHT:
-        {
-            SetPosition(m_worldX + XSpeed(),m_worldY);
-            break;
-        }
-        case DIRECTION_AUTO:
-        {
-            SetPosition(m_worldX + XSpeed(),m_worldY + YSpeed());
-            break;
-        }
-        default:
-        {
-            // invalid direction
-            break;
-        }
+    case DIRECTION_UP:
+    {
+        SetPosition(m_worldX, m_worldY - YSpeed());
+        break;
+    }
+    case DIRECTION_DOWN:
+    {
+        SetPosition(m_worldX, m_worldY + YSpeed());
+        break;
+    }
+    case DIRECTION_LEFT:
+    {
+        SetPosition(m_worldX - XSpeed(), m_worldY);
+        break;
+    }
+    case DIRECTION_RIGHT:
+    {
+        SetPosition(m_worldX + XSpeed(), m_worldY);
+        break;
+    }
+    case DIRECTION_AUTO:
+    {
+        SetPosition(m_worldX + XSpeed(), m_worldY + YSpeed());
+        break;
+    }
+    default:
+    {
+        // invalid direction
+        break;
+    }
     }
 }
 void GameSprite::Move(float offsetX, float offsetY)
 {
-    SetPosition(m_worldX + offsetX,m_worldY + offsetY);
+    SetPosition(m_worldX + offsetX, m_worldY + offsetY);
 }
 
 void GameSprite::SetAnimation(int action)
@@ -101,34 +94,34 @@ void GameSprite::SetSize(int width, int height)
 {
     this->m_width = width;
     this->m_height = height;
-    m_wrappedSprite->setTextureRect(sf::IntRect(m_clipX,m_clipY,width,height));
+    std::cout << "Setting texture clip rectangle" << std::endl;
 }
-void GameSprite::SetSpritesheet(const sf::Texture& spriteSheet)
+void GameSprite::SetSpritesheet()
 {
-    m_wrappedSprite->setTexture(spriteSheet);
+    std::cout << "Setting spritesheet (if I had a graphics library, which I don't" << std::endl;
 }
 void GameSprite::SetClipPosition(int x, int y)
 {
     this->m_clipX = x;
     this->m_clipY = y;
-    m_wrappedSprite->setTextureRect(sf::IntRect(m_clipX,m_clipY,this->m_width,this->m_height));
 }
 void GameSprite::SetPosition(float x, float y)
 {
     this->SetWorldPosition(x, y);
-    this->m_wrappedSprite->setPosition((m_worldX - m_cameraX), (m_worldY - m_cameraY));
     m_bounds->X(x);
     m_bounds->Y(y);
 }
 void GameSprite::SetDimensions(int x, int y, int width, int height)
 {
-    SetPosition(x,y);
-    SetSize(width,height);
+    SetPosition(x, y);
+    SetSize(width, height);
 }
-bool GameSprite::Collision(const RotatedRectangle& obstacle)
+bool GameSprite::Collision(const RotatedRectangle &obstacle)
 {
-    if(Alive()){
-         if(obstacle.Rotation() == 0 && Bounds().Rotation() == 0){
+    if (Alive())
+    {
+        if (obstacle.Rotation() == 0 && Bounds().Rotation() == 0)
+        {
             int leftA, leftB;
             int rightA, rightB;
             int topA, topB;
@@ -141,48 +134,49 @@ bool GameSprite::Collision(const RotatedRectangle& obstacle)
             bottomA = this->m_worldY + this->m_height;
 
             leftB = obstacle.X();
-            rightB = obstacle.X()+obstacle.Width();
+            rightB = obstacle.X() + obstacle.Width();
             topB = obstacle.Y();
             bottomB = obstacle.Y() + obstacle.Height();
 
             // if this evaluates to true, there's no collision, returns false
-            if(leftA > rightB ||
-                    rightA < leftB ||
-                    topA > bottomB ||
-                    bottomA < topB)
+            if (leftA > rightB ||
+                rightA < leftB ||
+                topA > bottomB ||
+                bottomA < topB)
             {
                 return false;
             }
             return true;
         }
-        else if(Bounds().Collision(obstacle))
+        else if (Bounds().Collision(obstacle))
         {
             return true;
         }
-        else{
-                return false;
+        else
+        {
+            return false;
         }
     }
 
     return false;
 }
-void GameSprite::Draw(const GameWindow& win)
+void GameSprite::Draw(const GameWindow &win)
 {
-            if(Visible())
-            {
-                win.Draw(this);
-            }
-            if(Animating())
-            {
-                  if(m_animationTimer.getElapsedTime().asSeconds() >= m_animationDelay)
-                    {
-                       (m_currentFrame >= (m_numFrames-1))?  m_currentFrame = 0: m_currentFrame += 1;
-                       SetClipPosition( m_currentFrame*this->Bounds().Width(),m_clipY);
-                       m_animationTimer.restart();
-
-                    }
-            }
-
+    if (Visible())
+    {
+        SDL_Rect renderLocation = {m_worldX, m_worldY, m_width, m_height};
+        SDL_Rect clipRect = {m_clipX, m_clipY, m_width, m_height};
+        SDL_RenderCopy(win.m_renderer, m_texture, &clipRect, &renderLocation);
+    }
+    if (Animating())
+    {
+        // if (m_animationTimer.getElapsedTime().asSeconds() >= m_animationDelay)
+        // {
+        //     (m_currentFrame >= (m_numFrames - 1)) ? m_currentFrame = 0 : m_currentFrame += 1;
+        //     SetClipPosition(m_currentFrame * this->Bounds().Width(), m_clipY);
+        //     m_animationTimer.restart();
+        // }
+    }
 }
 void GameSprite::UpdateCameraPosition(float x, float y)
 {
@@ -190,4 +184,3 @@ void GameSprite::UpdateCameraPosition(float x, float y)
     this->m_cameraY = y;
     this->SetPosition(m_worldX, m_worldY);
 }
-

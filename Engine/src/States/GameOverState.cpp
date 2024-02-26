@@ -2,107 +2,92 @@
 #include "Util/ImageResourceManager.h"
 #include <sstream>
 
-GameOverState::GameOverState():GameState(NULL , STATE_GAMEOVER)
+GameOverState::GameOverState() : GameState(NULL, STATE_GAMEOVER)
 {
-    //ctor
+    // ctor
     m_playerScore = 0;
     m_victory = 0;
     m_backdrop = NULL;
-    m_theme =NULL;
+    // m_theme = NULL;
 }
 
 GameOverState::~GameOverState()
 {
-    if(m_backdrop)
-    {
-        delete m_backdrop;
-    }
-    if(m_theme)
-    {
-        delete m_theme;
-        m_theme = NULL;
-    }
+    // if (m_backdrop)
+    // {
+    //     delete m_backdrop;
+    // }
+    // if (m_theme)
+    // {
+    //     delete m_theme;
+    //     m_theme = NULL;
+    // }
 }
 
 void GameOverState::CheckEvent()
 {
-    while(m_engineInstance->GetGameWindow()->QueuedEvents())
+    // Handle events on queue
+    GameWindow *gameWin = m_engineInstance->GetGameWindow();
+    SDL_Event *e = gameWin->GetEvent();
+    while (SDL_PollEvent(e) != 0)
     {
-        // Get next event in event queue
-        sf::Event* Event = m_engineInstance->GetGameWindow()->GetEvent();
-
-        if(Event->type == sf::Event::Closed)
+        // User requests quit
+        if (e->type == SDL_QUIT)
+        {
+            m_engineInstance->Running(false);
+            break;
+        }
+        else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_RETURN)
+        {
+            this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
+            break;
+        }
+        else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_ESCAPE)
         {
             this->m_engineInstance->Running(false);
             EndState();
             m_engineInstance->GetGameWindow()->Close();
+            break;
         }
-        else if(Event->type == sf::Event::JoystickButtonPressed )
-        {
-            this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
-        }
-        else if(Event->type == sf::Event::KeyPressed)
-        {
-            switch(Event->key.code)
-            {
-            case sf::Keyboard::Key::Return:
-            {
-                this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
-                break;
-            }
-
-            case sf::Keyboard::Key::Escape:
-            {
-                this->m_engineInstance->Running(false);
-                EndState();
-                m_engineInstance->GetGameWindow()->Close();
-                break;
-            }
-            default:
-                break;
-            }
-        }
-
     }
-
 }
 
 void GameOverState::UpdateLogic()
 {
 }
 
-void GameOverState::Paint()const
+void GameOverState::Paint() const
 {
-    m_engineInstance->GetGameWindow()->Clear(sf::Color(0,0,0));
+    m_engineInstance->GetGameWindow()->Clear(0, 0, 0);
     m_backdrop->Draw(*m_engineInstance->GetGameWindow());
 }
 
 void GameOverState::InitState()
 {
-    ImageResourceManager::LoadImageResource("gameover_lose","img/gameover_lose.png");
-    ImageResourceManager::LoadImageResource("gameover_win","img/gameover_win.png");
+    GameWindow *gameWin = m_engineInstance->GetGameWindow();
+    ImageResourceManager::LoadImageResource("gameover_lose", "assets/img/gameover_lose.png", gameWin->m_renderer);
+    ImageResourceManager::LoadImageResource("gameover_win", "assets/img/gameover_win.png", gameWin->m_renderer);
 
-    m_backdrop = new GameSprite(Rect(0,0,640,480), Point(0,0), ImageResourceManager::GetImageResource("gameover_lose"));
+    m_backdrop = new GameSprite(Rect(0, 0, 640, 480), Point(0, 0), NULL);
 }
 
 void GameOverState::EndState()
 {
-    if(m_theme)
-    {
-        m_theme->stop();
-    }
+    // if (m_theme)
+    // {
+    //     m_theme->stop();
+    // }
 }
 
 void GameOverState::StartState()
 {
-    m_engineInstance->GetGameWindow()->GetRawWindow()->setMouseCursorVisible(true);
-    if(m_victory > 0)
+    if (m_victory > 0)
     {
-        m_backdrop->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("gameover_win"));
+        m_backdrop->SetTexture(ImageResourceManager::GetImageResource("gameover_win"));
     }
     else
     {
-        m_backdrop->GetBaseSprite()->setTexture(ImageResourceManager::GetImageResource("gameover_lose"));
+        m_backdrop->SetTexture(ImageResourceManager::GetImageResource("gameover_lose"));
     }
 }
 
@@ -117,26 +102,20 @@ void GameOverState::PauseState()
 void GameOverState::ResumeState()
 {
 }
-void GameOverState::SetInt(const std::string& key, int value)
+void GameOverState::SetInt(const std::string &key, int value)
 {
     // players final victor/loss message
-    if(key == "Outcome")
+    if (key == "Outcome")
     {
         m_victory = value;
     }
-
 }
-void GameOverState::SetFloat(const std::string& key, float value)
+void GameOverState::SetFloat(const std::string &key, float value)
 {
 }
-void GameOverState::SetString(const std::string& key, const std::string& value)
+void GameOverState::SetString(const std::string &key, const std::string &value)
 {
 }
-void GameOverState::SetObject(const std::string& key, void* value)
+void GameOverState::SetObject(const std::string &key, void *value)
 {
-    if(key == "theme_music")
-    {
-        m_theme = (sf::Music*)value;
-    }
 }
-
