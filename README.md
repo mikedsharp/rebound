@@ -54,8 +54,8 @@ _game doesn't currently support mouse or touch screen input, only keyboard contr
 ## Building the game for Mac
 
 1. MacOS frameworks are a complete mess and break after each OS version, so I would recommend installing `SDL2`, `SDL2_mixer`, and `SDL2_image` using `brew`. I've configured the Makefiles for building on Mac expecting those libraries to be in the directory where hombrew stores all of its packages
-2. if you do not already have homebrew installed, follow the instructions to install homebrew on your Mac, from https://brew.sh/
-3. run the following commands to install the required SDL libraries:
+_if you do not already have homebrew installed, follow the instructions to install homebrew on your Mac, from https://brew.sh/_
+2. run the following commands to install the required SDL libraries:
 
 `brew install SDL2`
 
@@ -63,8 +63,8 @@ _game doesn't currently support mouse or touch screen input, only keyboard contr
 
 `brew install SDL2_mixer`
 
-2. run `make -f ./build-scripts/mac/desktop.Makefile` to build the desktop app to the `bin/mac` folder
-3. you will now be able to run `rebound` from `bin/mac` and all of the required assets and dependencies should be installed
+3. run `make -f ./build-scripts/mac/desktop.Makefile` to build the desktop app to the `bin/mac` folder
+4. you will now be able to run `rebound` from `bin/mac` and all of the required assets and dependencies should be installed
 
 ## Building for web
 
