@@ -33,9 +33,10 @@ _game doesn't currently support mouse or touch screen input, only keyboard contr
 ## Building the game for Windows
 
 1. I would recommend installing MinGW to get the C++ compiler and Make, you might need to do a bit of googling to figure out exactly how to do that
-2. Install the SDL developer libraries and add the location where you've installed the libraries to the `windows.Makefile` file, it's probably easiest just to place it in the same location i've placed it, as referenced in the Makefile.
-3. run `make -f build-scripts/windows/desktop.Makefile` and the game will build into the `bin/windows` folder
-4. The DLLs and assets required to run the game will also be pulled into the `bin/windows` directory, so if you run `rebound.exe`, the game should start up and play correctly
+   * To get started, try looking at https://winlibs.com , reading the preamble and then grabbing one of the GCC Zip archives on the same page. You will need to download, extract and then add the location you've extracted to your PATH via control panel/windows settings, the ZIP file contains a bin folder that you should add to your PATH, and then you'll be able to run g++ (the C++ compiler) and make (the build system that this project uses to compile the desktop version of the game)
+3. Install the SDL developer libraries and add the location where you've installed the libraries to the `windows.Makefile` file, it's probably easiest just to place it in the same location i've placed it, as referenced in the Makefile.
+4. run `make -f build-scripts/windows/desktop.Makefile` and the game will build into the `bin/windows` folder
+5. The DLLs and assets required to run the game will also be pulled into the `bin/windows` directory, so if you run `rebound.exe`, the game should start up and play correctly
 
 ## Building the game for Linux
 
