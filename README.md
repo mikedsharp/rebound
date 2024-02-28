@@ -40,7 +40,7 @@ _game doesn't currently support mouse or touch screen input, only keyboard contr
    Links to builds of SDL and supporting libraries:
    * SDL 2 - https://github.com/libsdl-org/SDL/releases/tag/release-2.30.0
    * SDL_Mixer: https://github.com/libsdl-org/SDL_mixer/releases/tag/release-2.8.0
-   * SDL_Images: https://github.com/libsdl-org/SDL_image/releases/tag/release-2.8.2
+   * SDL_Image: https://github.com/libsdl-org/SDL_image/releases/tag/release-2.8.2
 5. run `make -f build-scripts/windows/desktop.Makefile` and the game will build into the `bin/windows` folder
 6. The DLLs and assets required to run the game will also be pulled into the `bin/windows` directory, so if you run `rebound.exe`, the game should start up and play correctly
 
