@@ -36,9 +36,13 @@ _game doesn't currently support mouse or touch screen input, only keyboard contr
 1. I would recommend installing MinGW to get the C++ compiler and Make, you might need to do a bit of googling to figure out exactly how to do that
    * To get started, try looking at https://winlibs.com , reading the preamble and then grabbing one of the GCC Zip archives on the same page. You will need to download, extract and then add the location you've extracted to your PATH via control panel/windows settings, the ZIP file contains a bin folder that you should add to your PATH, and then you'll be able to run g++ (the C++ compiler) and make (the build system that this project uses to compile the desktop version of the game)
    * Alternatively, there's a package manager for MinGW that works well to, it's hosted at https://sourceforge.net/projects/mingw/files/Installer/ and this allows you to install parts of MinGW (such as the g++ compiler and make)
-3. Install the SDL developer libraries and add the location where you've installed the libraries to the `windows.Makefile` file, it's probably easiest just to place it in the same location i've placed it, as referenced in the Makefile.
-4. run `make -f build-scripts/windows/desktop.Makefile` and the game will build into the `bin/windows` folder
-5. The DLLs and assets required to run the game will also be pulled into the `bin/windows` directory, so if you run `rebound.exe`, the game should start up and play correctly
+3. Download and Install the SDL developer libraries and add the location where you've installed the libraries to the `windows.Makefile` file, it's probably easiest just to place it in the same location i've placed it, as referenced in the Makefile.
+   Links to builds of SDL and supporting libraries:
+   SDL 2 - https://github.com/libsdl-org/SDL/releases/tag/release-2.30.0
+   SDL_Mixer: https://github.com/libsdl-org/SDL_mixer/releases/tag/release-2.8.0
+   SDL_Images: https://github.com/libsdl-org/SDL_image/releases/tag/release-2.8.2
+5. run `make -f build-scripts/windows/desktop.Makefile` and the game will build into the `bin/windows` folder
+6. The DLLs and assets required to run the game will also be pulled into the `bin/windows` directory, so if you run `rebound.exe`, the game should start up and play correctly
 
 ### Linux
 
