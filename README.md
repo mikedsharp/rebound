@@ -1,4 +1,4 @@
-# rebound
+# Rebound
 
 A Game I made back in 2012 or 2013, for a competition in C++
 
