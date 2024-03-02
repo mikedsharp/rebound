@@ -50,11 +50,11 @@ clean:
 ifeq ($(suffix $(SHELL)),.exe)
 	cmd /c if exist web rd /s /q web
 else
-    rm -rf web
+	rm -rf web
 endif
 before_build: 
 ifeq ($(suffix $(SHELL)),.exe)
 	cmd /c if not exist web md web
 else
-    mkdir web
+	mkdir web
 endif
