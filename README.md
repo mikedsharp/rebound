@@ -2,7 +2,7 @@
 
 A Game I made back in 2012 or 2013, for a competition in C++
 
-**UPDATE 03/02/2024**: The game is buildable again! I upgraded it to use SDL 2 and i've provided executables for Windows and Linux, I will shortly have a build Mac (hopefully)
+**UPDATE 02/04/2024**: The game is buildable again! I upgraded it to use SDL 2 and i've provided executables for Windows, Linux, Max and for the web.
 
 This game was made for the Moosader Forum Competition 8: Procedural/Random Generated Game.
 
