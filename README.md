@@ -78,8 +78,6 @@ _game doesn't currently support mouse or touch screen input, only keyboard contr
 
 1. Please follow the tutorial for installing the emscripten SDK locally for your operating system, docs can be found at: https://emscripten.org/docs/getting_started/downloads.html
 
-   ### **Each OS has its own Makefile for building for the web, so please ensure you run the correct one for your operating system (windows, mac or linux)**
-
 2. with the emscripten SDK (emsdk) enabled, run `make -f build-scripts/web.Makefile` and the game should build in the `web` folder, you should be able to host this folder like any other website and play the game
 
 ## Debugging the project in VSCode
