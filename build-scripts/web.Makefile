@@ -1,5 +1,5 @@
 CC = emcc
-INC = -I Engine/include
+INC = -IEngine/include
 EMFLAGS = -s WASM=1 \
 		  -s USE_SDL=2 \
 		  -s USE_SDL_MIXER=2 \
@@ -39,15 +39,22 @@ SOURCES = Engine/src/Rendering/GameSprite.cpp \
 
 all: before_build build
 
-build: OUT
+build: before_build OUT
 
 OUT: $(SOURCES)
 	 $(CC) $(EMFLAGS) $(INC) $(SOURCES) -o web/index.html
 
-clean_build: clean before_build build
+clean_build: clean build
 
 clean: 
-	rm -rf web
-
+ifeq ($(suffix $(SHELL)),.exe)
+	cmd /c if exist web rd /s /q web
+else
+    rm -rf web
+endif
 before_build: 
-	mkdir web
+ifeq ($(suffix $(SHELL)),.exe)
+	cmd /c if not exist web md web
+else
+    mkdir web
+endif
