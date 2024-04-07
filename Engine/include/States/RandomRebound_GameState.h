@@ -60,6 +60,9 @@ private:
     float m_opponentsTarget;
     bool m_leftKeyState;
     bool m_rightKeyState;
+    bool m_mouseButtonPressedState;
+
+    RotatedRectangle *m_cursorBounds;
 
     GameSprite *m_playerScoreText;
     GameSprite *m_opponentScoreText;

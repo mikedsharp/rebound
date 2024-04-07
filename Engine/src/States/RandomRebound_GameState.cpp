@@ -9,6 +9,11 @@ RandomRebound_GameState::RandomRebound_GameState() : GameState(NULL, STATE_RANDO
 }
 RandomRebound_GameState::~RandomRebound_GameState()
 {
+    if (m_cursorBounds)
+    {
+        delete m_cursorBounds;
+        m_cursorBounds = NULL;
+    }
     if (m_gameBall)
     {
         delete m_gameBall;
@@ -53,6 +58,12 @@ void RandomRebound_GameState::CheckEvent()
     // Handle events on queue
     GameWindow *gameWin = m_engineInstance->GetGameWindow();
     SDL_Event *e = gameWin->GetEvent();
+
+    int mouseX, mouseY;
+
+    SDL_GetMouseState(&mouseX, &mouseY);
+    m_cursorBounds->SetPosition(mouseX, mouseY);
+
     while (SDL_PollEvent(e) != 0)
     {
         // User requests quit
@@ -60,6 +71,14 @@ void RandomRebound_GameState::CheckEvent()
         {
             m_engineInstance->Running(false);
             break;
+        }
+        else if (e->type == SDL_MOUSEBUTTONDOWN)
+        {
+            m_mouseButtonPressedState = true;
+        }
+        else if (e->type == SDL_MOUSEBUTTONUP)
+        {
+            m_mouseButtonPressedState = false;
         }
         else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_LEFT)
         {
@@ -93,22 +112,29 @@ void RandomRebound_GameState::CheckEvent()
 void RandomRebound_GameState::UpdateLogic()
 {
     RotatedRectangle playerBounds = m_player->Bounds();
+
+    if (m_mouseButtonPressedState == true)
+    {
+        m_player->SetPosition((m_cursorBounds->X() - playerBounds.Width() / 2), playerBounds.Y());
+    }
     if (m_leftKeyState && playerBounds.X() - m_player->XSpeed() > m_minPaddleX)
     {
         m_player->Move(DIRECTION_LEFT);
     }
-    // else if (playerBounds.X() - m_player->XSpeed() < m_player->XSpeed())
-    // {
-    //     m_player->SetPosition(m_minPaddleX, playerBounds.Y());
-    // }
     if (m_rightKeyState && playerBounds.X() + playerBounds.Width() < m_maxPaddleX)
     {
         m_player->Move(DIRECTION_RIGHT);
     }
-    // else if (playerBounds.X() + playerBounds.Width() + m_player->XSpeed() >= m_maxPaddleX)
-    // {
-    //     m_player->SetPosition(m_maxPaddleX - playerBounds.Width(), playerBounds.Y());
-    // }
+    playerBounds = m_player->Bounds();
+    if (playerBounds.X() - m_player->XSpeed() < m_player->XSpeed())
+    {
+        m_player->SetPosition(m_minPaddleX, playerBounds.Y());
+    }
+
+    if (playerBounds.X() + playerBounds.Width() + m_player->XSpeed() >= m_maxPaddleX)
+    {
+        m_player->SetPosition(m_maxPaddleX - playerBounds.Width(), playerBounds.Y());
+    }
 
     // make ball move at pre-defined speeds
     m_gameBall->Move(DIRECTION_AUTO);
@@ -432,11 +458,13 @@ void RandomRebound_GameState::EndState()
 void RandomRebound_GameState::StartState()
 {
     m_playerIsServer = false;
+    m_mouseButtonPressedState = false;
     m_player->Score(0);
     m_opponent->Score(0);
     m_player->SetPosition(280, 438);
     m_opponent->SetPosition(280, 32);
     m_gameBall->SetPosition(320, 240);
+    m_cursorBounds = new RotatedRectangle(Rect(0, 0, 1, 1), 0);
 
     m_gameBall->YSpeed(BALL_BASE_SPEED);
     m_gameBall->XSpeed(0);
