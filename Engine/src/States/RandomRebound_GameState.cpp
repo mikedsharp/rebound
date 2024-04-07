@@ -111,29 +111,26 @@ void RandomRebound_GameState::CheckEvent()
 }
 void RandomRebound_GameState::UpdateLogic()
 {
-    RotatedRectangle playerBounds = m_player->Bounds();
-
     if (m_mouseButtonPressedState == true)
     {
-        m_player->SetPosition((m_cursorBounds->X() - playerBounds.Width() / 2), playerBounds.Y());
+        m_player->SetPosition((m_cursorBounds->X() - m_player->Bounds().Width() / 2), m_player->Bounds().Y());
     }
-    if (m_leftKeyState && playerBounds.X() - m_player->XSpeed() > m_minPaddleX)
+    if (m_leftKeyState && m_player->Bounds().X() - m_player->XSpeed() > m_minPaddleX)
     {
         m_player->Move(DIRECTION_LEFT);
     }
-    if (m_rightKeyState && playerBounds.X() + playerBounds.Width() < m_maxPaddleX)
+    if (m_rightKeyState && m_player->Bounds().X() + m_player->Bounds().Width() < m_maxPaddleX)
     {
         m_player->Move(DIRECTION_RIGHT);
     }
-    playerBounds = m_player->Bounds();
-    if (playerBounds.X() - m_player->XSpeed() < m_player->XSpeed())
+    if (m_player->Bounds().X() - m_player->XSpeed() < m_player->XSpeed())
     {
-        m_player->SetPosition(m_minPaddleX, playerBounds.Y());
+        m_player->SetPosition(m_minPaddleX, m_player->Bounds().Y());
     }
 
-    if (playerBounds.X() + playerBounds.Width() + m_player->XSpeed() >= m_maxPaddleX)
+    if (m_player->Bounds().X() + m_player->Bounds().Width() + m_player->XSpeed() > m_maxPaddleX)
     {
-        m_player->SetPosition(m_maxPaddleX - playerBounds.Width(), playerBounds.Y());
+        m_player->SetPosition(m_maxPaddleX - m_player->Bounds().Width(), m_player->Bounds().Y());
     }
 
     // make ball move at pre-defined speeds
@@ -358,7 +355,7 @@ void RandomRebound_GameState::Paint() const
 void RandomRebound_GameState::InitState()
 {
     // paddle bounds
-    m_maxPaddleX = 610;
+    m_maxPaddleX = 624;
     m_minPaddleX = 16;
 
     srand(time(NULL));
@@ -459,6 +456,8 @@ void RandomRebound_GameState::StartState()
 {
     m_playerIsServer = false;
     m_mouseButtonPressedState = false;
+    m_leftKeyState = false;
+    m_rightKeyState = false;
     m_player->Score(0);
     m_opponent->Score(0);
     m_player->SetPosition(280, 438);
@@ -524,22 +523,21 @@ void RandomRebound_GameState::UpdateScoreBoards()
 }
 void RandomRebound_GameState::CheckOpponentBounds()
 {
-    RotatedRectangle playerBounds = m_opponent->Bounds();
-    if (playerBounds.X() - m_opponent->XSpeed() > m_minPaddleX)
+    if ( m_opponent->Bounds().X() - m_opponent->XSpeed() > m_minPaddleX)
     {
         m_opponent->Move(DIRECTION_LEFT);
     }
-    else if (playerBounds.X() - m_opponent->XSpeed() < m_opponent->XSpeed())
+    else if ( m_opponent->Bounds().X() - m_opponent->XSpeed() < m_opponent->XSpeed())
     {
-        m_opponent->SetPosition(m_minPaddleX + 20, playerBounds.Y());
+        m_opponent->SetPosition(m_minPaddleX + 20,  m_opponent->Bounds().Y());
     }
-    if (playerBounds.X() + playerBounds.Width() < m_maxPaddleX)
+    if ( m_opponent->Bounds().X() +  m_opponent->Bounds().Width() < m_maxPaddleX)
     {
         m_opponent->Move(DIRECTION_RIGHT);
     }
-    else if (playerBounds.X() + playerBounds.Width() + m_opponent->XSpeed() >= m_maxPaddleX)
+    else if ( m_opponent->Bounds().X() +  m_opponent->Bounds().Width() + m_opponent->XSpeed() >= m_maxPaddleX)
     {
-        m_opponent->SetPosition(m_maxPaddleX - playerBounds.Width() - 20, playerBounds.Y());
+        m_opponent->SetPosition(m_maxPaddleX -  m_opponent->Bounds().Width() - 20,  m_opponent->Bounds().Y());
     }
 }
 void RandomRebound_GameState::ChangeTheme(int theme)
