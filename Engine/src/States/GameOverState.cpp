@@ -37,6 +37,11 @@ void GameOverState::CheckEvent()
             m_engineInstance->Running(false);
             break;
         }
+        else if (e->type == SDL_MOUSEBUTTONDOWN)
+        {
+            this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
+            break;
+        }
         else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_RETURN)
         {
             this->m_engineInstance->SwitchState(STATE_RANDOMREBOUND_GAMELEVEL);
