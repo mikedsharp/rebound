@@ -1,6 +1,6 @@
 #include "Game/Ball.h"
 
-Ball::Ball(const Rect &dimensions, const Point &clipLocation, SDL_Texture *texture) : GameSprite(dimensions, clipLocation, texture)
+Ball::Ball(const Rect &dimensions, const Point &clipLocation, SDL_Texture *texture) : GameSprite(dimensions, clipLocation, texture, 0)
 {
     // ctor
     Alive(true);

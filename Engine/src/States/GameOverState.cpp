@@ -73,7 +73,7 @@ void GameOverState::InitState()
     ImageResourceManager::LoadImageResource("gameover_lose", "assets/img/gameover_lose.png", gameWin->m_renderer);
     ImageResourceManager::LoadImageResource("gameover_win", "assets/img/gameover_win.png", gameWin->m_renderer);
 
-    m_backdrop = new GameSprite(Rect(0, 0, 640, 480), Point(0, 0), NULL);
+    m_backdrop = new GameSprite(Rect(0, 0, 640, 480), Point(0, 0), NULL, 0);
 }
 
 void GameOverState::EndState()

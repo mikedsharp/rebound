@@ -396,10 +396,10 @@ void RandomRebound_GameState::InitState()
     m_gameBall = new Ball(Rect(312, 232, 16, 16), Point(0, 0), ImageResourceManager::GetImageResource("ball_temple"));
     m_player = new Paddle(Rect(280, 438, 96, 16), Point(0, 0), ImageResourceManager::GetImageResource("paddle_temple"));
     m_opponent = new Paddle(Rect(280, 32, 96, 16), Point(0, 0), ImageResourceManager::GetImageResource("paddle_temple"));
-    m_backdrop = new GameSprite(Rect(0, 0, 640, 480), Point(0, 0), ImageResourceManager::GetImageResource("backdrop_temple"));
+    m_backdrop = new GameSprite(Rect(0, 0, 640, 480), Point(0, 0), ImageResourceManager::GetImageResource("backdrop_temple"), 0);
 
-    m_playerScoreText = new GameSprite(Rect(80, 120, 160, 240), Point(0, 0), NULL);
-    m_opponentScoreText = new GameSprite(Rect(400, 120, 160, 240), Point(0, 0), NULL);
+    m_playerScoreText = new GameSprite(Rect(80, 120, 160, 240), Point(0, 0), NULL, 0);
+    m_opponentScoreText = new GameSprite(Rect(400, 120, 160, 240), Point(0, 0), NULL, 0);
     /* fill  play area with random crates dotted around */
     int crateMinX, crateMinY, crateWidth, crateHeight;
     crateMinX = 16;
@@ -523,21 +523,21 @@ void RandomRebound_GameState::UpdateScoreBoards()
 }
 void RandomRebound_GameState::CheckOpponentBounds()
 {
-    if ( m_opponent->Bounds().X() - m_opponent->XSpeed() > m_minPaddleX)
+    if (m_opponent->Bounds().X() - m_opponent->XSpeed() > m_minPaddleX)
     {
         m_opponent->Move(DIRECTION_LEFT);
     }
-    else if ( m_opponent->Bounds().X() - m_opponent->XSpeed() < m_opponent->XSpeed())
+    else if (m_opponent->Bounds().X() - m_opponent->XSpeed() < m_opponent->XSpeed())
     {
-        m_opponent->SetPosition(m_minPaddleX + 20,  m_opponent->Bounds().Y());
+        m_opponent->SetPosition(m_minPaddleX + 20, m_opponent->Bounds().Y());
     }
-    if ( m_opponent->Bounds().X() +  m_opponent->Bounds().Width() < m_maxPaddleX)
+    if (m_opponent->Bounds().X() + m_opponent->Bounds().Width() < m_maxPaddleX)
     {
         m_opponent->Move(DIRECTION_RIGHT);
     }
-    else if ( m_opponent->Bounds().X() +  m_opponent->Bounds().Width() + m_opponent->XSpeed() >= m_maxPaddleX)
+    else if (m_opponent->Bounds().X() + m_opponent->Bounds().Width() + m_opponent->XSpeed() >= m_maxPaddleX)
     {
-        m_opponent->SetPosition(m_maxPaddleX -  m_opponent->Bounds().Width() - 20,  m_opponent->Bounds().Y());
+        m_opponent->SetPosition(m_maxPaddleX - m_opponent->Bounds().Width() - 20, m_opponent->Bounds().Y());
     }
 }
 void RandomRebound_GameState::ChangeTheme(int theme)

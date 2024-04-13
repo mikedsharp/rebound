@@ -1,6 +1,6 @@
 #include "Game/Paddle.h"
 
-Paddle::Paddle(const Rect &dimensions, const Point &clipLocation, SDL_Texture *texture) : GameSprite(dimensions, clipLocation, texture)
+Paddle::Paddle(const Rect &dimensions, const Point &clipLocation, SDL_Texture *texture) : GameSprite(dimensions, clipLocation, texture, 0)
 {
     // ctor
     Alive(true);
