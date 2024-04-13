@@ -2,11 +2,11 @@
 #define GAMESPRITE_H
 
 #ifdef _WIN32
-    #include <SDL_image.h>
+#include <SDL_image.h>
 #elif __APPLE__
-    #include <SDL_image.h>
+#include <SDL_image.h>
 #else
-    #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_image.h>
 #endif
 #include "Util/Rect.h"
 #include <Util/RotatedRectangle.h>
@@ -29,7 +29,7 @@ enum Direction
 class GameSprite : public Drawable
 {
 public:
-    GameSprite(const Rect &dimensions, const Point &clipLocation, SDL_Texture *texture);
+    GameSprite(const Rect &dimensions, const Point &clipLocation, SDL_Texture *texture, float rotationAngle);
 
     void SetSize(int width, int height);
     void SetTexture(SDL_Texture *texture);

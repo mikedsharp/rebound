@@ -11,14 +11,14 @@ GameSprite::~GameSprite()
         m_bounds = NULL;
     }
 }
-GameSprite::GameSprite(const Rect &dimensions, const Point &clipLocation, SDL_Texture *texture)
+GameSprite::GameSprite(const Rect &dimensions, const Point &clipLocation, SDL_Texture *texture, float rotationAngle)
 {
     // init the inner sprite, setup start params
     this->m_texture = texture;
     this->m_worldX = dimensions.X();
     this->m_worldY = dimensions.Y();
 
-    this->m_bounds = new RotatedRectangle(Rect(dimensions.X(), dimensions.Y(), dimensions.Width(), dimensions.Height()), 0.0f);
+    this->m_bounds = new RotatedRectangle(Rect(dimensions.X(), dimensions.Y(), dimensions.Width(), dimensions.Height()), rotationAngle);
 
     this->m_width = dimensions.Width();
     this->m_height = dimensions.Height();
@@ -165,7 +165,7 @@ void GameSprite::Draw(const GameWindow &win)
     {
         SDL_Rect renderLocation = {m_worldX, m_worldY, m_width, m_height};
         SDL_Rect clipRect = {m_clipX, m_clipY, m_width, m_height};
-        SDL_RenderCopy(win.m_renderer, m_texture, &clipRect, &renderLocation);
+        SDL_RenderCopyEx(win.m_renderer, m_texture, &clipRect, &renderLocation, m_bounds->Rotation(), NULL, SDL_FLIP_NONE);
     }
     if (Animating())
     {
