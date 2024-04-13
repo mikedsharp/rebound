@@ -29,7 +29,7 @@ Player plays against AI
 
 https://rebound.michaeldsharp.com/
 
-_game doesn't currently support mouse or touch screen input, only keyboard control for now. My plan is to add some form of mobile-friendly input soon_
+Game now suports mouse and touch interactions. You can tap or click on the main menu screen to get into the game, then you can control your player by holding down the mouse an dragging, or by touching the screen of your device and moving your finger sider to side to move the paddle.
 
 ## Building the game
 
