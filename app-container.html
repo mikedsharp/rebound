@@ -13,11 +13,76 @@
       }
       .emscripten_border {
         margin: 0 auto;
+        display: flex;
+        flex-direction: column;
       }
       .container {
         display: flex;
         align-items: center;
         margin: 0 auto;
+      }
+      #canvas {
+        width: 640px;
+        height: 480px;
+        background-color: #ddd;
+      }
+      #music-on {
+        display: block;
+        cursor: pointer;
+      }
+      #music-off svg {
+        stroke: #f00;
+      }
+      #sound-off {
+        display: none;
+        cursor: pointer;
+      }
+      #sound-on {
+        display: block;
+        cursor: pointer;
+      }
+      #sound-off svg {
+        stroke: #f00;
+      }
+      #sound-on svg {
+        stroke: #00f;
+      }
+      #music-on svg {
+        stroke: #00f;
+      }
+      #music-off {
+        display: none;
+        cursor: pointer;
+      }
+      .app-settings-control-panel {
+        display: flex;
+        align-items: center;
+      }
+
+      .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black;
+      }
+
+      .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+
+        position: absolute;
+        z-index: 1;
+        top: 100%;
+        left: 50%;
+        margin-left: -60px;
+      }
+
+      .tooltip:hover .tooltiptext {
+        visibility: visible;
       }
     </style>
   </head>
@@ -36,6 +101,148 @@
           oncontextmenu="event.preventDefault()"
           tabindex="-1"
         ></canvas>
+        <div class="app-settings-control-panel">
+          <div class="tooltip">
+            <span class="tooltiptext">Mute master volume</span>
+            <button
+              id="sound-on"
+              onclick="Module.muteMasterVolume((result) => {
+          console.log('muted master volume');
+          document.getElementById('music-on').style.display = 'none';
+          document.getElementById('music-off').style.display = 'block';
+          document.getElementById('sound-on').style.display = 'none';
+          document.getElementById('sound-off').style.display = 'block';
+      })"
+              type="button"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-volume"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#009988"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M15 8a5 5 0 0 1 0 8" />
+                <path d="M17.7 5a9 9 0 0 1 0 14" />
+                <path
+                  d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a.8 .8 0 0 1 1.5 .5v14a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div class="tooltip">
+            <span class="tooltiptext">Unmute master volume</span>
+
+            <button
+              id="sound-off"
+              onclick="Module.unmuteMasterVolume((result) => {
+          console.log('unmuted master volume');
+          document.getElementById('music-on').style.display = 'block';
+          document.getElementById('music-off').style.display = 'none';
+          document.getElementById('sound-on').style.display = 'block';
+          document.getElementById('sound-off').style.display = 'none';
+    })"
+              type="button"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-volume-off"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#009988"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M15 8a5 5 0 0 1 1.912 4.934m-1.377 2.602a5 5 0 0 1 -.535 .464"
+                />
+                <path
+                  d="M17.7 5a9 9 0 0 1 2.362 11.086m-1.676 2.299a9 9 0 0 1 -.686 .615"
+                />
+                <path
+                  d="M9.069 5.054l.431 -.554a.8 .8 0 0 1 1.5 .5v2m0 4v8a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l1.294 -1.664"
+                />
+                <path d="M3 3l18 18" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="tooltip">
+            <span class="tooltiptext">Toggle music</span>
+            <button
+              id="music-on"
+              onclick="Module.toggleMusic((result) => {
+            console.log('toggling music, current music state: ', result);
+            document.getElementById('music-on').style.display = 'none';
+            document.getElementById('music-off').style.display = 'block';
+        })"
+              type="button"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-music"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#009988"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M3 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                <path d="M13 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                <path d="M9 17v-13h10v13" />
+                <path d="M9 8h10" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="tooltip">
+            <span class="tooltiptext">Toggle music</span>
+            <button
+              id="music-off"
+              onclick="Module.toggleMusic((result) => {
+            console.log('toggling music, current music state: ', result);
+            document.getElementById('music-on').style.display = 'block';
+            document.getElementById('music-off').style.display = 'none';
+      })"
+              type="button"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-music-off"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#009988"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M6 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                <path d="M14.42 14.45a3 3 0 1 0 4.138 4.119" />
+                <path d="M9 17v-8m0 -4v-1h10v11" />
+                <path d="M12 8h7" />
+                <path d="M3 3l18 18" />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
       <script type="text/javascript">
         var statusElement = document.getElementById("status");

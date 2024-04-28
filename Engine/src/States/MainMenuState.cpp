@@ -53,6 +53,11 @@ void MainMenuState::CheckEvent()
             m_engineInstance->GetGameWindow()->Close();
             break;
         }
+        else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_m)
+        {
+            MusicPlayer::ToggleMusic();
+            break;
+        }
     }
 }
 void MainMenuState::UpdateLogic()

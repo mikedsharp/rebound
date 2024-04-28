@@ -2,11 +2,11 @@
 #define SOUNDPLAYERLAYER_H
 
 #ifdef _WIN32
-    #include <SDL_mixer.h>
+#include <SDL_mixer.h>
 #elif __APPLE__
-    #include <SDL_mixer.h>
+#include <SDL_mixer.h>
 #else
-    #include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL_mixer.h>
 #endif
 
 class SoundPlayer
@@ -15,6 +15,8 @@ public:
     SoundPlayer();
     ~SoundPlayer();
     static void Play(Mix_Chunk *soundToPlay, bool loop);
+    static void Mute();
+    static void Unmute();
 
 protected:
 private:
