@@ -35,7 +35,7 @@ CC = g++
 
 COMPILER_FLAGS = -g -w 
 
-LINKER_FLAGS = -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image
+LINKER_FLAGS = -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image -lSDL2_ttf
 
 OBJ_NAME = bin/linux/rebound
 

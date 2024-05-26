@@ -5,7 +5,10 @@ EMFLAGS = -lembind \
 		  -s USE_SDL=2 \
 		  -s USE_SDL_MIXER=2 \
 		  -s USE_SDL_IMAGE=2 \
+		  -s USE_SDL_TTF=2 \
 		  -s SDL2_IMAGE_FORMATS=png \
+		  -s DISABLE_DEPRECATED_FIND_EVENT_TARGET_BEHAVIOR=0 \
+		  -s EXPORT_ES6 \
 		  -O3 \
 		  --preload-file assets \
 		  --shell-file app-container.html
