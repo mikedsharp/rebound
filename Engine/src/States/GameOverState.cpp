@@ -1,5 +1,6 @@
 #include "States/GameOverState.h"
 #include "Util/ImageResourceManager.h"
+#include "Util/MusicPlayer.h"
 #include <sstream>
 
 GameOverState::GameOverState() : GameState(NULL, STATE_GAMEOVER)
@@ -52,6 +53,11 @@ void GameOverState::CheckEvent()
             this->m_engineInstance->Running(false);
             EndState();
             m_engineInstance->GetGameWindow()->Close();
+            break;
+        }
+        else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_m)
+        {
+            MusicPlayer::ToggleMusic();
             break;
         }
     }

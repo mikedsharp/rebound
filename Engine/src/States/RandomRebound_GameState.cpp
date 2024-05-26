@@ -3,6 +3,7 @@
 #include "Util/AudioResourceManager.h"
 #include <ctime>
 #include <sstream>
+#include "Util/MusicPlayer.h"
 
 RandomRebound_GameState::RandomRebound_GameState() : GameState(NULL, STATE_RANDOMREBOUND_GAMELEVEL)
 {
@@ -99,6 +100,11 @@ void RandomRebound_GameState::CheckEvent()
         else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_p)
         {
             Paused(!Paused());
+        }
+        else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_m)
+        {
+            MusicPlayer::ToggleMusic();
+            break;
         }
         else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_ESCAPE)
         {

@@ -7,18 +7,20 @@ LD = g++.exe
 WINDRES = windres.exe
 
 # BE SURE TO UPDATE THIS TO A PATH WHERE YOU HAVE SDL INSTALLED
-SDL_LOCATION = C:\\SDL2
-SDL_MIXER_LOCATION = C:\\SDL2
-SDL_IMAGE_LOCATION = C:\\SDL2
+SDL_LOCATION = lib\\SDL2
+SDL_MIXER_LOCATION = lib\\SDL2
+SDL_IMAGE_LOCATION = lib\\SDL2
+SDL_TTF_LOCATION = lib\\SDL2
+MINGW_LIB_LOCATION = lib\\MinGW
 
-INC = -I${SDL_LOCATION}\\include\\SDL2 -IEngine\\include
+INC = -I ${SDL_LOCATION}\\include\\SDL2 -I Engine\\include
 ASSETSDIR=assets
 RESINC = 
-LIBDIR = -L${SDL_LOCATION}\\lib -L${SDL_IMAGE_LOCATION}\\lib -L${SDL_MIXER_LOCATION}\\lib
+LIBDIR = -L ${SDL_LOCATION}\\lib -L ${SDL_IMAGE_LOCATION}\\lib -L ${SDL_MIXER_LOCATION}\\lib -L ${SDL_TTF_LOCATION}\\lib
 LIB = ${SDL_LOCATION}\\lib
-LDFLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image
+LDFLAGS = -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image -lSDL2_ttf
 
-CFLAGS = -g -w -Wl,-subsystem,windows
+CFLAGS = -static-libgcc -static-libstdc++ -g -w -Wl,-subsystem,windows
 RESINC = $(RESINC)
 RCFLAGS = $(RCFLAGS)
 BINDIR = bin\\windows
@@ -77,11 +79,14 @@ after_build:
 	cmd /c copy /y $(SDL_LOCATION)\\bin\\SDL2.dll $(BINDIR)\\SDL2.dll
 	cmd /c copy /y $(SDL_IMAGE_LOCATION)\\bin\\SDL2_image.dll $(BINDIR)\\SDL2_image.dll
 	cmd /c copy /y $(SDL_MIXER_LOCATION)\\bin\\SDL2_mixer.dll $(BINDIR)\\SDL2_mixer.dll
+	cmd /c copy /y $(SDL_TTF_LOCATION)\\bin\\SDL2_ttf.dll $(BINDIR)\\SDL2_ttf.dll
+	cmd /c copy /y $(MINGW_LIB_LOCATION)\\bin\\libwinpthread-1.dll $(BINDIR)\\libwinpthread-1.dll
+
 
 build: before_build OUT after_build
 
 OUT: before_build $(OBJ) $(DEP)
-	$(LD) $(LIBDIR) -o $(OUT) $(OBJ)  $(LDFLAGS) $(LIB)
+	$(LD) $(CFLAGS) $(LIBDIR) -o $(OUT) $(OBJ)  $(LDFLAGS) $(LIB)
 
 $(OBJDIR)\\Engine\\src\\Rendering\\GameSprite.o: Engine\\src\\Rendering\\GameSprite.cpp
 	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Rendering\\GameSprite.cpp -o $(OBJDIR)\\Engine\\src\\Rendering\\GameSprite.o

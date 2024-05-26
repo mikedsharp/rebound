@@ -35,9 +35,10 @@ CC = g++
 
 COMPILER_FLAGS = -g -w 
 
-LINKER_FLAGS = -D_THREAD_SAFE -L/opt/homebrew/lib -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image
+LINKER_FLAGS = -D_THREAD_SAFE -L/opt/homebrew/lib -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image -lSDL2_ttf
 
 OBJ_NAME = bin/mac/rebound
+INSTALL_SCRIPT_DIR = build-scripts/mac/install.sh
 
 all: build
 
@@ -56,6 +57,8 @@ build: before_build OUT after_build
 
 OUT: $(OBJS)
 	$(CC) $(OBJS) $(COMPILER_FLAGS) $(INC) $(LINKER_FLAGS) -o $(OBJ_NAME)
+	cp ${INSTALL_SCRIPT_DIR} bin/mac
 
 clean_build: clean build
+
 

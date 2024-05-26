@@ -19,9 +19,11 @@
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
+#include <emscripten/bind.h>
+#include "Util/JavascriptCallbackHandler.h"
+
 #endif
 #include <iostream>
-
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
@@ -31,6 +33,15 @@ struct context
     float nowTime;
     float startTime;
 };
+
+#ifdef __EMSCRIPTEN__
+EMSCRIPTEN_BINDINGS(my_module)
+{
+    emscripten::function("toggleMusic", &JavascriptCallbackHandler::ToggleMusic);
+    emscripten::function("muteMasterVolume", &JavascriptCallbackHandler::MuteMasterVolume);
+    emscripten::function("unmuteMasterVolume", &JavascriptCallbackHandler::UnmuteMasterVolume);
+}
+#endif
 
 void mainloop(void *arg)
 {
