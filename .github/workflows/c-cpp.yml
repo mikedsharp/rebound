@@ -32,12 +32,12 @@ jobs:
       - name: make
         run: make clean_build -f build-scripts/linux/desktop.Makefile
       - name: "Tar files to preserve permissions"
-        run: tar -cvf space-got-mad.tar -C bin/linux .
+        run: tar -cvf rebound.tar -C bin/linux .
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: space-got-mad-linux-binaries
-          path: space-got-mad.tar
+          name: rebound-linux-binaries
+          path: rebound.tar
   build-mac:
     runs-on: macos-latest
     steps:
@@ -49,12 +49,12 @@ jobs:
       - name: make
         run: make clean_build -f build-scripts/mac/desktop.Makefile
       - name: "Tar files to preserve permissions"
-        run: tar -cvf space-got-mad.tar -C bin/mac .
+        run: tar -cvf rebound.tar -C bin/mac .
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: space-got-mad-mac-binaries
-          path: space-got-mad.tar
+          name: rebound-mac-binaries
+          path: rebound.tar
   build-windows:
     runs-on: windows-latest
     steps:

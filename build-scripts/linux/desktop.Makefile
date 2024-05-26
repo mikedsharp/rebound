@@ -38,6 +38,7 @@ COMPILER_FLAGS = -g -w
 LINKER_FLAGS = -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image -lSDL2_ttf
 
 OBJ_NAME = bin/linux/rebound
+INSTALL_SCRIPT_DIR = build-scripts/linux/install.sh
 
 all: build
 
@@ -45,6 +46,7 @@ clean:
 	rm -rf bin/linux
 
 before_build: 
+	mkdir bin
 	mkdir bin/linux
 	mkdir bin/linux/assets
 	cp -R $(ASSETSDIR) $(BINDIR)
@@ -56,6 +58,6 @@ build: before_build OUT after_build
 
 OUT: $(OBJS)
 	$(CC) $(OBJS) $(COMPILER_FLAGS) $(INC) $(LINKER_FLAGS) -o $(OBJ_NAME)
+	cp ${INSTALL_SCRIPT_DIR} bin/linux
 
 clean_build: clean build
-
