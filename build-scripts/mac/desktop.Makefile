@@ -46,8 +46,8 @@ clean:
 	rm -rf bin/mac
 
 before_build: 
-	mkdir bin/mac
-	mkdir bin/mac/assets
+	mkdir -p bin/mac
+	mkdir -p bin/mac/assets
 	cp -R $(ASSETSDIR) $(BINDIR)
 
 

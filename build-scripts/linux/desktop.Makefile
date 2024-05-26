@@ -46,9 +46,9 @@ clean:
 	rm -rf bin/linux
 
 before_build: 
-	mkdir bin
-	mkdir bin/linux
-	mkdir bin/linux/assets
+	mkdir -p bin
+	mkdir -p bin/linux
+	mkdir -p bin/linux/assets
 	cp -R $(ASSETSDIR) $(BINDIR)
 
 
