@@ -28,7 +28,7 @@ jobs:
       - name: install sdl
         run: sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
       - name: build directories
-        run: mkdir bin && mkdir bin/linux
+        run: mkdir -p bin && mkdir -p bin/linux
       - name: make
         run: make clean_build -f build-scripts/linux/desktop.Makefile
       - name: "Tar files to preserve permissions"
@@ -45,7 +45,7 @@ jobs:
       - name: install sdl
         run: brew install SDL2 SDL2_image SDL2_mixer SDL2_ttf
       - name: build directories
-        run: mkdir bin && mkdir bin/mac
+        run: mkdir -p bin && mkdir -p bin/mac
       - name: make
         run: make clean_build -f build-scripts/mac/desktop.Makefile
       - name: "Tar files to preserve permissions"
