@@ -1,0 +1,75 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build-web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 3.1.46
+      - name: make web build
+        run: make clean_build -f build-scripts/web.Makefile
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: web
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install sdl
+        run: sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
+      - name: build directories
+        run: mkdir bin && mkdir bin/linux
+      - name: make
+        run: make clean_build -f build-scripts/linux/desktop.Makefile
+      - name: "Tar files to preserve permissions"
+        run: tar -cvf space-got-mad.tar -C bin/linux .
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: space-got-mad-linux-binaries
+          path: space-got-mad.tar
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install sdl
+        run: brew install SDL2 SDL2_image SDL2_mixer SDL2_ttf
+      - name: build directories
+        run: mkdir bin && mkdir bin/mac
+      - name: make
+        run: make clean_build -f build-scripts/mac/desktop.Makefile
+      - name: "Tar files to preserve permissions"
+        run: tar -cvf space-got-mad.tar -C bin/mac .
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: space-got-mad-mac-binaries
+          path: space-got-mad.tar
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up MinGW
+        uses: egor-tensin/setup-mingw@v2.2.0
+        with:
+          platform: x64
+          version: 12.2.0
+      - name: build directories
+        run: mkdir bin\\windows
+      - name: make
+        run: make clean_build -f build-scripts/windows/desktop.Makefile
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows binaries
+          path: bin/windows
