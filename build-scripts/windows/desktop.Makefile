@@ -13,7 +13,7 @@ SDL_IMAGE_LOCATION = lib\\SDL2
 SDL_TTF_LOCATION = lib\\SDL2
 MINGW_LIB_LOCATION = lib\\MinGW
 
-INC = -I ${SDL_LOCATION}\\include\\SDL2 -I Engine\\include
+INC = -I ${SDL_LOCATION}\\include\\SDL2 -I rebound-engine -I Game
 ASSETSDIR=assets
 RESINC = 
 LIBDIR = -L ${SDL_LOCATION}\\lib -L ${SDL_IMAGE_LOCATION}\\lib -L ${SDL_MIXER_LOCATION}\\lib -L ${SDL_TTF_LOCATION}\\lib
@@ -29,33 +29,36 @@ OBJDIR = obj\\build
 DEP = 
 OUT = $(BINDIR)\\rebound.exe
 
-OBJ = $(OBJDIR)\\Engine\\src\\Rendering\\GameSprite.o \
-      $(OBJDIR)\\Engine\\src\\Rendering\\GameWindow.o \
-	  $(OBJDIR)\\Engine\\src\\Rendering\\RenderManager.o \
-	  $(OBJDIR)\\Engine\\src\\States\\GameOverState.o \
-	  $(OBJDIR)\\Engine\\src\\States\\MainMenuState.o \
-	  $(OBJDIR)\\Engine\\src\\States\\RandomRebound_GameState.o \
-	  $(OBJDIR)\\Engine\\src\\Util\\AudioResourceManager.o \
-	  $(OBJDIR)\\Engine\\src\\Util\\MusicPlayer.o \
-	  $(OBJDIR)\\Engine\\src\\Util\\SoundPlayer.o \
-	  $(OBJDIR)\\Engine\\src\\Util\\Camera.o \
-	  $(OBJDIR)\\Engine\\src\\Util\\Composite.o \
-	  $(OBJDIR)\\Engine\\src\\Util\\Dimension.o \
-	  $(OBJDIR)\\Engine\\src\\Util\\ImageResourceManager.o \
-	  $(OBJDIR)\\Engine\\src\\Util\\Point.o \
-	  $(OBJDIR)\\Engine\\src\\Util\\Rect.o \
-	  $(OBJDIR)\\Engine\\src\\Util\\RotatedRectangle.o \
-	  $(OBJDIR)\\Engine\\src\\Util\\Util\\Focusable.o \
-	  $(OBJDIR)\\Engine\\src\\Util\\Vector2f.o \
-	  $(OBJDIR)\\Engine\\src\\main.o \
-	  $(OBJDIR)\\Engine\\src\\Exception\\FileNotFoundException.o \
-	  $(OBJDIR)\\Engine\\src\\GameEngine.o \
-	  $(OBJDIR)\\Engine\\src\\GameState.o \
-	  $(OBJDIR)\\Engine\\src\\GameStateFactory.o \
-	  $(OBJDIR)\\Engine\\src\\Game\\Ball.o \
-	  $(OBJDIR)\\Engine\\src\\Game\\Crate.o \
-	  $(OBJDIR)\\Engine\\src\\Game\\Paddle.o \
-	  $(OBJDIR)\\Engine\\src\\Rendering\\Drawable.o
+OBJ = $(OBJDIR)\\rebound-engine\\src\\Rendering\\GameSprite.o \
+      $(OBJDIR)\\rebound-engine\\src\\Rendering\\GameWindow.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Rendering\\RenderManager.o \
+	  $(OBJDIR)\\Game\\src\\States\\GameOverState.o \
+	  $(OBJDIR)\\Game\\src\\States\\MainMenuState.o \
+	  $(OBJDIR)\\Game\\src\\States\\RandomRebound_GameState.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\Font.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\Text.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\Timer.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\AudioResourceManager.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\MusicPlayer.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\SoundPlayer.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\Camera.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\Composite.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\Dimension.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\ImageResourceManager.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\Point.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\Rect.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\RotatedRectangle.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\Focusable.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\Vector2f.o \
+	  $(OBJDIR)\\Game\\src\\main.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Exception\\FileNotFoundException.o \
+	  $(OBJDIR)\\rebound-engine\\src\\GameEngine.o \
+	  $(OBJDIR)\\rebound-engine\\src\\GameState.o \
+	  $(OBJDIR)\\Game\\src\\States\\GameStateFactory.o \
+	  $(OBJDIR)\\Game\\src\\GameEntities\\Ball.o \
+	  $(OBJDIR)\\Game\\src\\GameEntities\\Crate.o \
+	  $(OBJDIR)\\Game\\src\\GameEntities\\Paddle.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Rendering\\Drawable.o
 
 all: build
 
@@ -67,13 +70,16 @@ before_build:
 	cmd /c if not exist bin\\windows md bin\\windows
 	cmd /c if not exist $(BINDIR)\\assets md $(BINDIR)\\assets
 	cmd /c xcopy /s /e /h /y $(ASSETSDIR) $(BINDIR)\\assets
-	cmd /c if not exist $(OBJDIR)\\Engine\\src\\Rendering md $(OBJDIR)\\Engine\\src\\Rendering
-	cmd /c if not exist $(OBJDIR)\\Engine\\src\\States md $(OBJDIR)\\Engine\\src\\States
-	cmd /c if not exist $(OBJDIR)\\Engine\\src\\Util md $(OBJDIR)\\Engine\\src\\Util
-	cmd /c if not exist $(OBJDIR)\\Engine\\src\\Util\\Util md $(OBJDIR)\\Engine\\src\\Util\\Util
-	cmd /c if not exist $(OBJDIR)\\Engine\\src md $(OBJDIR)\\Engine\\src
-	cmd /c if not exist $(OBJDIR)\\Engine\\src\\Exception md $(OBJDIR)\\Engine\\src\\Exception
-	cmd /c if not exist $(OBJDIR)\\Engine\\src\\Game md $(OBJDIR)\\Engine\\src\\Game
+	cmd /c if not exist $(OBJDIR)\\rebound-engine\\src\\Rendering md $(OBJDIR)\\rebound-engine\\src\\Rendering
+	cmd /c if not exist $(OBJDIR)\\rebound-engine\\src\\States md $(OBJDIR)\\rebound-engine\\src\\States
+	cmd /c if not exist $(OBJDIR)\\rebound-engine\\src\\Util md $(OBJDIR)\\rebound-engine\\src\\Util
+	cmd /c if not exist $(OBJDIR)\\rebound-engine\\src\\Util md $(OBJDIR)\\rebound-engine\\src\\Util
+	cmd /c if not exist $(OBJDIR)\\rebound-engine\\src md $(OBJDIR)\\rebound-engine\\src
+	cmd /c if not exist $(OBJDIR)\\rebound-engine\\src\\Exception md $(OBJDIR)\\rebound-engine\\src\\Exception
+	cmd /c if not exist $(OBJDIR)\\Game md $(OBJDIR)\\Game
+	cmd /c if not exist $(OBJDIR)\\Game\\src md $(OBJDIR)\\Game\\src
+	cmd /c if not exist $(OBJDIR)\\Game\\src\\States md $(OBJDIR)\\Game\\src\\States
+	cmd /c if not exist $(OBJDIR)\\Game\\src\\GameEntities md $(OBJDIR)\\Game\\src\\GameEntities
 
 after_build: 
 	cmd /c copy /y $(SDL_LOCATION)\\bin\\SDL2.dll $(BINDIR)\\SDL2.dll
@@ -88,86 +94,95 @@ build: before_build OUT after_build
 OUT: before_build $(OBJ) $(DEP)
 	$(LD) $(CFLAGS) $(LIBDIR) -o $(OUT) $(OBJ)  $(LDFLAGS) $(LIB)
 
-$(OBJDIR)\\Engine\\src\\Rendering\\GameSprite.o: Engine\\src\\Rendering\\GameSprite.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Rendering\\GameSprite.cpp -o $(OBJDIR)\\Engine\\src\\Rendering\\GameSprite.o
+$(OBJDIR)\\rebound-engine\\src\\Rendering\\GameSprite.o: rebound-engine\\src\\Rendering\\GameSprite.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Rendering\\GameSprite.cpp -o $(OBJDIR)\\rebound-engine\\src\\Rendering\\GameSprite.o
 
-$(OBJDIR)\\Engine\\src\\Rendering\\GameWindow.o: Engine\\src\\Rendering\\GameWindow.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Rendering\\GameWindow.cpp -o $(OBJDIR)\\Engine\\src\\Rendering\\GameWindow.o
+$(OBJDIR)\\rebound-engine\\src\\Rendering\\GameWindow.o: rebound-engine\\src\\Rendering\\GameWindow.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Rendering\\GameWindow.cpp -o $(OBJDIR)\\rebound-engine\\src\\Rendering\\GameWindow.o
 
-$(OBJDIR)\\Engine\\src\\Rendering\\RenderManager.o: Engine\\src\\Rendering\\RenderManager.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Rendering\\RenderManager.cpp -o $(OBJDIR)\\Engine\\src\\Rendering\\RenderManager.o
+$(OBJDIR)\\rebound-engine\\src\\Rendering\\RenderManager.o: rebound-engine\\src\\Rendering\\RenderManager.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Rendering\\RenderManager.cpp -o $(OBJDIR)\\rebound-engine\\src\\Rendering\\RenderManager.o
 
-$(OBJDIR)\\Engine\\src\\States\\GameOverState.o: Engine\\src\\States\\GameOverState.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\States\\GameOverState.cpp -o $(OBJDIR)\\Engine\\src\\States\\GameOverState.o
+$(OBJDIR)\\Game\\src\\States\\GameOverState.o: Game\\src\\States\\GameOverState.cpp
+	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\States\\GameOverState.cpp -o $(OBJDIR)\\Game\\src\\States\\GameOverState.o
 
-$(OBJDIR)\\Engine\\src\\States\\MainMenuState.o: Engine\\src\\States\\MainMenuState.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\States\\MainMenuState.cpp -o $(OBJDIR)\\Engine\\src\\States\\MainMenuState.o
+$(OBJDIR)\\Game\\src\\States\\MainMenuState.o: Game\\src\\States\\MainMenuState.cpp
+	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\States\\MainMenuState.cpp -o $(OBJDIR)\\Game\\src\\States\\MainMenuState.o
 
-$(OBJDIR)\\Engine\\src\\States\\RandomRebound_GameState.o: Engine\\src\\States\\RandomRebound_GameState.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\States\\RandomRebound_GameState.cpp -o $(OBJDIR)\\Engine\\src\\States\\RandomRebound_GameState.o
+$(OBJDIR)\\Game\\src\\States\\RandomRebound_GameState.o: Game\\src\\States\\RandomRebound_GameState.cpp
+	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\States\\RandomRebound_GameState.cpp -o $(OBJDIR)\\Game\\src\\States\\RandomRebound_GameState.o
 
-$(OBJDIR)\\Engine\\src\\Util\\AudioResourceManager.o: Engine\\src\\Util\\AudioResourceManager.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Util\\AudioResourceManager.cpp -o $(OBJDIR)\\Engine\\src\\Util\\AudioResourceManager.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\Font.o: rebound-engine\\src\\Util\\Font.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Font.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Font.o
 
-$(OBJDIR)\\Engine\\src\\Util\\MusicPlayer.o: Engine\\src\\Util\\MusicPlayer.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Util\\MusicPlayer.cpp -o $(OBJDIR)\\Engine\\src\\Util\\MusicPlayer.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\Text.o: rebound-engine\\src\\Util\\Text.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Text.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Text.o
 
-$(OBJDIR)\\Engine\\src\\Util\\SoundPlayer.o: Engine\\src\\Util\\SoundPlayer.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Util\\SoundPlayer.cpp -o $(OBJDIR)\\Engine\\src\\Util\\SoundPlayer.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\Timer.o: rebound-engine\\src\\Util\\Timer.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Timer.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Timer.o
 
-$(OBJDIR)\\Engine\\src\\Util\\Camera.o: Engine\\src\\Util\\Camera.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Util\\Camera.cpp -o $(OBJDIR)\\Engine\\src\\Util\\Camera.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\AudioResourceManager.o: rebound-engine\\src\\Util\\AudioResourceManager.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\AudioResourceManager.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\AudioResourceManager.o
 
-$(OBJDIR)\\Engine\\src\\Util\\Composite.o: Engine\\src\\Util\\Composite.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Util\\Composite.cpp -o $(OBJDIR)\\Engine\\src\\Util\\Composite.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\MusicPlayer.o: rebound-engine\\src\\Util\\MusicPlayer.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\MusicPlayer.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\MusicPlayer.o
 
-$(OBJDIR)\\Engine\\src\\Util\\Dimension.o: Engine\\src\\Util\\Dimension.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Util\\Dimension.cpp -o $(OBJDIR)\\Engine\\src\\Util\\Dimension.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\SoundPlayer.o: rebound-engine\\src\\Util\\SoundPlayer.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\SoundPlayer.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\SoundPlayer.o
 
-$(OBJDIR)\\Engine\\src\\Util\\ImageResourceManager.o: Engine\\src\\Util\\ImageResourceManager.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Util\\ImageResourceManager.cpp -o $(OBJDIR)\\Engine\\src\\Util\\ImageResourceManager.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\Camera.o: rebound-engine\\src\\Util\\Camera.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Camera.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Camera.o
 
-$(OBJDIR)\\Engine\\src\\Util\\Point.o: Engine\\src\\Util\\Point.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Util\\Point.cpp -o $(OBJDIR)\\Engine\\src\\Util\\Point.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\Composite.o: rebound-engine\\src\\Util\\Composite.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Composite.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Composite.o
 
-$(OBJDIR)\\Engine\\src\\Util\\Rect.o: Engine\\src\\Util\\Rect.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Util\\Rect.cpp -o $(OBJDIR)\\Engine\\src\\Util\\Rect.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\Dimension.o: rebound-engine\\src\\Util\\Dimension.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Dimension.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Dimension.o
 
-$(OBJDIR)\\Engine\\src\\Util\\RotatedRectangle.o: Engine\\src\\Util\\RotatedRectangle.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Util\\RotatedRectangle.cpp -o $(OBJDIR)\\Engine\\src\\Util\\RotatedRectangle.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\ImageResourceManager.o: rebound-engine\\src\\Util\\ImageResourceManager.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\ImageResourceManager.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\ImageResourceManager.o
 
-$(OBJDIR)\\Engine\\src\\Util\\Util\\Focusable.o: Engine\\src\\Util\\Util\\Focusable.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Util\\Util\\Focusable.cpp -o $(OBJDIR)\\Engine\\src\\Util\\Util\\Focusable.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\Point.o: rebound-engine\\src\\Util\\Point.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Point.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Point.o
 
-$(OBJDIR)\\Engine\\src\\Util\\Vector2f.o: Engine\\src\\Util\\Vector2f.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Util\\Vector2f.cpp -o $(OBJDIR)\\Engine\\src\\Util\\Vector2f.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\Rect.o: rebound-engine\\src\\Util\\Rect.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Rect.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Rect.o
 
-$(OBJDIR)\\Engine\\src\\main.o: Engine\\src\\main.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\main.cpp -o $(OBJDIR)\\Engine\\src\\main.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\RotatedRectangle.o: rebound-engine\\src\\Util\\RotatedRectangle.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\RotatedRectangle.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\RotatedRectangle.o
 
-$(OBJDIR)\\Engine\\src\\Exception\\FileNotFoundException.o: Engine\\src\\Exception\\FileNotFoundException.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Exception\\FileNotFoundException.cpp -o $(OBJDIR)\\Engine\\src\\Exception\\FileNotFoundException.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\Focusable.o: rebound-engine\\src\\Util\\Focusable.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Focusable.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Focusable.o
 
-$(OBJDIR)\\Engine\\src\\GameEngine.o: Engine\\src\\GameEngine.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\GameEngine.cpp -o $(OBJDIR)\\Engine\\src\\GameEngine.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\Vector2f.o: rebound-engine\\src\\Util\\Vector2f.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Vector2f.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Vector2f.o
 
-$(OBJDIR)\\Engine\\src\\GameState.o: Engine\\src\\GameState.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\GameState.cpp -o $(OBJDIR)\\Engine\\src\\GameState.o
+$(OBJDIR)\\Game\\src\\main.o: Game\\src\\main.cpp
+	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\main.cpp -o $(OBJDIR)\\Game\\src\\main.o
 
-$(OBJDIR)\\Engine\\src\\GameStateFactory.o: Engine\\src\\GameStateFactory.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\GameStateFactory.cpp -o $(OBJDIR)\\Engine\\src\\GameStateFactory.o
+$(OBJDIR)\\rebound-engine\\src\\Exception\\FileNotFoundException.o: rebound-engine\\src\\Exception\\FileNotFoundException.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Exception\\FileNotFoundException.cpp -o $(OBJDIR)\\rebound-engine\\src\\Exception\\FileNotFoundException.o
 
-$(OBJDIR)\\Engine\\src\\Game\\Ball.o: Engine\\src\\Game\\Ball.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Game\\Ball.cpp -o $(OBJDIR)\\Engine\\src\\Game\\Ball.o
+$(OBJDIR)\\rebound-engine\\src\\GameEngine.o: rebound-engine\\src\\GameEngine.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\GameEngine.cpp -o $(OBJDIR)\\rebound-engine\\src\\GameEngine.o
 
-$(OBJDIR)\\Engine\\src\\Game\\Crate.o: Engine\\src\\Game\\Crate.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Game\\Crate.cpp -o $(OBJDIR)\\Engine\\src\\Game\\Crate.o
+$(OBJDIR)\\rebound-engine\\src\\GameState.o: rebound-engine\\src\\GameState.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\GameState.cpp -o $(OBJDIR)\\rebound-engine\\src\\GameState.o
 
-$(OBJDIR)\\Engine\\src\\Game\\Paddle.o: Engine\\src\\Game\\Paddle.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Game\\Paddle.cpp -o $(OBJDIR)\\Engine\\src\\Game\\Paddle.o
+$(OBJDIR)\\Game\\src\\States\\GameStateFactory.o: Game\\src\\States\\GameStateFactory.cpp
+	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\States\\GameStateFactory.cpp -o $(OBJDIR)\\Game\\src\\States\\GameStateFactory.o
 
-$(OBJDIR)\\Engine\\src\\Rendering\\Drawable.o: Engine\\src\\Rendering\\Drawable.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Engine\\src\\Rendering\\Drawable.cpp -o $(OBJDIR)\\Engine\\src\\Rendering\\Drawable.o
+$(OBJDIR)\\Game\\src\\GameEntities\\Ball.o: Game\\src\\GameEntities\\Ball.cpp
+	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\GameEntities\\Ball.cpp -o $(OBJDIR)\\Game\\src\\GameEntities\\Ball.o
+
+$(OBJDIR)\\Game\\src\\GameEntities\\Crate.o: Game\\src\\GameEntities\\Crate.cpp
+	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\GameEntities\\Crate.cpp -o $(OBJDIR)\\Game\\src\\GameEntities\\Crate.o
+
+$(OBJDIR)\\Game\\src\\GameEntities\\Paddle.o: Game\\src\\GameEntities\\Paddle.cpp
+	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\GameEntities\\Paddle.cpp -o $(OBJDIR)\\Game\\src\\GameEntities\\Paddle.o
+
+$(OBJDIR)\\rebound-engine\\src\\Rendering\\Drawable.o: rebound-engine\\src\\Rendering\\Drawable.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Rendering\\Drawable.cpp -o $(OBJDIR)\\rebound-engine\\src\\Rendering\\Drawable.o
 
 clean_build: clean build
 
