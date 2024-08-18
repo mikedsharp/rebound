@@ -26,6 +26,7 @@
 
 #endif
 #include <iostream>
+#include "./States/GameStateFactory.h"
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
@@ -69,6 +70,10 @@ int main(int argc, char *args[])
     ctx.engineInstance = instance;
     // invoke the engine, passing it the dimensions of our window and enter into a loop
     instance->InvokeEngine(-1, -1, 32, "Rebound");
+    instance->AddState(GameStateFactory::BuildState(STATE_MAINMENU));
+    instance->AddState(GameStateFactory::BuildState(STATE_GAMEOVER));
+    instance->AddState(GameStateFactory::BuildState(STATE_GAMEPLAYAREA_GAMELEVEL));
+    instance->SwitchState(STATE_MAINMENU);
 
     ctx.nowTime = SDL_GetTicks();
     ctx.startTime = SDL_GetTicks();
