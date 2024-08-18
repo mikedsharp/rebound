@@ -146,10 +146,10 @@ $(OBJDIR)\\rebound-engine\\src\\Util\\Point.o: rebound-engine\\src\\Util\\Point.
 	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Point.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Point.o
 
 $(OBJDIR)\\rebound-engine\\src\\Util\\Rect.o: rebound-engine\\src\\Util\\Rect.cpp
-	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Rect.cpp -o $(OBJDIR)\\Engine\\src\\Util\\Rect.o
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Rect.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Rect.o
 
 $(OBJDIR)\\rebound-engine\\src\\Util\\RotatedRectangle.o: rebound-engine\\src\\Util\\RotatedRectangle.cpp
-	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\RotatedRectangle.cpp -o $(OBJDIR)\\Engine\\src\\Util\\RotatedRectangle.o
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\RotatedRectangle.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\RotatedRectangle.o
 
 $(OBJDIR)\\rebound-engine\\src\\Util\\Util\\Focusable.o: rebound-engine\\src\\Util\\Util\\Focusable.cpp
 	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Util\\Focusable.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Util\\Focusable.o
