@@ -6,7 +6,7 @@
 #include <sstream>
 #include "../../../rebound-engine/src/Util/MusicPlayer.h"
 
-RandomRebound_GameState::RandomRebound_GameState() : GameState(NULL, STATE_GAMEPLAYAREA_GAMELEVEL )
+RandomRebound_GameState::RandomRebound_GameState() : GameState(NULL, STATE_GAMEPLAYAREA_GAMELEVEL)
 {
 }
 RandomRebound_GameState::~RandomRebound_GameState()
@@ -73,6 +73,10 @@ void RandomRebound_GameState::CheckEvent()
         {
             m_engineInstance->Running(false);
             break;
+        }
+        else if (e->type == SDL_MOUSEMOTION)
+        {
+            m_player->SetPosition((mouseX - m_player->Bounds().Width() / 2), m_player->Bounds().Y());
         }
         else if (e->type == SDL_MOUSEBUTTONDOWN)
         {
@@ -458,6 +462,7 @@ void RandomRebound_GameState::InitState()
 }
 void RandomRebound_GameState::EndState()
 {
+    m_engineInstance->GetGameWindow()->FreeMouse();
 }
 void RandomRebound_GameState::StartState()
 {
@@ -472,6 +477,15 @@ void RandomRebound_GameState::StartState()
     m_gameBall->SetPosition(320, 240);
     m_cursorBounds = new RotatedRectangle(Rect(0, 0, 1, 1), 0);
 
+// trapping mouse focus doesn't work well in browsers, so we just hide it instead
+#ifndef __EMSCRIPTEN__
+    m_engineInstance->GetGameWindow()->FocusMouse();
+#else
+    int mouseX, mouseY;
+    SDL_GetMouseState(&mouseX, &mouseY);
+    SDL_ShowCursor(SDL_DISABLE);
+    m_player->SetPosition((mouseX - m_player->Bounds().Width() / 2), m_player->Bounds().Y());
+#endif
     m_gameBall->YSpeed(BALL_BASE_SPEED);
     m_gameBall->XSpeed(0);
     RegenerateCrates();

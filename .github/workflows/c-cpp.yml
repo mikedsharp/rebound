@@ -17,7 +17,7 @@ jobs:
           submodules: recursive
       - uses: mymindstorm/setup-emsdk@v14
         with:
-          version: 3.1.46
+          version: 3.1.64
       - name: make web build
         run: make clean_build -f build-scripts/web.Makefile
       - name: Archive production artifacts

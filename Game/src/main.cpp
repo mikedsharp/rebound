@@ -22,6 +22,7 @@
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
 #include <emscripten/bind.h>
+#include <emscripten/html5.h>
 #include "../../rebound-engine/src/Util/JavascriptCallbackHandler.h"
 
 #endif
@@ -68,8 +69,17 @@ int main(int argc, char *args[])
     struct context ctx;
     instance = new GameEngine();
     ctx.engineInstance = instance;
-    // invoke the engine, passing it the dimensions of our window and enter into a loop
+
+#ifdef __EMSCRIPTEN__
+    double canvasWidth, canvasHeight;
+    emscripten_get_element_css_size("#canvas", &canvasWidth, &canvasHeight);
+    instance->InvokeEngine((int)canvasWidth, (int)canvasHeight, 32, "Rebound");
+#else
     instance->InvokeEngine(-1, -1, 32, "Rebound");
+#endif
+
+    // invoke the engine, passing it the dimensions of our window and enter into a loop
+
     instance->AddState(GameStateFactory::BuildState(STATE_MAINMENU));
     instance->AddState(GameStateFactory::BuildState(STATE_GAMEOVER));
     instance->AddState(GameStateFactory::BuildState(STATE_GAMEPLAYAREA_GAMELEVEL));
