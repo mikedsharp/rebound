@@ -1,0 +1,3 @@
+[submodule "rebound-engine"]
+	path = rebound-engine
+	url = git@github.com:mikedsharp/rebound-engine.git

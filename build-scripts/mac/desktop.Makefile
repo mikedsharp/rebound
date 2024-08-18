@@ -1,35 +1,38 @@
-INC = -I /opt/homebrew/include/SDL2 -I Engine/include
+INC = -I /opt/homebrew/include/SDL2 -I rebound-engine -I Game
 
 ASSETSDIR = assets
 BINDIR = bin/mac
 
-OBJS = Engine/src/Rendering/GameSprite.cpp \
-	Engine/src/Rendering/GameWindow.cpp \
-	Engine/src/Rendering/RenderManager.cpp \
-	Engine/src/States/GameOverState.cpp \
-	Engine/src/States/MainMenuState.cpp \
-	Engine/src/States/RandomRebound_GameState.cpp \
-	Engine/src/Util/AudioResourceManager.cpp \
-	Engine/src/Util/MusicPlayer.cpp \
-	Engine/src/Util/SoundPlayer.cpp \
-	Engine/src/Util/Camera.cpp \
-	Engine/src/Util/Composite.cpp \
-	Engine/src/Util/Dimension.cpp \
-	Engine/src/Util/ImageResourceManager.cpp \
-	Engine/src/Util/Point.cpp \
-	Engine/src/Util/Rect.cpp \
-	Engine/src/Util/RotatedRectangle.cpp \
-	Engine/src/Util/Util/Focusable.cpp \
-	Engine/src/Util/Vector2f.cpp \
-	Engine/src/main.cpp \
-	Engine/src/Exception/FileNotFoundException.cpp \
-	Engine/src/GameEngine.cpp \
-	Engine/src/GameState.cpp \
-	Engine/src/GameStateFactory.cpp \
-	Engine/src/Game/Ball.cpp \
-	Engine/src/Game/Crate.cpp \
-	Engine/src/Game/Paddle.cpp \
-	Engine/src/Rendering/Drawable.cpp
+OBJS = rebound-engine/src/Rendering/GameSprite.cpp \
+	rebound-engine/src/Rendering/GameWindow.cpp \
+	rebound-engine/src/Rendering/RenderManager.cpp \
+	Game/src/States/GameOverState.cpp \
+	Game/src/States/MainMenuState.cpp \
+	Game/src/States/RandomRebound_GameState.cpp \
+	rebound-engine/src/Util/Font.cpp \
+	rebound-engine/src/Util/Text.cpp \
+	rebound-engine/src/Util/Timer.cpp \
+	rebound-engine/src/Util/AudioResourceManager.cpp \
+	rebound-engine/src/Util/MusicPlayer.cpp \
+	rebound-engine/src/Util/SoundPlayer.cpp \
+	rebound-engine/src/Util/Camera.cpp \
+	rebound-engine/src/Util/Composite.cpp \
+	rebound-engine/src/Util/Dimension.cpp \
+	rebound-engine/src/Util/ImageResourceManager.cpp \
+	rebound-engine/src/Util/Point.cpp \
+	rebound-engine/src/Util/Rect.cpp \
+	rebound-engine/src/Util/RotatedRectangle.cpp \
+	rebound-engine/src/Util/Focusable.cpp \
+	rebound-engine/src/Util/Vector2f.cpp \
+	Game/src/main.cpp \
+	rebound-engine/src/Exception/FileNotFoundException.cpp \
+	rebound-engine/src/GameEngine.cpp \
+	rebound-engine/src/GameState.cpp \
+	rebound-engine/src/Rendering/Drawable.cpp \
+	Game/src/States/GameStateFactory.cpp \
+	Game/src/GameEntities/Ball.cpp \
+	Game/src/GameEntities/Crate.cpp \
+	Game/src/GameEntities/Paddle.cpp
 
 CC = g++
 
