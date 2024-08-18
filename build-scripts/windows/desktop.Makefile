@@ -50,7 +50,7 @@ OBJ = $(OBJDIR)\\rebound-engine\\src\\Rendering\\GameSprite.o \
 	  $(OBJDIR)\\rebound-engine\\src\\Util\\RotatedRectangle.o \
 	  $(OBJDIR)\\rebound-engine\\src\\Util\\Focusable.o \
 	  $(OBJDIR)\\rebound-engine\\src\\Util\\Vector2f.o \
-	  $(OBJDIR)\\rebound-engine\\src\\main.o \
+	  $(OBJDIR)\\Game\\src\\Main.o \
 	  $(OBJDIR)\\rebound-engine\\src\\Exception\\FileNotFoundException.o \
 	  $(OBJDIR)\\rebound-engine\\src\\GameEngine.o \
 	  $(OBJDIR)\\rebound-engine\\src\\GameState.o \
