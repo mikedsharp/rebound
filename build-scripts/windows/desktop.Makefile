@@ -48,7 +48,7 @@ OBJ = $(OBJDIR)\\rebound-engine\\src\\Rendering\\GameSprite.o \
 	  $(OBJDIR)\\rebound-engine\\src\\Util\\Point.o \
 	  $(OBJDIR)\\rebound-engine\\src\\Util\\Rect.o \
 	  $(OBJDIR)\\rebound-engine\\src\\Util\\RotatedRectangle.o \
-	  $(OBJDIR)\\rebound-engine\\src\\Util\\Util\\Focusable.o \
+	  $(OBJDIR)\\rebound-engine\\src\\Util\\Focusable.o \
 	  $(OBJDIR)\\rebound-engine\\src\\Util\\Vector2f.o \
 	  $(OBJDIR)\\rebound-engine\\src\\main.o \
 	  $(OBJDIR)\\rebound-engine\\src\\Exception\\FileNotFoundException.o \
@@ -73,7 +73,7 @@ before_build:
 	cmd /c if not exist $(OBJDIR)\\rebound-engine\\src\\Rendering md $(OBJDIR)\\rebound-engine\\src\\Rendering
 	cmd /c if not exist $(OBJDIR)\\rebound-engine\\src\\States md $(OBJDIR)\\rebound-engine\\src\\States
 	cmd /c if not exist $(OBJDIR)\\rebound-engine\\src\\Util md $(OBJDIR)\\rebound-engine\\src\\Util
-	cmd /c if not exist $(OBJDIR)\\rebound-engine\\src\\Util\\Util md $(OBJDIR)\\rebound-engine\\src\\Util\\Util
+	cmd /c if not exist $(OBJDIR)\\rebound-engine\\src\\Util md $(OBJDIR)\\rebound-engine\\src\\Util
 	cmd /c if not exist $(OBJDIR)\\rebound-engine\\src md $(OBJDIR)\\rebound-engine\\src
 	cmd /c if not exist $(OBJDIR)\\rebound-engine\\src\\Exception md $(OBJDIR)\\rebound-engine\\src\\Exception
 	cmd /c if not exist $(OBJDIR)\\Game md $(OBJDIR)\\Game
@@ -151,8 +151,8 @@ $(OBJDIR)\\rebound-engine\\src\\Util\\Rect.o: rebound-engine\\src\\Util\\Rect.cp
 $(OBJDIR)\\rebound-engine\\src\\Util\\RotatedRectangle.o: rebound-engine\\src\\Util\\RotatedRectangle.cpp
 	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\RotatedRectangle.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\RotatedRectangle.o
 
-$(OBJDIR)\\rebound-engine\\src\\Util\\Util\\Focusable.o: rebound-engine\\src\\Util\\Util\\Focusable.cpp
-	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Util\\Focusable.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Util\\Focusable.o
+$(OBJDIR)\\rebound-engine\\src\\Util\\Focusable.o: rebound-engine\\src\\Util\\Focusable.cpp
+	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Focusable.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Focusable.o
 
 $(OBJDIR)\\rebound-engine\\src\\Util\\Vector2f.o: rebound-engine\\src\\Util\\Vector2f.cpp
 	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Util\\Vector2f.cpp -o $(OBJDIR)\\rebound-engine\\src\\Util\\Vector2f.o
