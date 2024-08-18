@@ -107,7 +107,7 @@ $(OBJDIR)\\Game\\src\\States\\GameOverState.o: Game\\src\\States\\GameOverState.
 	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\States\\GameOverState.cpp -o $(OBJDIR)\\Game\\src\\States\\GameOverState.o
 
 $(OBJDIR)\\Game\\src\\States\\MainMenuState.o: Game\\src\\States\\MainMenuState.cpp
-	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\States\\MainMenuState.cpp -o $(OBJDIR)\\Game\\src\\States\\MainMenuState.o
+	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\States\\MainMenuState.cpp -o $(OBJDIR)\\Game\\src\\States\\MainMenuState.o
 
 $(OBJDIR)\\Game\\src\\States\\RandomRebound_GameState.o: Game\\src\\States\\RandomRebound_GameState.cpp
 	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\States\\RandomRebound_GameState.cpp -o $(OBJDIR)\\Game\\src\\States\\RandomRebound_GameState.o
