@@ -55,9 +55,9 @@ OBJ = $(OBJDIR)\\rebound-engine\\src\\Rendering\\GameSprite.o \
 	  $(OBJDIR)\\rebound-engine\\src\\GameEngine.o \
 	  $(OBJDIR)\\rebound-engine\\src\\GameState.o \
 	  $(OBJDIR)\\Game\\src\\States\\GameStateFactory.o \
-	  $(OBJDIR)\\Game\\src\\Game\\Ball.o \
-	  $(OBJDIR)\\Game\\src\\Game\\Crate.o \
-	  $(OBJDIR)\\Game\\src\\Game\\Paddle.o \
+	  $(OBJDIR)\\Game\\src\\GameEntities\\Ball.o \
+	  $(OBJDIR)\\Game\\src\\GameEntities\\Crate.o \
+	  $(OBJDIR)\\Game\\src\\GameEntities\\Paddle.o \
 	  $(OBJDIR)\\rebound-engine\\src\\Rendering\\Drawable.o
 
 all: build
@@ -172,14 +172,14 @@ $(OBJDIR)\\rebound-engine\\src\\GameState.o: rebound-engine\\src\\GameState.cpp
 $(OBJDIR)\\Game\\src\\States\\GameStateFactory.o: Game\\src\\States\\GameStateFactory.cpp
 	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\States\\GameStateFactory.cpp -o $(OBJDIR)\\Game\\src\\States\\GameStateFactory.o
 
-$(OBJDIR)\\Game\\src\\Game\\Ball.o: Game\\src\\Game\\Ball.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\Game\\Ball.cpp -o $(OBJDIR)\\Game\\src\\Game\\Ball.o
+$(OBJDIR)\\Game\\src\\GameEntities\\Ball.o: Game\\src\\GameEntities\\Ball.cpp
+	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\GameEntities\\Ball.cpp -o $(OBJDIR)\\Game\\src\\GameEntities\\Ball.o
 
-$(OBJDIR)\\Game\\src\\Game\\Crate.o: Game\\src\\Game\\Crate.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\Game\\Crate.cpp -o $(OBJDIR)\\Game\\src\\Game\\Crate.o
+$(OBJDIR)\\Game\\src\\GameEntities\\Crate.o: Game\\src\\GameEntities\\Crate.cpp
+	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\GameEntities\\Crate.cpp -o $(OBJDIR)\\Game\\src\\GameEntities\\Crate.o
 
-$(OBJDIR)\\Game\\src\\Game\\Paddle.o: Game\\src\\Game\\Paddle.cpp
-	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\Game\\Paddle.cpp -o $(OBJDIR)\\Game\\src\\Game\\Paddle.o
+$(OBJDIR)\\Game\\src\\GameEntities\\Paddle.o: Game\\src\\GameEntities\\Paddle.cpp
+	$(CXX) $(CFLAGS) $(INC) -c Game\\src\\GameEntities\\Paddle.cpp -o $(OBJDIR)\\Game\\src\\GameEntities\\Paddle.o
 
 $(OBJDIR)\\rebound-engine\\src\\Rendering\\Drawable.o: rebound-engine\\src\\Rendering\\Drawable.cpp
 	$(CXX) $(CFLAGS) $(INC) -c rebound-engine\\src\\Rendering\\Drawable.cpp -o $(OBJDIR)\\rebound-engine\\src\\Rendering\\Drawable.o
