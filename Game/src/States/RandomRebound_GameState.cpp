@@ -77,7 +77,7 @@ void RandomRebound_GameState::CheckEvent()
         }
         else if (e->type == SDL_MOUSEMOTION)
         {
-            m_player->SetPosition((m_cursorBounds->X()), m_player->Bounds().Y());
+ m_player->SetPosition((m_cursorBounds->X()- m_player->Bounds().Width()/2), m_player->Bounds().Y());
         }
         else if (e->type == SDL_MOUSEBUTTONDOWN)
         {
@@ -125,7 +125,7 @@ void RandomRebound_GameState::UpdateLogic()
 {
     if (m_mouseButtonPressedState == true)
     {
-        m_player->SetPosition((m_cursorBounds->X()), m_player->Bounds().Y());
+        m_player->SetPosition((m_cursorBounds->X()- m_player->Bounds().Width()/2), m_player->Bounds().Y());
     }
     if (m_leftKeyState && m_player->Bounds().X() - m_player->XSpeed() > m_minPaddleX)
     {
