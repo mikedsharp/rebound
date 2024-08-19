@@ -64,7 +64,8 @@ void RandomRebound_GameState::CheckEvent()
     int mouseX, mouseY;
 
     SDL_GetMouseState(&mouseX, &mouseY);
-    m_cursorBounds->SetPosition(mouseX, mouseY);
+    // apply scaling to cursor position
+    m_cursorBounds->SetPosition((float)mouseX / m_engineInstance->GetGameWindow()->m_mouseScaleFactorX, mouseY / m_engineInstance->GetGameWindow()->m_mouseScaleFactorY);
 
     while (SDL_PollEvent(e) != 0)
     {
@@ -76,7 +77,7 @@ void RandomRebound_GameState::CheckEvent()
         }
         else if (e->type == SDL_MOUSEMOTION)
         {
-            m_player->SetPosition((mouseX - m_player->Bounds().Width() / 2), m_player->Bounds().Y());
+            m_player->SetPosition((m_cursorBounds->X()), m_player->Bounds().Y());
         }
         else if (e->type == SDL_MOUSEBUTTONDOWN)
         {
@@ -483,8 +484,8 @@ void RandomRebound_GameState::StartState()
 #else
     int mouseX, mouseY;
     SDL_GetMouseState(&mouseX, &mouseY);
+    SDL_WarpMouseInWindow(m_engineInstance->GetGameWindow()->m_windowObj, mouseX, mouseY);
     SDL_ShowCursor(SDL_DISABLE);
-    m_player->SetPosition((mouseX - m_player->Bounds().Width() / 2), m_player->Bounds().Y());
 #endif
     m_gameBall->YSpeed(BALL_BASE_SPEED);
     m_gameBall->XSpeed(0);
