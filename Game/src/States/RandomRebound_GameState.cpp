@@ -478,18 +478,16 @@ void RandomRebound_GameState::StartState()
     m_gameBall->SetPosition(320, 240);
     m_cursorBounds = new RotatedRectangle(Rect(0, 0, 1, 1), 0);
 
+    int mouseX, mouseY;
+
+    SDL_GetMouseState(&mouseX, &mouseY);
 // trapping mouse focus doesn't work well in browsers, so we just hide it instead
 #ifndef __EMSCRIPTEN__
     m_engineInstance->GetGameWindow()->FocusMouse();
 #else
-    int mouseX, mouseY;
-    SDL_GetMouseState(&mouseX, &mouseY);
     SDL_WarpMouseInWindow(m_engineInstance->GetGameWindow()->m_windowObj, mouseX, mouseY);
     SDL_ShowCursor(SDL_DISABLE);
 #endif
-    int mouseX, mouseY;
-
-    SDL_GetMouseState(&mouseX, &mouseY);
     // apply scaling to cursor position
     m_cursorBounds->SetPosition((float)mouseX / m_engineInstance->GetGameWindow()->m_mouseScaleFactorX, mouseY / m_engineInstance->GetGameWindow()->m_mouseScaleFactorY);
     m_player->SetPosition((m_cursorBounds->X() - m_player->Bounds().Width() / 2), m_player->Bounds().Y());
