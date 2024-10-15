@@ -50,7 +50,7 @@ all: before_build build
 build: before_build OUT
 
 OUT: $(SOURCES)
-	 $(CC) $(EMFLAGS) $(INC) $(SOURCES) -o web/index.html
+	 $(CC) $(EMFLAGS) $(INC) $(SOURCES) -o web-game-player/public/index.js
 
 clean_build: clean build
 

@@ -1,3 +1,6 @@
 [submodule "rebound-engine"]
 	path = rebound-engine
 	url = git@github.com:mikedsharp/rebound-engine.git
+[submodule "web-game-player"]
+	path = web-game-player
+	url = git@github.com:mikedsharp/web-game-player.git
